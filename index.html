@@ -941,7 +941,7 @@
     <h2 class="section-title reveal" style="text-align:center">Laten we praten.</h2>
     <p class="section-sub reveal" style="text-align:center;max-width:100%;margin-bottom:0">Vertel ons over je situatie. We reageren binnen één werkdag.</p>
 
-     <form class="contact-form reveal" action="https://formspree.io/f/xqeyylzd" method="POST" onsubmit="handleSubmit(event)">
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Voornaam</label>
@@ -1104,11 +1104,31 @@
     setActiveStep(1);
   }
 
-  // Contact form
-  function handleSubmit(e) {
+  // Contact form — Formspree handles the POST, we show success after
+  async function handleSubmit(e) {
     e.preventDefault();
-    e.target.style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
+    const form = e.target;
+    const data = new FormData(form);
+    const btn = form.querySelector('.form-submit');
+    btn.textContent = 'Versturen...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Er ging iets mis — probeer opnieuw';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Er ging iets mis — probeer opnieuw';
+      btn.disabled = false;
+    }
   }
 </script>
 </body>
