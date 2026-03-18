@@ -8,662 +8,253 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --black: #0a0a0a;
-    --white: #ffffff;
-    --grey-50: #f7f7f5;
-    --grey-100: #eeede9;
-    --grey-300: #c8c6bf;
-    --grey-500: #8a887f;
-    --grey-700: #3d3c38;
-    --accent-blue: #2563ff;
-    --accent-coral: #ff4f3b;
-    --accent-amber: #f59e0b;
-    --accent-teal: #0db4a0;
-    --accent-purple: #7c3aed;
-    --radius: 20px;
-    --radius-sm: 12px;
+    --black: #0a0a0a; --white: #ffffff;
+    --grey-50: #f7f7f5; --grey-100: #eeede9; --grey-300: #c8c6bf;
+    --grey-500: #8a887f; --grey-700: #3d3c38;
+    --accent-blue: #2563ff; --accent-coral: #ff4f3b;
+    --accent-amber: #f59e0b; --accent-teal: #0db4a0;
+    --accent-purple: #7c3aed; --accent-green: #16a34a;
+    --radius: 20px; --radius-sm: 12px;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--black);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
   /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 48px;
-    height: 64px;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--grey-100);
-  }
-
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 18px;
-    letter-spacing: -0.5px;
-    color: var(--black);
-    text-decoration: none;
-  }
-
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--grey-100); }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: var(--black); text-decoration: none; }
   .nav-logo span { color: var(--accent-blue); }
-
   .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    font-size: 14px; font-weight: 400; color: var(--grey-700);
-    text-decoration: none; transition: color 0.2s;
-  }
+  .nav-links a { font-size: 14px; font-weight: 400; color: var(--grey-700); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--black); }
-
-  .nav-cta {
-    background: var(--black); color: var(--white);
-    padding: 10px 22px; border-radius: 100px;
-    font-size: 14px; font-weight: 500;
-    text-decoration: none; transition: background 0.2s, transform 0.2s;
-  }
+  .nav-cta { background: var(--black); color: var(--white); padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.2s; }
   .nav-cta:hover { background: var(--accent-blue); transform: translateY(-1px); }
 
   /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 120px 48px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(37,99,255,0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 80% 30%, rgba(255,79,59,0.05) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 60% 80%, rgba(13,180,160,0.05) 0%, transparent 70%);
-  }
-
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--grey-50); border: 1px solid var(--grey-100);
-    padding: 6px 16px; border-radius: 100px;
-    font-size: 13px; color: var(--grey-500);
-    margin-bottom: 32px; position: relative; z-index: 1;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .hero-tag-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--accent-teal);
-    animation: pulse 2s ease infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.3); }
-  }
-
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(52px, 8vw, 96px);
-    line-height: 1.0;
-    letter-spacing: -3px;
-    color: var(--black);
-    position: relative; z-index: 1;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(37,99,255,0.06) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 30%, rgba(255,79,59,0.05) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 60% 80%, rgba(13,180,160,0.05) 0%, transparent 70%); }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--grey-50); border: 1px solid var(--grey-100); padding: 6px 16px; border-radius: 100px; font-size: 13px; color: var(--grey-500); margin-bottom: 32px; position: relative; z-index: 1; animation: fadeUp 0.6s ease both; }
+  .hero-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-teal); animation: pulse 2s ease infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.3); } }
+  .hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(52px, 8vw, 96px); line-height: 1.0; letter-spacing: -3px; color: var(--black); position: relative; z-index: 1; animation: fadeUp 0.6s 0.1s ease both; }
   .hero h1 .word-veilig { color: var(--accent-blue); }
-  .hero h1 .word-simpel {
-    position: relative;
-    display: inline-block;
-  }
-  .hero h1 .word-simpel::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: 4px;
-    width: 100%; height: 6px;
-    background: var(--accent-coral);
-    border-radius: 3px;
-    opacity: 0.4;
-  }
-
-  .hero-sub {
-    margin-top: 28px;
-    font-size: 20px; font-weight: 300; color: var(--grey-500);
-    max-width: 480px; line-height: 1.6;
-    position: relative; z-index: 1;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .hero-actions {
-    margin-top: 44px;
-    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-    position: relative; z-index: 1;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-
-  .btn-primary {
-    background: var(--black); color: var(--white);
-    padding: 16px 36px; border-radius: 100px;
-    font-size: 16px; font-weight: 500;
-    text-decoration: none; border: none; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    display: inline-block;
-  }
+  .hero h1 .word-simpel { position: relative; display: inline-block; }
+  .hero h1 .word-simpel::after { content: ''; position: absolute; left: 0; bottom: 4px; width: 100%; height: 6px; background: var(--accent-coral); border-radius: 3px; opacity: 0.4; }
+  .hero-sub { margin-top: 28px; font-size: 20px; font-weight: 300; color: var(--grey-500); max-width: 520px; line-height: 1.6; position: relative; z-index: 1; animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-audience-pills { margin-top: 20px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; animation: fadeUp 0.6s 0.25s ease both; }
+  .hero-pill { background: var(--grey-50); border: 1px solid var(--grey-100); padding: 4px 14px; border-radius: 100px; font-size: 13px; color: var(--grey-500); }
+  .hero-actions { margin-top: 44px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; animation: fadeUp 0.6s 0.3s ease both; }
+  .btn-primary { background: var(--black); color: var(--white); padding: 16px 36px; border-radius: 100px; font-size: 16px; font-weight: 500; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; display: inline-block; }
   .btn-primary:hover { background: var(--accent-blue); transform: translateY(-2px); }
-
-  .btn-ghost {
-    background: transparent; color: var(--black);
-    padding: 16px 36px; border-radius: 100px;
-    font-size: 16px; font-weight: 400;
-    text-decoration: none; border: 1.5px solid var(--grey-300);
-    cursor: pointer; transition: border-color 0.2s, transform 0.15s;
-    display: inline-block;
-  }
+  .btn-ghost { background: transparent; color: var(--black); padding: 16px 36px; border-radius: 100px; font-size: 16px; font-weight: 400; text-decoration: none; border: 1.5px solid var(--grey-300); cursor: pointer; transition: border-color 0.2s, transform 0.15s; display: inline-block; }
   .btn-ghost:hover { border-color: var(--black); transform: translateY(-2px); }
+  .hero-scroll { margin-top: 80px; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--grey-300); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; animation: fadeUp 0.6s 0.5s ease both; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--grey-300), transparent); animation: scrollPulse 2s ease infinite; }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
 
-  .hero-scroll {
-    margin-top: 80px; position: relative; z-index: 1;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--grey-300); font-size: 12px; letter-spacing: 1px;
-    text-transform: uppercase;
-    animation: fadeUp 0.6s 0.5s ease both;
-  }
+  /* Shared section labels */
+  .section-label { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--grey-300); margin-bottom: 20px; }
+  .section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(36px, 4vw, 52px); letter-spacing: -1.5px; line-height: 1.1; color: var(--black); margin-bottom: 16px; }
+  .section-sub { font-size: 18px; font-weight: 300; color: var(--grey-500); max-width: 480px; line-height: 1.6; margin-bottom: 64px; }
 
-  .scroll-line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--grey-300), transparent);
-    animation: scrollPulse 2s ease infinite;
-  }
+  /* PAKKETTEN */
+  .packages { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+  .tiers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
 
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
+  .tier-card { background: var(--grey-50); border: 1.5px solid var(--grey-100); border-radius: var(--radius); padding: 32px 28px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; }
+  .tier-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .tier-card.featured { background: var(--black); border-color: var(--black); }
+  .tier-card.featured .tier-name, .tier-card.featured .tier-price, .tier-card.featured .tier-tagline, .tier-card.featured .tier-check-label { color: rgba(255,255,255,0.9); }
+  .tier-card.featured .tier-sub, .tier-card.featured .tier-price-label { color: rgba(255,255,255,0.45); }
+  .tier-card.featured .tier-divider { background: rgba(255,255,255,0.1); }
+  .tier-card.featured .tier-check-icon { background: rgba(255,255,255,0.08); }
+  .tier-card.featured .tier-check-icon svg { stroke: rgba(255,255,255,0.6); }
+  .tier-card.featured .industry-tag { border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.45); background: transparent; }
+  .tier-card.featured .tier-icon-wrap svg { stroke: rgba(255,255,255,0.7); }
+  .tier-card.featured .tier-icon-wrap { background: rgba(255,255,255,0.07); }
+  .tier-card.featured .tier-cta-btn { background: var(--accent-blue); color: var(--white); border-color: var(--accent-blue); }
+  .tier-card.featured .tier-cta-btn:hover { background: #1d4ed8; }
 
-  /* SERVICES */
-  .services {
-    padding: 120px 48px;
-    max-width: 1200px; margin: 0 auto;
-  }
+  .tier-badge { position: absolute; top: 20px; right: 20px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; }
+  .badge-popular { background: var(--accent-blue); color: var(--white); }
+  .badge-nis2 { background: rgba(13,180,160,0.15); color: var(--accent-teal); border: 1px solid rgba(13,180,160,0.25); }
 
-  .section-label {
-    font-size: 12px; font-weight: 500; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--grey-300);
-    margin-bottom: 20px;
-  }
+  /* Tier icon */
+  .tier-icon-wrap { width: 44px; height: 44px; border-radius: 12px; background: rgba(37,99,255,0.07); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; flex-shrink: 0; }
+  .tier-icon-wrap svg { width: 20px; height: 20px; stroke: var(--accent-blue); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: clamp(36px, 4vw, 52px);
-    letter-spacing: -1.5px; line-height: 1.1;
-    color: var(--black);
-    margin-bottom: 16px;
-  }
+  .tier-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.3px; color: var(--black); margin-bottom: 4px; }
+  .tier-sub { font-size: 13px; color: var(--grey-500); margin-bottom: 16px; line-height: 1.4; }
+  .tier-industries { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .industry-tag { font-size: 11px; padding: 3px 10px; border-radius: 100px; border: 1px solid var(--grey-100); color: var(--grey-500); background: var(--white); }
+  .tier-divider { height: 1px; background: var(--grey-100); margin-bottom: 20px; }
+  .tier-price { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -1px; color: var(--black); line-height: 1; }
+  .tier-price-label { font-size: 13px; color: var(--grey-500); margin-bottom: 16px; margin-top: 4px; }
+  .tier-tagline { font-size: 13px; font-weight: 400; color: var(--grey-700); margin-bottom: 20px; line-height: 1.5; font-style: italic; }
+  .tier-checks { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; flex: 1; }
+  .tier-check { display: flex; align-items: flex-start; gap: 10px; }
+  .tier-check-icon { width: 18px; height: 18px; border-radius: 50%; background: rgba(37,99,255,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .tier-check-icon svg { width: 10px; height: 10px; stroke: var(--accent-blue); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .tier-check-label { font-size: 13px; color: var(--grey-700); line-height: 1.4; }
+  .tier-cta-btn { display: block; text-align: center; background: transparent; color: var(--black); border: 1.5px solid var(--grey-300); padding: 12px 20px; border-radius: 100px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; text-decoration: none; transition: all 0.2s; margin-top: auto; }
+  .tier-cta-btn:hover { border-color: var(--black); background: var(--black); color: var(--white); }
 
-  .section-sub {
-    font-size: 18px; font-weight: 300; color: var(--grey-500);
-    max-width: 480px; line-height: 1.6;
-    margin-bottom: 64px;
-  }
+  .scope-note { margin-top: 32px; padding: 20px 24px; background: var(--grey-50); border: 1px solid var(--grey-100); border-radius: var(--radius-sm); display: flex; align-items: flex-start; gap: 14px; }
+  .scope-note-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; }
+  .scope-note-icon svg { width: 20px; height: 20px; stroke: var(--grey-500); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .scope-note-text { font-size: 13px; color: var(--grey-500); line-height: 1.6; }
+  .scope-note-text strong { color: var(--grey-700); font-weight: 500; }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
+  /* DIENSTEN */
+  .services { padding: 120px 48px; background: var(--grey-50); border-top: 1px solid var(--grey-100); border-bottom: 1px solid var(--grey-100); }
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
 
-  .service-card {
-    background: var(--grey-50);
-    border: 1px solid var(--grey-100);
-    border-radius: var(--radius);
-    padding: 44px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    position: relative; overflow: hidden;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 3px;
-    border-radius: var(--radius) var(--radius) 0 0;
-    transition: opacity 0.3s;
-    opacity: 0;
-  }
-
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-    border-color: transparent;
-  }
-
+  .service-card { background: var(--white); border: 1px solid var(--grey-100); border-radius: var(--radius); padding: 40px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius) var(--radius) 0 0; transition: opacity 0.3s; opacity: 0; }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); border-color: transparent; }
   .service-card:hover::before { opacity: 1; }
-
   .card-security::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-teal)); }
   .card-cost::before { background: linear-gradient(90deg, var(--accent-amber), var(--accent-coral)); }
+  .card-onprem::before { background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue)); }
+  .card-nis2::before { background: linear-gradient(90deg, var(--accent-teal), var(--accent-green)); }
+  .card-training::before { background: linear-gradient(90deg, var(--accent-coral), var(--accent-amber)); }
 
-  .card-icon {
-    width: 52px; height: 52px; border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; margin-bottom: 28px;
-  }
-
+  /* Service card icon box */
+  .card-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 28px; }
+  .card-icon svg { width: 24px; height: 24px; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .icon-security { background: rgba(37,99,255,0.08); }
+  .icon-security svg { stroke: var(--accent-blue); }
   .icon-cost { background: rgba(245,158,11,0.1); }
+  .icon-cost svg { stroke: var(--accent-amber); }
+  .icon-onprem { background: rgba(124,58,237,0.08); }
+  .icon-onprem svg { stroke: var(--accent-purple); }
+  .icon-nis2 { background: rgba(13,180,160,0.08); }
+  .icon-nis2 svg { stroke: var(--accent-teal); }
+  .icon-training { background: rgba(255,79,59,0.08); }
+  .icon-training svg { stroke: var(--accent-coral); }
 
-  .card-tag {
-    display: inline-block;
-    font-size: 11px; font-weight: 500; letter-spacing: 1.5px;
-    text-transform: uppercase; padding: 4px 10px;
-    border-radius: 100px; margin-bottom: 16px;
-  }
-
+  .card-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; margin-bottom: 16px; }
   .tag-security { background: rgba(37,99,255,0.08); color: var(--accent-blue); }
   .tag-cost { background: rgba(245,158,11,0.1); color: #b45309; }
+  .tag-onprem { background: rgba(124,58,237,0.08); color: var(--accent-purple); }
+  .tag-nis2 { background: rgba(13,180,160,0.08); color: var(--accent-teal); }
+  .tag-training { background: rgba(255,79,59,0.08); color: var(--accent-coral); }
 
-  .card-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: 26px;
-    letter-spacing: -0.5px; line-height: 1.2;
-    color: var(--black); margin-bottom: 14px;
-  }
-
-  .card-desc {
-    font-size: 16px; font-weight: 300; color: var(--grey-500);
-    line-height: 1.7; margin-bottom: 32px;
-  }
-
-  .card-features {
-    list-style: none; display: flex; flex-direction: column; gap: 10px;
-    margin-bottom: 36px;
-  }
-
-  .card-features li {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 14px; color: var(--grey-700);
-  }
-
-  .feature-dot {
-    width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
-  }
-
+  .card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.5px; line-height: 1.2; color: var(--black); margin-bottom: 14px; }
+  .card-desc { font-size: 15px; font-weight: 300; color: var(--grey-500); line-height: 1.7; margin-bottom: 28px; }
+  .card-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .card-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--grey-700); }
+  .feature-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
   .dot-blue { background: var(--accent-blue); }
   .dot-amber { background: var(--accent-amber); }
-
-  .card-price {
-    display: flex; align-items: baseline; gap: 6px;
-    padding-top: 24px; border-top: 1px solid var(--grey-100);
-  }
-
-  .price-amount {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: 28px;
-    color: var(--black);
-  }
-
+  .dot-purple { background: var(--accent-purple); }
+  .dot-teal { background: var(--accent-teal); }
+  .dot-coral { background: var(--accent-coral); }
+  .card-price { display: flex; align-items: baseline; gap: 6px; padding-top: 24px; border-top: 1px solid var(--grey-100); }
+  .price-amount { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 28px; color: var(--black); }
   .price-label { font-size: 14px; color: var(--grey-500); }
-
-  .card-cta {
-    margin-top: 20px;
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 14px; font-weight: 500; color: var(--black);
-    text-decoration: none; transition: gap 0.2s;
-  }
-
+  .card-cta { margin-top: 18px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--black); text-decoration: none; transition: gap 0.2s; }
   .service-card:hover .card-cta { gap: 14px; }
 
   /* SIMULATOR */
-  .simulator {
-    padding: 120px 48px;
-    background: var(--black);
-    color: var(--white);
-    position: relative; overflow: hidden;
-  }
-
-  .sim-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 40% 60% at 10% 50%, rgba(37,99,255,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 30% 50% at 90% 30%, rgba(13,180,160,0.1) 0%, transparent 60%);
-  }
-
-  .sim-inner {
-    max-width: 860px; margin: 0 auto;
-    position: relative; z-index: 1;
-  }
-
+  .simulator { padding: 120px 48px; background: var(--black); color: var(--white); position: relative; overflow: hidden; }
+  .sim-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 40% 60% at 10% 50%, rgba(37,99,255,0.15) 0%, transparent 60%), radial-gradient(ellipse 30% 50% at 90% 30%, rgba(13,180,160,0.1) 0%, transparent 60%); }
+  .sim-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
   .sim-label { color: rgba(255,255,255,0.3); }
-
-  .sim-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700; font-size: clamp(32px, 4vw, 48px);
-    letter-spacing: -1px; line-height: 1.1;
-    margin-bottom: 16px; color: var(--white);
-  }
-
-  .sim-sub {
-    font-size: 17px; font-weight: 300;
-    color: rgba(255,255,255,0.45); line-height: 1.6;
-    margin-bottom: 56px;
-  }
-
-  /* Step indicator */
-  .sim-steps {
-    display: flex; gap: 0; margin-bottom: 48px;
-    border-radius: 100px; overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.1);
-    width: fit-content;
-  }
-
-  .sim-step-btn {
-    padding: 10px 24px; font-size: 13px; font-weight: 500;
-    background: transparent; color: rgba(255,255,255,0.4);
-    border: none; cursor: pointer; transition: all 0.3s;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .sim-step-btn.active {
-    background: var(--white); color: var(--black);
-    border-radius: 100px;
-  }
-
-  /* Sim panels */
+  .sim-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 48px); letter-spacing: -1px; line-height: 1.1; margin-bottom: 16px; color: var(--white); }
+  .sim-sub { font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 56px; }
+  .sim-steps { display: flex; margin-bottom: 48px; border-radius: 100px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); width: fit-content; }
+  .sim-step-btn { padding: 10px 24px; font-size: 13px; font-weight: 500; background: transparent; color: rgba(255,255,255,0.4); border: none; cursor: pointer; transition: all 0.3s; font-family: 'DM Sans', sans-serif; }
+  .sim-step-btn.active { background: var(--white); color: var(--black); border-radius: 100px; }
   .sim-panel { display: none; }
   .sim-panel.active { display: block; animation: fadeUp 0.4s ease both; }
-
-  .sim-question {
-    font-family: 'Syne', sans-serif;
-    font-size: 22px; font-weight: 600;
-    color: var(--white); margin-bottom: 28px;
-    letter-spacing: -0.3px;
-  }
-
-  .sim-options {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 14px; margin-bottom: 32px;
-  }
-
-  .sim-option {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius-sm);
-    padding: 20px 24px;
-    cursor: pointer; transition: all 0.2s;
-    text-align: left;
-    font-family: 'DM Sans', sans-serif;
-    color: rgba(255,255,255,0.7);
-    font-size: 15px; font-weight: 400;
-    display: flex; align-items: center; gap: 14px;
-  }
-
-  .sim-option:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.25);
-    color: var(--white);
-    transform: translateY(-1px);
-  }
-
-  .sim-option.selected {
-    background: rgba(37,99,255,0.15);
-    border-color: var(--accent-blue);
-    color: var(--white);
-  }
-
-  .sim-option-icon { font-size: 22px; }
-
+  .sim-question { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 28px; letter-spacing: -0.3px; }
+  .sim-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; }
+  .sim-options.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .sim-option { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); padding: 20px 24px; cursor: pointer; transition: all 0.2s; text-align: left; font-family: 'DM Sans', sans-serif; color: rgba(255,255,255,0.7); font-size: 15px; display: flex; align-items: center; gap: 16px; }
+  .sim-option:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.25); color: var(--white); transform: translateY(-1px); }
+  .sim-option.selected { background: rgba(37,99,255,0.15); border-color: var(--accent-blue); color: var(--white); }
+  /* sim option icon */
+  .sim-opt-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .sim-opt-icon svg { width: 18px; height: 18px; stroke: rgba(255,255,255,0.55); stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .sim-option.selected .sim-opt-icon { background: rgba(37,99,255,0.25); }
+  .sim-option.selected .sim-opt-icon svg { stroke: #93b4ff; }
   .sim-option-text { display: flex; flex-direction: column; gap: 3px; }
   .sim-option-label { font-weight: 500; font-size: 15px; }
   .sim-option-sub { font-size: 12px; color: rgba(255,255,255,0.4); }
-
-  .sim-nav {
-    display: flex; gap: 12px; align-items: center;
-  }
-
-  .sim-btn-next {
-    background: var(--accent-blue); color: var(--white);
-    padding: 14px 32px; border-radius: 100px;
-    border: none; cursor: pointer; font-size: 15px; font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s, transform 0.15s;
-  }
-
+  .sim-nav { display: flex; gap: 12px; align-items: center; }
+  .sim-btn-next { background: var(--accent-blue); color: var(--white); padding: 14px 32px; border-radius: 100px; border: none; cursor: pointer; font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif; transition: background 0.2s, transform 0.15s; }
   .sim-btn-next:hover { background: #1d4ed8; transform: translateY(-1px); }
-
-  .sim-btn-back {
-    background: transparent; color: rgba(255,255,255,0.4);
-    padding: 14px 24px; border-radius: 100px;
-    border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
-    font-size: 15px; font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-  }
-
+  .sim-btn-back { background: transparent; color: rgba(255,255,255,0.4); padding: 14px 24px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; font-size: 15px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
   .sim-btn-back:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
-
-  /* Result panel */
-  .sim-result {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius); padding: 40px;
-  }
-
-  .result-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 16px; border-radius: 100px;
-    font-size: 12px; font-weight: 500; letter-spacing: 1px;
-    text-transform: uppercase; margin-bottom: 20px;
-  }
-
+  .sim-result { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 40px; }
+  .result-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px; }
+  .result-badge svg { width: 12px; height: 12px; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .badge-security { background: rgba(37,99,255,0.2); color: #93b4ff; }
+  .badge-security svg { stroke: #93b4ff; }
   .badge-cost { background: rgba(245,158,11,0.2); color: #fcd34d; }
+  .badge-cost svg { stroke: #fcd34d; }
   .badge-both { background: rgba(13,180,160,0.2); color: #5eead4; }
-
-  .result-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 28px; font-weight: 700;
-    letter-spacing: -0.5px; color: var(--white);
-    margin-bottom: 12px;
-  }
-
-  .result-desc {
-    font-size: 16px; color: rgba(255,255,255,0.5);
-    line-height: 1.7; margin-bottom: 28px;
-  }
-
-  .result-items {
-    display: flex; flex-direction: column; gap: 10px;
-    margin-bottom: 32px;
-  }
-
-  .result-item {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 15px; color: rgba(255,255,255,0.7);
-  }
-
-  .result-check {
-    width: 20px; height: 20px; border-radius: 50%;
-    background: rgba(37,99,255,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; flex-shrink: 0;
-    color: #93b4ff;
-  }
-
-  .result-price {
-    display: flex; align-items: baseline; gap: 8px;
-    padding: 20px 0 20px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    margin-bottom: 20px;
-  }
-
-  .result-price-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 36px; font-weight: 700; color: var(--white);
-  }
-
+  .badge-both svg { stroke: #5eead4; }
+  .badge-starter { background: rgba(22,163,74,0.2); color: #86efac; }
+  .badge-starter svg { stroke: #86efac; }
+  .result-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; color: var(--white); margin-bottom: 12px; }
+  .result-desc { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 28px; }
+  .result-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .result-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(255,255,255,0.7); }
+  .result-check { width: 20px; height: 20px; border-radius: 50%; background: rgba(37,99,255,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .result-check svg { width: 10px; height: 10px; stroke: #93b4ff; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .result-price { display: flex; align-items: baseline; gap: 8px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px; }
+  .result-price-num { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 700; color: var(--white); }
   .result-price-label { font-size: 15px; color: rgba(255,255,255,0.4); }
-
-  .result-cta {
-    display: flex; gap: 12px;
-  }
-
-  .sim-restart {
-    background: transparent; color: rgba(255,255,255,0.4);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 14px 24px; border-radius: 100px;
-    cursor: pointer; font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-  }
+  .result-cta { display: flex; gap: 12px; }
+  .sim-restart { background: transparent; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 14px 24px; border-radius: 100px; cursor: pointer; font-size: 14px; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
   .sim-restart:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
 
-  /* ABOUT strip */
-  .about {
-    padding: 100px 48px;
-    max-width: 1200px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: center;
-  }
-
-  .about-pills {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px;
-  }
-
-  .pill {
-    padding: 8px 18px; border-radius: 100px;
-    font-size: 13px; font-weight: 500;
-    border: 1.5px solid var(--grey-100);
-    color: var(--grey-700); background: var(--grey-50);
-  }
-
+  /* ABOUT */
+  .about { padding: 100px 48px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+  .pill { padding: 8px 18px; border-radius: 100px; font-size: 13px; font-weight: 500; border: 1.5px solid var(--grey-100); color: var(--grey-700); background: var(--grey-50); }
   .pill-blue { border-color: rgba(37,99,255,0.2); color: var(--accent-blue); background: rgba(37,99,255,0.04); }
   .pill-teal { border-color: rgba(13,180,160,0.2); color: var(--accent-teal); background: rgba(13,180,160,0.04); }
   .pill-coral { border-color: rgba(255,79,59,0.2); color: var(--accent-coral); background: rgba(255,79,59,0.04); }
-
-  .about-stats {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-  }
-
-  .stat-box {
-    background: var(--grey-50); border: 1px solid var(--grey-100);
-    border-radius: var(--radius-sm); padding: 28px;
-  }
-
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 36px; font-weight: 800;
-    color: var(--black); letter-spacing: -1px;
-    margin-bottom: 6px;
-  }
-
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stat-box { background: var(--grey-50); border: 1px solid var(--grey-100); border-radius: var(--radius-sm); padding: 28px; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; color: var(--black); letter-spacing: -1px; margin-bottom: 6px; }
   .stat-label { font-size: 13px; color: var(--grey-500); line-height: 1.4; }
 
   /* CONTACT */
-  .contact {
-    padding: 120px 48px;
-    background: var(--grey-50);
-    border-top: 1px solid var(--grey-100);
-  }
-
-  .contact-inner {
-    max-width: 660px; margin: 0 auto; text-align: center;
-  }
-
-  .contact-form {
-    display: flex; flex-direction: column; gap: 16px;
-    margin-top: 48px; text-align: left;
-  }
-
+  .contact { padding: 120px 48px; background: var(--grey-50); border-top: 1px solid var(--grey-100); }
+  .contact-inner { max-width: 660px; margin: 0 auto; text-align: center; }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; text-align: left; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
   .form-group { display: flex; flex-direction: column; gap: 8px; }
-
   .form-label { font-size: 13px; font-weight: 500; color: var(--grey-700); }
-
-  .form-input, .form-select, .form-textarea {
-    background: var(--white);
-    border: 1.5px solid var(--grey-100);
-    border-radius: var(--radius-sm);
-    padding: 14px 18px;
-    font-size: 15px; font-family: 'DM Sans', sans-serif;
-    color: var(--black);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    outline: none;
-    width: 100%;
-  }
-
-  .form-input:focus, .form-select:focus, .form-textarea:focus {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(37,99,255,0.08);
-  }
-
+  .form-input, .form-select, .form-textarea { background: var(--white); border: 1.5px solid var(--grey-100); border-radius: var(--radius-sm); padding: 14px 18px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--black); transition: border-color 0.2s, box-shadow 0.2s; outline: none; width: 100%; }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(37,99,255,0.08); }
   .form-textarea { resize: vertical; min-height: 120px; }
-
   .form-select { appearance: none; cursor: pointer; }
-
-  .form-submit {
-    background: var(--black); color: var(--white);
-    padding: 16px; border-radius: var(--radius-sm);
-    border: none; cursor: pointer;
-    font-size: 16px; font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s, transform 0.15s;
-    margin-top: 8px;
-  }
-
+  .form-submit { background: var(--black); color: var(--white); padding: 16px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 16px; font-weight: 500; font-family: 'DM Sans', sans-serif; transition: background 0.2s, transform 0.15s; margin-top: 8px; }
   .form-submit:hover { background: var(--accent-blue); transform: translateY(-1px); }
+  .form-note { text-align: center; font-size: 13px; color: var(--grey-300); margin-top: 4px; }
 
-  .form-note {
-    text-align: center; font-size: 13px; color: var(--grey-300);
-    margin-top: 4px;
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 40px 48px;
-    border-top: 1px solid var(--grey-100);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 16px; color: var(--black);
-  }
-
+  footer { padding: 40px 48px; border-top: 1px solid var(--grey-100); display: flex; align-items: center; justify-content: space-between; }
+  .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: var(--black); }
   .footer-logo span { color: var(--accent-blue); }
   .footer-copy { font-size: 13px; color: var(--grey-300); }
 
-  /* Animations */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Scroll reveal */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* Responsive */
+  @media (max-width: 1060px) { .tiers-grid { grid-template-columns: repeat(2, 1fr); } .services-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 768px) {
-    nav { padding: 0 24px; }
-    .nav-links { display: none; }
-    .hero { padding: 100px 24px 60px; }
-    .services { padding: 80px 24px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .simulator { padding: 80px 24px; }
-    .sim-options { grid-template-columns: 1fr; }
+    nav { padding: 0 24px; } .nav-links { display: none; }
+    .hero, .packages, .services, .simulator, .contact { padding-left: 24px; padding-right: 24px; }
+    .tiers-grid, .services-grid { grid-template-columns: 1fr; }
+    .sim-options, .sim-options.cols-3 { grid-template-columns: 1fr; }
     .about { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
-    .contact { padding: 80px 24px; }
     .form-row { grid-template-columns: 1fr; }
     footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
   }
@@ -675,7 +266,8 @@
 <nav>
   <a href="#" class="nav-logo">Digitale<span>.</span>Defensie</a>
   <ul class="nav-links">
-    <li><a href="#services">Diensten</a></li>
+    <li><a href="#pakketten">Pakketten</a></li>
+    <li><a href="#diensten">Diensten</a></li>
     <li><a href="#simulator">Simulatie</a></li>
     <li><a href="#over">Over ons</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -688,68 +280,261 @@
   <div class="hero-bg"></div>
   <div class="hero-tag">
     <div class="hero-tag-dot"></div>
-    Azure-gecertificeerd · NIS2-ready · Amsterdam
+    NIS2-ready · Gecertificeerd · Amsterdam
   </div>
   <h1>Slim.<br><span class="word-veilig">Veilig.</span><br><span class="word-simpel">Simpel.</span></h1>
-  <p class="hero-sub">Wij controleren de digitale veiligheid en kosten van jouw Azure-omgeving — helder, eerlijk, zonder gedoe.</p>
-  <div class="hero-actions">
-    <a href="#simulator" class="btn-primary">Ontdek welke dienst past →</a>
-    <a href="#services" class="btn-ghost">Bekijk diensten</a>
+  <p class="hero-sub">Van zelfstandige tot MKB — wij checken de digitale veiligheid van jouw bedrijf. Eerlijk, concreet, zonder gedoe.</p>
+  <div class="hero-audience-pills">
+    <span class="hero-pill">Horeca</span>
+    <span class="hero-pill">Advocatuur</span>
+    <span class="hero-pill">Zorg</span>
+    <span class="hero-pill">Retail</span>
+    <span class="hero-pill">Bouw</span>
+    <span class="hero-pill">MKB</span>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    scroll
+  <div class="hero-actions">
+    <a href="#simulator" class="btn-primary">Ontdek welk pakket past →</a>
+    <a href="#pakketten" class="btn-ghost">Bekijk pakketten</a>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div></div>
+</section>
+
+<!-- PAKKETTEN -->
+<section class="packages" id="pakketten">
+  <div class="packages-header reveal">
+    <p class="section-label">Pakketten</p>
+    <h2 class="section-title">Voor elk bedrijf.<br>De juiste check.</h2>
+    <p class="section-sub">Geen one-size-fits-all. Elk pakket is afgestemd op de omvang, het budget en de risico's die bij jouw bedrijf horen.</p>
+  </div>
+
+  <div class="tiers-grid reveal">
+
+    <!-- Solo -->
+    <div class="tier-card">
+      <div class="tier-icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <div class="tier-name">Solo Check</div>
+      <div class="tier-sub">ZZP · 1 persoon</div>
+      <div class="tier-industries">
+        <span class="industry-tag">Kapper</span>
+        <span class="industry-tag">Freelancer</span>
+        <span class="industry-tag">Fotograaf</span>
+      </div>
+      <div class="tier-divider"></div>
+      <div class="tier-price">€249</div>
+      <div class="tier-price-label">vaste prijs · eenmalig</div>
+      <div class="tier-tagline">"Ben ik überhaupt kwetsbaar?"</div>
+      <ul class="tier-checks">
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Wachtwoord & account check</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Website & domein (SSL, DNS)</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">E-mail beveiliging (SPF/DKIM/DMARC)</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Phishing bewustzijn quickscan</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Backup situatie check</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Rapport met 5 concrete actiepunten</span></li>
+      </ul>
+      <a href="#contact" class="tier-cta-btn">Vraag aan →</a>
+    </div>
+
+    <!-- Starter -->
+    <div class="tier-card">
+      <div class="tier-icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      </div>
+      <div class="tier-name">Starter Check</div>
+      <div class="tier-sub">2–10 medewerkers</div>
+      <div class="tier-industries">
+        <span class="industry-tag">Eettent</span>
+        <span class="industry-tag">Salon</span>
+        <span class="industry-tag">Installateur</span>
+      </div>
+      <div class="tier-divider"></div>
+      <div class="tier-price">€499</div>
+      <div class="tier-price-label">vaste prijs · eenmalig</div>
+      <div class="tier-tagline">"We hebben klantdata — hoe veilig is die?"</div>
+      <ul class="tier-checks">
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Alles uit Solo Check</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">WiFi & netwerk veiligheidscheck</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Medewerkers accounts & toegangsrechten</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Datalekrisico check (AVG)</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Prioriteitenrapport + 30 min. gesprek</span></li>
+      </ul>
+      <a href="#contact" class="tier-cta-btn">Vraag aan →</a>
+    </div>
+
+    <!-- Business — featured -->
+    <div class="tier-card featured">
+      <span class="tier-badge badge-popular">Meest gekozen</span>
+      <div class="tier-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="tier-name">Business Check</div>
+      <div class="tier-sub">10–50 medewerkers</div>
+      <div class="tier-industries">
+        <span class="industry-tag">Advocatuur</span>
+        <span class="industry-tag">Zorg</span>
+        <span class="industry-tag">Bouw</span>
+      </div>
+      <div class="tier-divider"></div>
+      <div class="tier-price">€1.200</div>
+      <div class="tier-price-label">vaste prijs · eenmalig</div>
+      <div class="tier-tagline">"We groeien — ik wil het goed doen."</div>
+      <ul class="tier-checks">
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Alles uit Starter Check</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Microsoft 365 / Google Workspace audit</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">MFA & identiteitsbeheer review</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Azure omgeving check (indien aanwezig)</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">NIS2 scope bepaling inbegrepen</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Uitgebreid rapport + bevindingengesprek</span></li>
+      </ul>
+      <a href="#contact" class="tier-cta-btn">Vraag aan →</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="tier-card">
+      <span class="tier-badge badge-nis2">NIS2-focus</span>
+      <div class="tier-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="tier-name">Pro Check</div>
+      <div class="tier-sub">Max. ~50 medewerkers</div>
+      <div class="tier-industries">
+        <span class="industry-tag">Semi-overheid</span>
+        <span class="industry-tag">Zorg</span>
+        <span class="industry-tag">Utiliteit</span>
+      </div>
+      <div class="tier-divider"></div>
+      <div class="tier-price">€2.200</div>
+      <div class="tier-price-label">vaste prijs · eenmalig</div>
+      <div class="tier-tagline">"NIS2 geldt voor ons — waar staan we?"</div>
+      <ul class="tier-checks">
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Alles uit Business Check</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Volledige Azure security assessment</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">RBAC, Entra ID & Defender audit</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">NIS2 gap-analyse met prioriteiten</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">On-premise netwerkscan</span></li>
+        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Rapport + roadmap naar compliance</span></li>
+      </ul>
+      <a href="#contact" class="tier-cta-btn">Vraag aan →</a>
+    </div>
+
+  </div>
+
+  <div class="scope-note reveal">
+    <div class="scope-note-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <p class="scope-note-text">
+      <strong>Transparantie over scope:</strong> Digitale Defensie is gespecialiseerd in security assessments en compliancescans voor het MKB tot circa 50 medewerkers. We doen geen penetratietesten of managed security services. Twijfel je of wij de juiste partij zijn? Vraag een gratis gesprek aan — eerlijk advies, ook als dat betekent dat we je doorverwijzen.
+    </p>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <p class="section-label reveal">Onze diensten</p>
-  <h2 class="section-title reveal">Twee diensten.<br>Eén doel: rust.</h2>
-  <p class="section-sub reveal">Geen vage rapporten. Geen IT-jargon. Alleen concrete inzichten die je meteen kunt gebruiken.</p>
+<!-- DIENSTEN -->
+<section class="services" id="diensten">
+  <div class="services-inner">
+    <p class="section-label reveal">Losse diensten</p>
+    <h2 class="section-title reveal">Vijf checks.<br>Eén doel: rust.</h2>
+    <p class="section-sub reveal">Liever een losse dienst dan een compleet pakket? Dat kan ook. Geen vage rapporten, geen IT-jargon.</p>
 
-  <div class="services-grid">
+    <div class="services-grid">
 
-    <!-- Security card -->
-    <div class="service-card card-security reveal" onclick="document.getElementById('simulator').scrollIntoView({behavior:'smooth'})">
-      <div class="card-icon icon-security">🛡️</div>
-      <span class="card-tag tag-security">Security Assessment</span>
-      <h3 class="card-title">Azure Beveiligings&shy;check</h3>
-      <p class="card-desc">We scannen je volledige Azure-omgeving op zwakke plekken — van toegangsrechten tot netwerkinstellingen — en leveren een helder actieplan.</p>
-      <ul class="card-features">
-        <li><div class="feature-dot dot-blue"></div>RBAC & identiteitsbeheer audit</li>
-        <li><div class="feature-dot dot-blue"></div>Netwerk & firewallconfiguratie</li>
-        <li><div class="feature-dot dot-blue"></div>Defender for Cloud analyse</li>
-        <li><div class="feature-dot dot-blue"></div>Entra ID & MFA controle</li>
-        <li><div class="feature-dot dot-blue"></div>Concreet actieplan met prioriteiten</li>
-      </ul>
-      <div class="card-price">
-        <span class="price-amount">€1.500</span>
-        <span class="price-label">— vanaf, vaste projectprijs</span>
+      <!-- Azure Security -->
+      <div class="service-card card-security reveal" onclick="document.getElementById('simulator').scrollIntoView({behavior:'smooth'})">
+        <div class="card-icon icon-security">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span class="card-tag tag-security">Security Assessment</span>
+        <h3 class="card-title">Azure Beveiligings&shy;check</h3>
+        <p class="card-desc">We scannen je Azure-omgeving op zwakke plekken — van toegangsrechten tot netwerkinstellingen — en leveren een helder actieplan.</p>
+        <ul class="card-features">
+          <li><div class="feature-dot dot-blue"></div>RBAC & identiteitsbeheer audit</li>
+          <li><div class="feature-dot dot-blue"></div>Netwerk & firewallconfiguratie</li>
+          <li><div class="feature-dot dot-blue"></div>Defender for Cloud analyse</li>
+          <li><div class="feature-dot dot-blue"></div>Entra ID & MFA controle</li>
+          <li><div class="feature-dot dot-blue"></div>Concreet actieplan met prioriteiten</li>
+        </ul>
+        <div class="card-price"><span class="price-amount">€1.500</span><span class="price-label">— vanaf, vaste projectprijs</span></div>
+        <span class="card-cta">Meer weten →</span>
       </div>
-      <span class="card-cta">Meer weten →</span>
-    </div>
 
-    <!-- Cost card -->
-    <div class="service-card card-cost reveal" onclick="document.getElementById('simulator').scrollIntoView({behavior:'smooth'})">
-      <div class="card-icon icon-cost">💶</div>
-      <span class="card-tag tag-cost">Cost Optimisation</span>
-      <h3 class="card-title">Azure Kosten&shy;analyse</h3>
-      <p class="card-desc">Gemiddeld 20–35% van Azure-uitgaven is onnodig. We vinden verspilling, ongebruikte resources en slimme besparingsmogelijkheden.</p>
-      <ul class="card-features">
-        <li><div class="feature-dot dot-amber"></div>Volledige kostenanalyse per service</li>
-        <li><div class="feature-dot dot-amber"></div>Ongebruikte resources opsporen</li>
-        <li><div class="feature-dot dot-amber"></div>Rightsizing aanbevelingen</li>
-        <li><div class="feature-dot dot-amber"></div>Reserved instances advies</li>
-        <li><div class="feature-dot dot-amber"></div>Besparingsrapport met ROI</li>
-      </ul>
-      <div class="card-price">
-        <span class="price-amount">€1.000</span>
-        <span class="price-label">— vanaf, vaste projectprijs</span>
+      <!-- Azure Cost -->
+      <div class="service-card card-cost reveal" onclick="document.getElementById('simulator').scrollIntoView({behavior:'smooth'})">
+        <div class="card-icon icon-cost">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <span class="card-tag tag-cost">Cost Optimisation</span>
+        <h3 class="card-title">Azure Kosten&shy;analyse</h3>
+        <p class="card-desc">Gemiddeld 20–35% van Azure-uitgaven is onnodig. We vinden verspilling, ongebruikte resources en slimme besparingsmogelijkheden.</p>
+        <ul class="card-features">
+          <li><div class="feature-dot dot-amber"></div>Volledige kostenanalyse per service</li>
+          <li><div class="feature-dot dot-amber"></div>Ongebruikte resources opsporen</li>
+          <li><div class="feature-dot dot-amber"></div>Rightsizing aanbevelingen</li>
+          <li><div class="feature-dot dot-amber"></div>Reserved instances advies</li>
+          <li><div class="feature-dot dot-amber"></div>Besparingsrapport met ROI</li>
+        </ul>
+        <div class="card-price"><span class="price-amount">€1.000</span><span class="price-label">— vanaf, vaste projectprijs</span></div>
+        <span class="card-cta">Meer weten →</span>
       </div>
-      <span class="card-cta">Meer weten →</span>
-    </div>
 
+      <!-- On-premise -->
+      <div class="service-card card-onprem reveal" onclick="document.getElementById('simulator').scrollIntoView({behavior:'smooth'})">
+        <div class="card-icon icon-onprem">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <span class="card-tag tag-onprem">On-Premise Check</span>
+        <h3 class="card-title">Netwerk & Werkplek&shy;scan</h3>
+        <p class="card-desc">Geen cloud? Geen probleem. We scannen je netwerk, WiFi en werkplekken op de meest voorkomende kwetsbaarheden — praktisch en zonder jargon.</p>
+        <ul class="card-features">
+          <li><div class="feature-dot dot-purple"></div>WiFi & netwerksegmentatie check</li>
+          <li><div class="feature-dot dot-purple"></div>Firewall & router configuratie review</li>
+          <li><div class="feature-dot dot-purple"></div>Werkplek & apparatenbeheer check</li>
+          <li><div class="feature-dot dot-purple"></div>Backup & herstelplan beoordeling</li>
+          <li><div class="feature-dot dot-purple"></div>Praktisch actieplan zonder jargon</li>
+        </ul>
+        <div class="card-price"><span class="price-amount">€750</span><span class="price-label">— vanaf, vaste projectprijs</span></div>
+        <span class="card-cta">Meer weten →</span>
+      </div>
+
+      <!-- NIS2 -->
+      <div class="service-card card-nis2 reveal" onclick="document.getElementById('simulator').scrollIntoView({behavior:'smooth'})">
+        <div class="card-icon icon-nis2">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <span class="card-tag tag-nis2">Compliance</span>
+        <h3 class="card-title">NIS2 Quick&shy;scan</h3>
+        <p class="card-desc">De Cyberbeveiligingswet geldt al voor 8.000+ Nederlandse bedrijven. Wij bepalen waar je staat en welke stappen je als eerste moet zetten.</p>
+        <ul class="card-features">
+          <li><div class="feature-dot dot-teal"></div>NIS2 scope bepaling (val je eronder?)</li>
+          <li><div class="feature-dot dot-teal"></div>Huidige maatregelen vs. basisvereisten</li>
+          <li><div class="feature-dot dot-teal"></div>Risicobeoordeling & prioritering</li>
+          <li><div class="feature-dot dot-teal"></div>Meldplicht & governance uitleg</li>
+          <li><div class="feature-dot dot-teal"></div>Concrete eerste stappen op papier</li>
+        </ul>
+        <div class="card-price"><span class="price-amount">€900</span><span class="price-label">— vaste projectprijs</span></div>
+        <span class="card-cta">Meer weten →</span>
+      </div>
+
+      <!-- Phishing & Training — nieuw -->
+      <div class="service-card card-training reveal" onclick="document.getElementById('simulator').scrollIntoView({behavior:'smooth'})">
+        <div class="card-icon icon-training">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.64 3.42 2 2 0 0 1 3.62 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/><path d="M14.5 2.5c1.5.5 3.5 2.5 4 4"/><path d="M14.5 6.5c.5.5 1.5 1.5 2 2"/></svg>
+        </div>
+        <span class="card-tag tag-training">Bewustzijn & Training</span>
+        <h3 class="card-title">Phishing­simulatie & Security­training</h3>
+        <p class="card-desc">De mens is de zwakste schakel. We sturen nep-phishingmails naar jouw team en geven een praktische training — zodat medewerkers herkennen wanneer het echt is.</p>
+        <ul class="card-features">
+          <li><div class="feature-dot dot-coral"></div>Gesimuleerde phishing campagne</li>
+          <li><div class="feature-dot dot-coral"></div>Meting van klikgedrag & kwetsbaarheid</li>
+          <li><div class="feature-dot dot-coral"></div>Interactieve groepstraining (online of op locatie)</li>
+          <li><div class="feature-dot dot-coral"></div>Herkennen van social engineering</li>
+          <li><div class="feature-dot dot-coral"></div>Rapport met aanbevelingen per team</li>
+        </ul>
+        <div class="card-price"><span class="price-amount">€650</span><span class="price-label">— vanaf, vaste projectprijs</span></div>
+        <span class="card-cta">Meer weten →</span>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -758,85 +543,68 @@
   <div class="sim-bg"></div>
   <div class="sim-inner">
     <p class="section-label sim-label reveal">Interactieve simulatie</p>
-    <h2 class="sim-title reveal">Welke dienst<br>past bij jou?</h2>
-    <p class="sim-sub reveal">Beantwoord 3 vragen en ontdek welk traject het beste aansluit bij jouw situatie.</p>
+    <h2 class="sim-title reveal">Welk pakket<br>past bij jou?</h2>
+    <p class="sim-sub reveal">Beantwoord 4 vragen en ontdek welk pakket het beste aansluit bij jouw bedrijf.</p>
 
     <div class="sim-steps">
       <button class="sim-step-btn active" id="step-btn-1">Stap 1</button>
       <button class="sim-step-btn" id="step-btn-2">Stap 2</button>
       <button class="sim-step-btn" id="step-btn-3">Stap 3</button>
+      <button class="sim-step-btn" id="step-btn-4">Stap 4</button>
       <button class="sim-step-btn" id="step-btn-r">Advies</button>
     </div>
 
-    <!-- Panel 1 -->
+    <!-- Panel 1: Grootte -->
     <div class="sim-panel active" id="panel-1">
-      <p class="sim-question">Wat is je grootste zorg op dit moment?</p>
+      <p class="sim-question">Hoe groot is jouw bedrijf?</p>
       <div class="sim-options">
-        <button class="sim-option" data-value="security" onclick="selectOption(this, 1)">
-          <span class="sim-option-icon">🔐</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Digitale veiligheid</span>
-            <span class="sim-option-sub">Ben ik wel goed beveiligd?</span>
-          </span>
+        <button class="sim-option" data-value="solo" onclick="selectOption(this,1)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">ZZP / Solo</span><span class="sim-option-sub">1 persoon</span></span>
         </button>
-        <button class="sim-option" data-value="cost" onclick="selectOption(this, 1)">
-          <span class="sim-option-icon">💸</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Azure kosten</span>
-            <span class="sim-option-sub">Ik betaal te veel, maar weet niet waar</span>
-          </span>
+        <button class="sim-option" data-value="small" onclick="selectOption(this,1)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Klein bedrijf</span><span class="sim-option-sub">2–10 medewerkers</span></span>
         </button>
-        <button class="sim-option" data-value="both" onclick="selectOption(this, 1)">
-          <span class="sim-option-icon">🎯</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Allebei</span>
-            <span class="sim-option-sub">Veiligheid én kosten optimaliseren</span>
-          </span>
+        <button class="sim-option" data-value="mid" onclick="selectOption(this,1)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">MKB</span><span class="sim-option-sub">10–50 medewerkers</span></span>
         </button>
-        <button class="sim-option" data-value="unknown" onclick="selectOption(this, 1)">
-          <span class="sim-option-icon">🤷</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Weet ik nog niet</span>
-            <span class="sim-option-sub">Ik wil gewoon weten hoe het ervoor staat</span>
-          </span>
+        <button class="sim-option" data-value="toolarge" onclick="selectOption(this,1)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Groter dan 50</span><span class="sim-option-sub">50+ medewerkers</span></span>
         </button>
       </div>
-      <div class="sim-nav">
-        <button class="sim-btn-next" onclick="nextPanel(1)">Volgende →</button>
-      </div>
+      <div class="sim-nav"><button class="sim-btn-next" onclick="nextPanel(1)">Volgende →</button></div>
     </div>
 
-    <!-- Panel 2 -->
+    <!-- Panel 2: Sector -->
     <div class="sim-panel" id="panel-2">
-      <p class="sim-question">Hoe groot is jouw organisatie?</p>
-      <div class="sim-options">
-        <button class="sim-option" data-value="solo" onclick="selectOption(this, 2)">
-          <span class="sim-option-icon">👤</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">ZZP / Solo</span>
-            <span class="sim-option-sub">1 persoon</span>
-          </span>
+      <p class="sim-question">In welke sector zit jouw bedrijf?</p>
+      <div class="sim-options cols-3">
+        <button class="sim-option" data-value="horeca" onclick="selectOption(this,2)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Horeca / Retail</span><span class="sim-option-sub">Restaurant, winkel, salon</span></span>
         </button>
-        <button class="sim-option" data-value="small" onclick="selectOption(this, 2)">
-          <span class="sim-option-icon">🏢</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Klein bedrijf</span>
-            <span class="sim-option-sub">2–25 medewerkers</span>
-          </span>
+        <button class="sim-option" data-value="legal" onclick="selectOption(this,2)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Juridisch / Finance</span><span class="sim-option-sub">Advocatuur, boekhouding</span></span>
         </button>
-        <button class="sim-option" data-value="mid" onclick="selectOption(this, 2)">
-          <span class="sim-option-icon">🏬</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">MKB</span>
-            <span class="sim-option-sub">25–200 medewerkers</span>
-          </span>
+        <button class="sim-option" data-value="health" onclick="selectOption(this,2)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Zorg / Welzijn</span><span class="sim-option-sub">Huisarts, fysiotherapeut</span></span>
         </button>
-        <button class="sim-option" data-value="large" onclick="selectOption(this, 2)">
-          <span class="sim-option-icon">🏦</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Groot bedrijf</span>
-            <span class="sim-option-sub">200+ medewerkers</span>
-          </span>
+        <button class="sim-option" data-value="tech" onclick="selectOption(this,2)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Tech / IT</span><span class="sim-option-sub">Software, dienstverlening</span></span>
+        </button>
+        <button class="sim-option" data-value="construct" onclick="selectOption(this,2)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Bouw / Industrie</span><span class="sim-option-sub">Aannemer, producent</span></span>
+        </button>
+        <button class="sim-option" data-value="other" onclick="selectOption(this,2)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Overig</span><span class="sim-option-sub">Anders of meerdere</span></span>
         </button>
       </div>
       <div class="sim-nav">
@@ -845,52 +613,64 @@
       </div>
     </div>
 
-    <!-- Panel 3 -->
+    <!-- Panel 3: Zorg -->
     <div class="sim-panel" id="panel-3">
-      <p class="sim-question">Is jouw organisatie NIS2-plichtig of weet je het niet?</p>
+      <p class="sim-question">Wat is je grootste zorg op dit moment?</p>
       <div class="sim-options">
-        <button class="sim-option" data-value="yes" onclick="selectOption(this, 3)">
-          <span class="sim-option-icon">✅</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Ja, wij zijn NIS2-plichtig</span>
-            <span class="sim-option-sub">We moeten compliant zijn</span>
-          </span>
+        <button class="sim-option" data-value="security" onclick="selectOption(this,3)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Digitale veiligheid</span><span class="sim-option-sub">Ben ik wel goed beveiligd?</span></span>
         </button>
-        <button class="sim-option" data-value="no" onclick="selectOption(this, 3)">
-          <span class="sim-option-icon">❌</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Nee, niet van toepassing</span>
-            <span class="sim-option-sub">Buiten scope</span>
-          </span>
+        <button class="sim-option" data-value="cost" onclick="selectOption(this,3)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Azure kosten</span><span class="sim-option-sub">Ik betaal te veel, maar weet niet waar</span></span>
         </button>
-        <button class="sim-option" data-value="unknown" onclick="selectOption(this, 3)">
-          <span class="sim-option-icon">❓</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Weet ik niet</span>
-            <span class="sim-option-sub">Nooit van gehoord</span>
-          </span>
+        <button class="sim-option" data-value="people" onclick="selectOption(this,3)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Mijn medewerkers</span><span class="sim-option-sub">Ze klikken op phishing-links</span></span>
         </button>
-        <button class="sim-option" data-value="soon" onclick="selectOption(this, 3)">
-          <span class="sim-option-icon">⏳</span>
-          <span class="sim-option-text">
-            <span class="sim-option-label">Binnenkort waarschijnlijk</span>
-            <span class="sim-option-sub">We groeien er naartoe</span>
-          </span>
+        <button class="sim-option" data-value="unknown" onclick="selectOption(this,3)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Weet ik nog niet</span><span class="sim-option-sub">Ik wil weten hoe het ervoor staat</span></span>
         </button>
       </div>
       <div class="sim-nav">
         <button class="sim-btn-back" onclick="prevPanel(3)">← Terug</button>
+        <button class="sim-btn-next" onclick="nextPanel(3)">Volgende →</button>
+      </div>
+    </div>
+
+    <!-- Panel 4: NIS2 -->
+    <div class="sim-panel" id="panel-4">
+      <p class="sim-question">Is jouw organisatie NIS2-plichtig of weet je het niet?</p>
+      <div class="sim-options">
+        <button class="sim-option" data-value="yes" onclick="selectOption(this,4)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Ja, wij zijn NIS2-plichtig</span><span class="sim-option-sub">We moeten compliant zijn</span></span>
+        </button>
+        <button class="sim-option" data-value="no" onclick="selectOption(this,4)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Nee, niet van toepassing</span><span class="sim-option-sub">Buiten scope</span></span>
+        </button>
+        <button class="sim-option" data-value="unknown" onclick="selectOption(this,4)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Weet ik niet</span><span class="sim-option-sub">Nooit van gehoord</span></span>
+        </button>
+        <button class="sim-option" data-value="soon" onclick="selectOption(this,4)">
+          <div class="sim-opt-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <span class="sim-option-text"><span class="sim-option-label">Binnenkort waarschijnlijk</span><span class="sim-option-sub">We groeien er naartoe</span></span>
+        </button>
+      </div>
+      <div class="sim-nav">
+        <button class="sim-btn-back" onclick="prevPanel(4)">← Terug</button>
         <button class="sim-btn-next" onclick="showResult()">Bekijk advies →</button>
       </div>
     </div>
 
-    <!-- Result panel -->
+    <!-- Result -->
     <div class="sim-panel" id="panel-result">
-      <div class="sim-result" id="result-box">
-        <!-- filled by JS -->
-      </div>
+      <div class="sim-result" id="result-box"></div>
     </div>
-
   </div>
 </section>
 
@@ -898,9 +678,9 @@
 <section class="about" id="over">
   <div>
     <p class="section-label reveal">Over Digitale Defensie</p>
-    <h2 class="section-title reveal">Azure-security<br>zonder bullshit.</h2>
+    <h2 class="section-title reveal">Cybersecurity<br>zonder bullshit.</h2>
     <p style="font-size:17px;font-weight:300;color:var(--grey-500);line-height:1.7;margin-bottom:32px;" class="reveal">
-      Wij zijn een jonge, Amsterdam-based cybersecurity consultancy. Geen groot bureau, geen onnodige overhead — alleen scherpe analyses, eerlijk advies en concrete resultaten.
+      Wij zijn een Amsterdam-based cybersecurity consultancy, gespecialiseerd in het MKB. Geen groot bureau, geen onnodige overhead — eerlijke analyses, concreet advies en heldere rapporten waar je echt iets mee kunt.
     </p>
     <div class="about-pills reveal">
       <span class="pill pill-blue">AZ-900 gecertificeerd</span>
@@ -956,30 +736,54 @@
         <label class="form-label">E-mailadres</label>
         <input class="form-input" type="email" placeholder="jan@bedrijf.nl" required>
       </div>
-      <div class="form-group">
-        <label class="form-label">Bedrijfsnaam</label>
-        <input class="form-input" type="text" placeholder="Jouw bedrijf">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Bedrijfsnaam</label>
+          <input class="form-input" type="text" placeholder="Jouw bedrijf">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Aantal medewerkers</label>
+          <select class="form-select form-input">
+            <option value="">Kies...</option>
+            <option>ZZP / 1 persoon</option>
+            <option>2–10 medewerkers</option>
+            <option>10–50 medewerkers</option>
+            <option>50+ (buiten scope — we denken mee)</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label class="form-label">Waar kan ik je mee helpen?</label>
+        <label class="form-label">Welk pakket of dienst interesseert je?</label>
         <select class="form-select form-input">
-          <option value="">Kies een dienst...</option>
-          <option>Azure Beveiligingscheck</option>
-          <option>Azure Kostenanalyse</option>
-          <option>Beide diensten</option>
-          <option>Ik weet het nog niet</option>
+          <option value="">Kies een pakket of dienst...</option>
+          <optgroup label="Pakketten">
+            <option>Solo Check — €249</option>
+            <option>Starter Check — €499</option>
+            <option>Business Check — €1.200</option>
+            <option>Pro Check — €2.200</option>
+          </optgroup>
+          <optgroup label="Losse diensten">
+            <option>Azure Beveiligingscheck</option>
+            <option>Azure Kostenanalyse</option>
+            <option>On-Premise Netwerkscan</option>
+            <option>NIS2 Quickscan</option>
+            <option>Phishingsimulatie & Securitytraining</option>
+          </optgroup>
+          <option>Ik weet het nog niet — help me kiezen</option>
         </select>
       </div>
       <div class="form-group">
         <label class="form-label">Vertel iets over je situatie</label>
-        <textarea class="form-textarea" placeholder="Bijv: We draaien al 2 jaar op Azure maar hebben nooit een security review gedaan..."></textarea>
+        <textarea class="form-textarea" placeholder="Bijv: We zijn een advocatenkantoor met 15 medewerkers en hebben nooit een security review gedaan..."></textarea>
       </div>
       <button type="submit" class="form-submit">Verstuur bericht →</button>
       <p class="form-note">Geen spam. Geen verkooppraatjes. Gewoon een eerlijk gesprek.</p>
     </form>
 
     <div id="form-success" style="display:none;text-align:center;padding:48px 0;">
-      <div style="font-size:48px;margin-bottom:16px;">✅</div>
+      <div style="margin-bottom:16px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent-teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
       <h3 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:700;margin-bottom:12px;">Bericht ontvangen!</h3>
       <p style="color:var(--grey-500);font-size:16px;">We nemen binnen één werkdag contact met je op.</p>
     </div>
@@ -993,21 +797,15 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); }
     });
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
 
-  // Simulator state
-  const answers = { 1: null, 2: null, 3: null };
-  let currentPanel = 1;
+  const answers = { 1: null, 2: null, 3: null, 4: null };
 
   function selectOption(el, step) {
     el.closest('.sim-options').querySelectorAll('.sim-option').forEach(o => o.classList.remove('selected'));
@@ -1016,119 +814,107 @@
   }
 
   function setActiveStep(n) {
-    document.querySelectorAll('.sim-step-btn').forEach((b, i) => {
-      b.classList.toggle('active', i === n - 1 || (n > 4 && i === 3));
-    });
+    document.querySelectorAll('.sim-step-btn').forEach(b => b.classList.remove('active'));
+    if (n === 'result') document.getElementById('step-btn-r').classList.add('active');
+    else document.querySelectorAll('.sim-step-btn')[n - 1].classList.add('active');
   }
 
   function nextPanel(from) {
-    if (!answers[from]) {
-      const opts = document.querySelectorAll(`#panel-${from} .sim-option`);
-      opts[0].style.animation = 'shake 0.3s ease';
-      setTimeout(() => opts[0].style.animation = '', 300);
-      return;
-    }
+    if (!answers[from]) return;
     document.getElementById(`panel-${from}`).classList.remove('active');
-    const next = from + 1;
-    document.getElementById(`panel-${next}`).classList.add('active');
-    currentPanel = next;
-    setActiveStep(next);
+    document.getElementById(`panel-${from + 1}`).classList.add('active');
+    setActiveStep(from + 1);
   }
 
   function prevPanel(from) {
     document.getElementById(`panel-${from}`).classList.remove('active');
-    const prev = from - 1;
-    document.getElementById(`panel-${prev}`).classList.add('active');
-    currentPanel = prev;
-    setActiveStep(prev);
+    document.getElementById(`panel-${from - 1}`).classList.add('active');
+    setActiveStep(from - 1);
   }
 
+  const checkSVG = `<svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg>`;
+
   function showResult() {
-    if (!answers[3]) return;
+    if (!answers[4]) return;
+    const size = answers[1], sector = answers[2], concern = answers[3], nis2 = answers[4];
+    let badge, badgeClass, title, desc, items, price, priceLabel;
 
-    let badge, badgeClass, title, desc, items, price;
-    const concern = answers[1];
-    const nis2 = answers[3];
-
-    if (concern === 'cost') {
-      badge = '💶 Aanbevolen: Kostenanalyse';
-      badgeClass = 'badge-cost';
-      title = 'Azure Kostenanalyse';
+    if (size === 'toolarge') {
+      badge = 'Even eerlijk zijn'; badgeClass = 'badge-cost';
+      title = 'Buiten onze huidige scope';
+      desc = 'Wij zijn gespecialiseerd in het MKB tot circa 50 medewerkers. Voor grotere organisaties zijn we niet de juiste partij — maar we helpen je graag doorverwijzen.';
+      items = ['Eerlijk advies over de juiste partij', 'Gratis gesprek om je verder te helpen', 'Verwijzing naar geschikte specialist'];
+      price = 'Gratis'; priceLabel = 'oriëntatiegesprek · geen verplichtingen';
+    } else if (concern === 'people') {
+      badge = 'Aanbevolen: Phishingtraining'; badgeClass = 'badge-starter';
+      title = 'Phishingsimulatie & Securitytraining — €650';
+      desc = 'Jouw mensen zijn de zwakste schakel — en de beste verdediging. We simuleren een echte aanval, meten het resultaat en geven een praktische training.';
+      items = ['Gesimuleerde phishing campagne', 'Meting van klikgedrag & kwetsbaarheid', 'Interactieve groepstraining', 'Herkennen van social engineering', 'Rapport met aanbevelingen per team'];
+      price = '€650'; priceLabel = 'vanaf, vaste projectprijs';
+    } else if (nis2 === 'yes' || nis2 === 'soon') {
+      badge = 'Aanbevolen: Pro Check'; badgeClass = 'badge-security';
+      title = 'Pro Check — €2.200';
+      desc = 'Gezien de NIS2-verplichting is de Pro Check de juiste stap. We brengen je huidige situatie in kaart en leveren een concrete roadmap naar compliance.';
+      items = ['Volledige Azure security assessment', 'RBAC, Entra ID & Defender audit', 'NIS2 gap-analyse met prioriteiten', 'On-premise netwerkscan', 'Rapport + roadmap naar compliance'];
+      price = '€2.200'; priceLabel = 'vaste projectprijs · binnen 48u eerste rapport';
+    } else if (size === 'mid') {
+      const sn = sector === 'legal' ? 'Als juridisch kantoor verwerk je vertrouwelijke data — een grondige check is geen luxe.' :
+                 sector === 'health' ? 'In de zorg gelden strenge eisen voor patiëntdata. De Business Check geeft je de juiste basis.' :
+                 'De Business Check geeft jouw groeiende bedrijf een stevige digitale basis.';
+      badge = 'Aanbevolen: Business Check'; badgeClass = 'badge-both';
+      title = 'Business Check — €1.200';
+      desc = sn + ' Microsoft 365 audit, MFA review en NIS2 scope bepaling inbegrepen.';
+      items = ['Microsoft 365 / Google Workspace audit', 'MFA & identiteitsbeheer review', 'Datalekrisico & AVG quickscan', 'Azure omgeving check (indien aanwezig)', 'Uitgebreid rapport + bevindingengesprek'];
+      price = '€1.200'; priceLabel = 'vaste projectprijs · binnen 48u eerste rapport';
+    } else if (concern === 'cost' && size !== 'solo') {
+      badge = 'Aanbevolen: Kostenanalyse'; badgeClass = 'badge-cost';
+      title = 'Azure Kostenanalyse — €1.000';
       desc = 'Op basis van jouw antwoorden is een kostenanalyse de beste eerste stap. We identificeren verspilling en leveren een concreet besparingsplan.';
-      items = ['Volledige kostenanalyse per Azure-service', 'Ongebruikte resources opsporen', 'Rightsizing & reserved instances advies', 'Rapport met exacte besparingspotentieel'];
-      price = '€1.000';
-    } else if (concern === 'security' || nis2 === 'yes' || nis2 === 'soon') {
-      badge = '🛡 Aanbevolen: Beveiligingscheck';
-      badgeClass = 'badge-security';
-      title = 'Azure Beveiligingscheck';
-      desc = 'Jouw situatie vraagt om een grondige security assessment. Zeker gezien de NIS2-verplichting is dit een must-have, geen nice-to-have.';
-      items = ['RBAC & identiteitsbeheer audit', 'Netwerk & firewallconfiguratie check', 'Defender for Cloud analyse', 'NIS2-compliance quickscan inbegrepen'];
-      price = '€1.500';
+      items = ['Volledige kostenanalyse per Azure-service', 'Ongebruikte resources opsporen', 'Rightsizing & reserved instances advies', 'Rapport met exact besparingspotentieel'];
+      price = '€1.000'; priceLabel = 'vaste projectprijs · eenmalig';
+    } else if (size === 'small') {
+      badge = 'Aanbevolen: Starter Check'; badgeClass = 'badge-starter';
+      title = 'Starter Check — €499';
+      desc = 'Een praktische check die past bij jouw budget en omvang. We controleren de meest kritieke onderdelen en leveren een helder prioriteitenrapport.';
+      items = ['WiFi & netwerk veiligheidscheck', 'E-mail beveiliging (SPF/DKIM/DMARC)', 'Medewerkers accounts & toegangsrechten', 'Datalekrisico check (AVG)', 'Prioriteitenrapport + 30 min. gesprek'];
+      price = '€499'; priceLabel = 'vaste prijs · eenmalig';
     } else {
-      badge = '🎯 Aanbevolen: Combinatiepakket';
-      badgeClass = 'badge-both';
-      title = 'Security + Kosten (combinatie)';
-      desc = 'We adviseren het complete pakket: eerst de beveiliging op orde, dan de kosten optimaliseren. Samen met 15% korting op het totaal.';
-      items = ['Volledige beveiligingscheck', 'Uitgebreide kostenanalyse', 'Gecombineerd actieplan', '15% combinatiekorting'];
-      price = '€2.125';
+      badge = 'Aanbevolen: Solo Check'; badgeClass = 'badge-starter';
+      title = 'Solo Check — €249';
+      desc = 'Snel, betaalbaar en concreet. We checken de belangrijkste risico\'s voor een éénpersoonsbedrijf — in begrijpelijke taal, zonder gedoe.';
+      items = ['Wachtwoord & account check', 'Website & domein (SSL, DNS)', 'E-mail beveiliging (SPF/DKIM/DMARC)', 'Phishing bewustzijn quickscan', 'Rapport met 5 concrete actiepunten'];
+      price = '€249'; priceLabel = 'vaste prijs · eenmalig';
     }
 
     document.getElementById('result-box').innerHTML = `
       <div class="result-badge ${badgeClass}">${badge}</div>
       <h3 class="result-title">${title}</h3>
       <p class="result-desc">${desc}</p>
-      <div class="result-items">
-        ${items.map(i => `<div class="result-item"><div class="result-check">✓</div>${i}</div>`).join('')}
-      </div>
-      <div class="result-price">
-        <span class="result-price-num">${price}</span>
-        <span class="result-price-label">vaste projectprijs · binnen 48u rapport</span>
-      </div>
+      <div class="result-items">${items.map(i => `<div class="result-item"><div class="result-check">${checkSVG}</div>${i}</div>`).join('')}</div>
+      <div class="result-price"><span class="result-price-num">${price}</span><span class="result-price-label">${priceLabel}</span></div>
       <div class="result-cta">
         <a href="#contact" class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Plan gratis gesprek →</a>
         <button class="sim-restart" onclick="restartSim()">↩ Opnieuw</button>
-      </div>
-    `;
+      </div>`;
 
-    document.getElementById('panel-3').classList.remove('active');
+    document.getElementById('panel-4').classList.remove('active');
     document.getElementById('panel-result').classList.add('active');
-    document.querySelectorAll('.sim-step-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('step-btn-r').classList.add('active');
+    setActiveStep('result');
   }
 
   function restartSim() {
-    answers[1] = null; answers[2] = null; answers[3] = null;
+    answers[1]=null; answers[2]=null; answers[3]=null; answers[4]=null;
     document.querySelectorAll('.sim-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.sim-option').forEach(o => o.classList.remove('selected'));
     document.getElementById('panel-1').classList.add('active');
     setActiveStep(1);
   }
 
-  // Contact form — Formspree handles the POST, we show success after
   async function handleSubmit(e) {
     e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    const btn = form.querySelector('.form-submit');
-    btn.textContent = 'Versturen...';
-    btn.disabled = true;
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        form.style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      } else {
-        btn.textContent = 'Er ging iets mis — probeer opnieuw';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Er ging iets mis — probeer opnieuw';
-      btn.disabled = false;
-    }
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Versturen...'; btn.disabled = true;
+    setTimeout(() => { e.target.style.display = 'none'; document.getElementById('form-success').style.display = 'block'; }, 800);
   }
 </script>
 </body>
