@@ -21,12 +21,17 @@
   body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--grey-100); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 64px; background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--grey-100); transition: box-shadow 0.3s, border-color 0.3s; }
+  nav.scrolled { box-shadow: 0 1px 24px rgba(0,0,0,0.07); border-bottom-color: var(--grey-100); }
   .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: var(--black); text-decoration: none; }
   .nav-logo span { color: var(--accent-blue); }
   .nav-links { display: flex; gap: 36px; list-style: none; }
   .nav-links a { font-size: 14px; font-weight: 400; color: var(--grey-700); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--black); }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-linkedin { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--grey-100); color: var(--grey-500); transition: border-color 0.2s, color 0.2s; }
+  .nav-linkedin:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+  .nav-linkedin svg { width: 16px; height: 16px; fill: currentColor; }
   .nav-cta { background: var(--black); color: var(--white); padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 500; text-decoration: none; transition: background 0.2s, transform 0.2s; }
   .nav-cta:hover { background: var(--accent-blue); transform: translateY(-1px); }
 
@@ -213,16 +218,59 @@
   .sim-restart:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
 
   /* ABOUT */
-  .about { padding: 100px 48px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .about-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-  .pill { padding: 8px 18px; border-radius: 100px; font-size: 13px; font-weight: 500; border: 1.5px solid var(--grey-100); color: var(--grey-700); background: var(--grey-50); }
-  .pill-blue { border-color: rgba(37,99,255,0.2); color: var(--accent-blue); background: rgba(37,99,255,0.04); }
-  .pill-teal { border-color: rgba(13,180,160,0.2); color: var(--accent-teal); background: rgba(13,180,160,0.04); }
-  .pill-coral { border-color: rgba(255,79,59,0.2); color: var(--accent-coral); background: rgba(255,79,59,0.04); }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .stat-box { background: var(--grey-50); border: 1px solid var(--grey-100); border-radius: var(--radius-sm); padding: 28px; }
-  .stat-num { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; color: var(--black); letter-spacing: -1px; margin-bottom: 6px; }
-  .stat-label { font-size: 13px; color: var(--grey-500); line-height: 1.4; }
+  .about { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+  .about-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; }
+
+  /* Photo column */
+  .about-photo-col { position: relative; }
+  .about-photo-wrap { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3/4; background: var(--grey-100); }
+  .about-photo-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(145deg, var(--grey-50) 0%, var(--grey-100) 100%); color: var(--grey-300); }
+  .about-photo-placeholder svg { width: 48px; height: 48px; stroke: var(--grey-300); stroke-width: 1.25; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .about-photo-placeholder span { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+  .about-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Floating cert badge */
+  .about-cert-badge { position: absolute; bottom: -20px; right: -20px; background: var(--white); border: 1px solid var(--grey-100); border-radius: var(--radius-sm); padding: 16px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .cert-badge-label { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--grey-300); margin-bottom: 8px; }
+  .cert-badge-items { display: flex; flex-direction: column; gap: 6px; }
+  .cert-badge-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--grey-700); }
+  .cert-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Text column */
+  .about-text-col { padding-top: 8px; }
+  .about-name-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .about-name { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-blue); }
+  .about-linkedin { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--grey-500); text-decoration: none; padding: 4px 12px; border-radius: 100px; border: 1.5px solid var(--grey-100); transition: all 0.2s; }
+  .about-linkedin svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+  .about-linkedin:hover { color: var(--accent-blue); border-color: rgba(37,99,255,0.3); background: rgba(37,99,255,0.04); }
+  .about-quote { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(28px, 3vw, 40px); letter-spacing: -1px; line-height: 1.15; color: var(--black); margin-bottom: 28px; }
+  .about-quote em { font-style: normal; color: var(--accent-blue); }
+  .about-body { font-size: 16px; font-weight: 300; color: var(--grey-500); line-height: 1.8; margin-bottom: 36px; }
+  .about-body p + p { margin-top: 16px; }
+
+  /* Credential rows */
+  .about-creds { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+  .cred-row { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--grey-50); border: 1px solid var(--grey-100); border-radius: var(--radius-sm); transition: border-color 0.2s; }
+  .cred-row:hover { border-color: var(--grey-300); }
+  .cred-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cred-icon svg { width: 16px; height: 16px; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .cred-icon-blue { background: rgba(37,99,255,0.08); }
+  .cred-icon-blue svg { stroke: var(--accent-blue); }
+  .cred-icon-teal { background: rgba(13,180,160,0.08); }
+  .cred-icon-teal svg { stroke: var(--accent-teal); }
+  .cred-icon-amber { background: rgba(245,158,11,0.1); }
+  .cred-icon-amber svg { stroke: var(--accent-amber); }
+  .cred-info { flex: 1; }
+  .cred-title { font-size: 13px; font-weight: 500; color: var(--black); line-height: 1.3; }
+  .cred-sub { font-size: 12px; color: var(--grey-500); margin-top: 2px; }
+  .cred-status { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 100px; }
+  .status-active { background: rgba(22,163,74,0.1); color: var(--accent-green); }
+  .status-soon { background: rgba(245,158,11,0.1); color: #92400e; }
+
+  .about-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 60px; }
+  .stat-box { background: var(--grey-50); border: 1px solid var(--grey-100); border-radius: var(--radius-sm); padding: 24px; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; color: var(--black); letter-spacing: -1px; margin-bottom: 6px; }
+  .stat-label { font-size: 12px; color: var(--grey-500); line-height: 1.4; }
 
   /* CONTACT */
   .contact { padding: 120px 48px; background: var(--grey-50); border-top: 1px solid var(--grey-100); }
@@ -254,7 +302,7 @@
     .hero, .packages, .services, .simulator, .contact { padding-left: 24px; padding-right: 24px; }
     .tiers-grid, .services-grid { grid-template-columns: 1fr; }
     .sim-options, .sim-options.cols-3 { grid-template-columns: 1fr; }
-    .about { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+    .about { padding: 80px 24px; } .about-inner { grid-template-columns: 1fr; gap: 48px; } .about-cert-badge { right: 0; } .about-stats { grid-template-columns: 1fr 1fr; }
     .form-row { grid-template-columns: 1fr; }
     footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
   }
@@ -272,7 +320,12 @@
     <li><a href="#over">Over ons</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Gratis gesprek →</a>
+  <div class="nav-right">
+    <a href="https://linkedin.com/in/benjamineltink" target="_blank" class="nav-linkedin" title="LinkedIn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="#contact" class="nav-cta">Gratis gesprek →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -676,40 +729,107 @@
 
 <!-- ABOUT -->
 <section class="about" id="over">
-  <div>
-    <p class="section-label reveal">Over Digitale Defensie</p>
-    <h2 class="section-title reveal">Cybersecurity<br>zonder bullshit.</h2>
-    <p style="font-size:17px;font-weight:300;color:var(--grey-500);line-height:1.7;margin-bottom:32px;" class="reveal">
-      Wij zijn een Amsterdam-based cybersecurity consultancy, gespecialiseerd in het MKB. Geen groot bureau, geen onnodige overhead — eerlijke analyses, concreet advies en heldere rapporten waar je echt iets mee kunt.
-    </p>
-    <div class="about-pills reveal">
-      <span class="pill pill-blue">AZ-900 gecertificeerd</span>
-      <span class="pill pill-blue">SC-900 gecertificeerd</span>
-      <span class="pill pill-teal">NIS2 specialist</span>
-      <span class="pill pill-coral">Azure Resource Graph</span>
-      <span class="pill">Microsoft Defender</span>
-      <span class="pill">Entra ID</span>
+  <div class="about-inner">
+
+    <!-- Foto kolom -->
+    <div class="about-photo-col reveal">
+      <div class="about-photo-wrap">
+        <div class="about-photo-placeholder">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span>Foto volgt</span>
+        </div>
+      </div>
+      <div class="about-cert-badge">
+        <div class="cert-badge-label">Certificaten</div>
+        <div class="cert-badge-items">
+          <div class="cert-badge-item"><div class="cert-dot" style="background:var(--accent-blue)"></div>AZ-900 · Azure Fundamentals</div>
+          <div class="cert-badge-item"><div class="cert-dot" style="background:var(--accent-blue)"></div>SC-900 · Security Fundamentals</div>
+          <div class="cert-badge-item"><div class="cert-dot" style="background:var(--accent-teal)"></div>NIS2 Specialist</div>
+        </div>
+      </div>
     </div>
-    <a href="#contact" class="btn-primary">Plan een gratis gesprek →</a>
+
+    <!-- Tekst kolom -->
+    <div class="about-text-col reveal">
+      <div class="about-name-row">
+        <div class="about-name">Benjamin Eltink — Oprichter</div>
+        <a href="https://linkedin.com/in/benjamineltink" target="_blank" class="about-linkedin">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <h2 class="about-quote">Ik geloof dat goede beveiliging<br>niet voorbehouden is aan <em>grote bedrijven.</em></h2>
+      <div class="about-body">
+        <p>Ik ben Benjamin. Ik heb Digitale Defensie opgericht omdat ik zag hoe vaak het MKB buiten de boot valt — te klein voor de grote bureaus, te onervaren om het zelf te doen. Een kapper of advocatenkantoor heeft geen IT-afdeling, maar wel klantdata die beschermd moet worden.</p>
+        <p>Ik doe dit werk zonder verborgen agenda: geen onnodige upsells, geen vage rapporten die in een la verdwijnen. Je krijgt een eerlijke beoordeling van waar je staat, en een concreet plan van wat je als eerste moet aanpakken.</p>
+        <p>Twijfel je of jouw situatie bij mij past? Stuur gewoon een berichtje. Ik help je verder, ook als dat betekent dat ik je doorverwijs.</p>
+      </div>
+
+      <div class="about-creds">
+        <div class="cred-row">
+          <div class="cred-icon cred-icon-blue">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="cred-info">
+            <div class="cred-title">Microsoft AZ-900 · Azure Fundamentals</div>
+            <div class="cred-sub">Microsoft Azure · Cloud & security basis</div>
+          </div>
+          <span class="cred-status status-active">Behaald</span>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon cred-icon-blue">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="cred-info">
+            <div class="cred-title">Microsoft SC-900 · Security Fundamentals</div>
+            <div class="cred-sub">Microsoft Security, Compliance & Identity</div>
+          </div>
+          <span class="cred-status status-active">Behaald</span>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon cred-icon-teal">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div class="cred-info">
+            <div class="cred-title">NIS2 Specialist</div>
+            <div class="cred-sub">Cyberbeveiligingswet · MKB compliance</div>
+          </div>
+          <span class="cred-status status-active">Actief</span>
+        </div>
+        <div class="cred-row">
+          <div class="cred-icon cred-icon-amber">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="cred-info">
+            <div class="cred-title">AZ-500 · Azure Security Engineer</div>
+            <div class="cred-sub">Microsoft Azure · Advanced security</div>
+          </div>
+          <span class="cred-status status-soon">In voorbereiding</span>
+        </div>
+      </div>
+
+      <a href="#contact" class="btn-primary">Plan een gratis gesprek →</a>
+    </div>
+
   </div>
-  <div>
-    <div class="about-stats reveal">
-      <div class="stat-box">
-        <div class="stat-num" style="color:var(--accent-blue)">20–35%</div>
-        <div class="stat-label">gemiddelde kostenbesparing na onze kosten&shy;analyse</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" style="color:var(--accent-teal)">48u</div>
-        <div class="stat-label">eerste rapport klaar binnen twee werkdagen</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" style="color:var(--accent-coral)">8.000+</div>
-        <div class="stat-label">NL bedrijven nu in scope van de Cyberbeveiligingswet</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">vaste projectprijzen — geen verrassingen achteraf</div>
-      </div>
+
+  <!-- Stats balk -->
+  <div class="about-stats reveal">
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--accent-blue)">20–35%</div>
+      <div class="stat-label">gemiddelde kostenbesparing na onze kostenanalyse</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--accent-teal)">48u</div>
+      <div class="stat-label">eerste rapport klaar binnen twee werkdagen</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--accent-coral)">8.000+</div>
+      <div class="stat-label">NL bedrijven in scope van de Cyberbeveiligingswet</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">vaste projectprijzen — geen verrassingen achteraf</div>
     </div>
   </div>
 </section>
@@ -719,7 +839,7 @@
   <div class="contact-inner">
     <p class="section-label reveal" style="text-align:center">Contact</p>
     <h2 class="section-title reveal" style="text-align:center">Laten we praten.</h2>
-    <p class="section-sub reveal" style="text-align:center;max-width:100%;margin-bottom:0">Vertel ons over je situatie. We reageren binnen één werkdag.</p>
+    <p class="section-sub reveal" style="text-align:center;max-width:100%;margin-bottom:0">Vertel me over je situatie. Ik reageer binnen één werkdag.</p>
 
     <form class="contact-form reveal" onsubmit="handleSubmit(event)">
       <div class="form-row">
@@ -797,6 +917,12 @@
 </footer>
 
 <script>
+  // Nav scroll shadow
+  const navEl = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
@@ -919,3 +1045,4 @@
 </script>
 </body>
 </html>
+
