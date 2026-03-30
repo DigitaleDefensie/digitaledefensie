@@ -298,6 +298,7 @@
   <ul class="nav-links">
     <li><a href="#pakketten">Pakketten</a></li>
     <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#quickscan">Gratis check</a></li>
     <li><a href="#simulator">Simulatie</a></li>
     <li><a href="#over">Over ons</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -330,7 +331,7 @@
     <span class="hero-pill">MKB</span>
   </div>
   <div class="hero-actions">
-    <a href="#simulator" class="btn-primary">Ontdek welk pakket bij jou past →</a>
+    <a href="#quickscan" class="btn-primary">Gratis: ontdek jouw 3 quick wins →</a>
     <a href="#pakketten" class="btn-ghost">Bekijk pakketten</a>
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div></div>
@@ -505,6 +506,326 @@
     </div>
   </div>
 </section>
+
+<!-- QUICKSCAN -->
+<section class="quickscan" id="quickscan">
+<style>
+  .quickscan {
+    padding: 100px 48px;
+    background: var(--black);
+    position: relative; overflow: hidden;
+  }
+  .quickscan::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,255,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .quickscan::after {
+    content: ''; position: absolute; bottom: -150px; left: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(11,168,145,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .quickscan-inner { max-width: 840px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .qs-header { text-align: center; margin-bottom: 52px; }
+  .qs-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 24px;
+  }
+  .qs-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-teal); animation: warmPulse 2s ease infinite; }
+  @keyframes warmPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+  .qs-title {
+    font-family: 'Outfit', sans-serif; font-weight: 800;
+    font-size: clamp(32px, 4vw, 52px); letter-spacing: -1.5px;
+    line-height: 1.1; color: #fff; margin-bottom: 16px;
+  }
+  .qs-title em { color: var(--accent-teal); font-style: normal; }
+  .qs-sub {
+    font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.4);
+    line-height: 1.65; max-width: 480px; margin: 0 auto;
+  }
+
+  .qs-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: var(--radius); padding: 40px 44px 44px;
+  }
+
+  .qs-progress-row {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px;
+  }
+  .qs-step-label { font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .qs-dots { display: flex; gap: 6px; }
+  .qs-dot { width: 28px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.12); transition: background 0.35s ease; }
+  .qs-dot.active { background: var(--accent-teal); }
+  .qs-dot.done { background: rgba(11,168,145,0.4); }
+
+  .qs-panel { display: none; animation: qsFadeIn 0.3s ease both; }
+  .qs-panel.active { display: block; }
+  @keyframes qsFadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+  .qs-question {
+    font-family: 'Outfit', sans-serif; font-weight: 700;
+    font-size: clamp(18px, 2.5vw, 24px); color: #fff;
+    line-height: 1.35; margin-bottom: 10px;
+  }
+  .qs-hint { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.6; margin-bottom: 28px; }
+
+  .qs-answers { display: flex; gap: 12px; }
+  .qs-btn {
+    flex: 1; padding: 16px 20px; border-radius: var(--radius-sm);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.03);
+    color: rgba(255,255,255,0.7);
+    font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif;
+    cursor: pointer; transition: all 0.2s; text-align: center;
+  }
+  .qs-btn:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.07); color: #fff; transform: translateY(-2px); }
+  .qs-btn.selected-yes { border-color: var(--accent-teal); background: rgba(11,168,145,0.12); color: var(--accent-teal); }
+  .qs-btn.selected-no  { border-color: rgba(244,91,71,0.5); background: rgba(244,91,71,0.08); color: #f45b47; }
+
+  .qs-result { display: none; animation: qsFadeIn 0.4s ease both; }
+  .qs-result.active { display: block; }
+
+  .qs-result-intro { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
+  .qs-result-title {
+    font-family: 'Outfit', sans-serif; font-weight: 800;
+    font-size: clamp(24px, 3vw, 36px); letter-spacing: -1px;
+    color: #fff; margin-bottom: 28px; line-height: 1.2;
+  }
+  .qs-result-title span { color: var(--accent-teal); }
+
+  .qs-score-row { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+  .qs-score-label { font-size: 13px; color: rgba(255,255,255,0.3); white-space: nowrap; }
+  .qs-score-bar { flex: 1; height: 5px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .qs-score-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent-teal), var(--accent-blue)); transition: width 0.9s ease; }
+  .qs-score-pct { font-size: 13px; font-weight: 700; color: var(--accent-teal); }
+
+  .qs-wins { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .qs-win {
+    display: flex; align-items: flex-start; gap: 16px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm); padding: 18px 20px; transition: border-color 0.2s;
+  }
+  .qs-win:hover { border-color: rgba(255,255,255,0.15); }
+  .qs-win-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--accent-teal);
+    color: #fff; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .qs-win-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 4px; }
+  .qs-win-desc { font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .qs-win-tag { display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; }
+  .tag-gratis { background: rgba(11,168,145,0.15); color: var(--accent-teal); }
+  .tag-risico { background: rgba(244,91,71,0.12); color: var(--accent-coral); }
+  .tag-direct { background: rgba(37,99,255,0.15); color: #5b8aff; }
+
+  .qs-result-cta { display: flex; align-items: center; gap: 16px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+  .qs-cta-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-teal); color: #fff;
+    padding: 14px 28px; border-radius: 100px;
+    font-size: 15px; font-weight: 500; text-decoration: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s, transform 0.15s;
+  }
+  .qs-cta-btn:hover { background: #09967f; transform: translateY(-2px); }
+  .qs-cta-ghost {
+    font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.3);
+    cursor: pointer; background: none; border: none;
+    font-family: 'DM Sans', sans-serif; transition: color 0.2s;
+  }
+  .qs-cta-ghost:hover { color: rgba(255,255,255,0.6); }
+
+  @media (max-width: 640px) {
+    .quickscan { padding: 72px 24px; }
+    .qs-card { padding: 28px 24px 32px; }
+    .qs-answers { flex-direction: column; }
+  }
+</style>
+
+  <div class="quickscan-inner">
+
+    <div class="qs-header reveal">
+      <div class="qs-badge"><div class="qs-badge-dot"></div>100% gratis · geen registratie</div>
+      <h2 class="qs-title">Ontdek jouw <em>3 quick wins</em><br>in 60 seconden</h2>
+      <p class="qs-sub">Beantwoord 5 vragen en ontvang direct 3 concrete verbeteringen die je vandaag nog kunt doorvoeren.</p>
+    </div>
+
+    <div class="qs-card reveal">
+
+      <div class="qs-progress-row">
+        <div class="qs-step-label" id="qs-step-label">Vraag 1 van 5</div>
+        <div class="qs-dots">
+          <div class="qs-dot active" id="qs-dot-1"></div>
+          <div class="qs-dot" id="qs-dot-2"></div>
+          <div class="qs-dot" id="qs-dot-3"></div>
+          <div class="qs-dot" id="qs-dot-4"></div>
+          <div class="qs-dot" id="qs-dot-5"></div>
+        </div>
+      </div>
+
+      <div class="qs-panel active" id="qs-q1">
+        <div class="qs-question">Gebruik jij (en je medewerkers) overal tweestapsverificatie (MFA)?</div>
+        <div class="qs-hint">Denk aan e-mail, cloudopslag, boekhoudpakket en inlogpagina's. MFA = een extra code naast je wachtwoord.</div>
+        <div class="qs-answers">
+          <button class="qs-btn" onclick="qsAnswer(1,'ja')">✓ &nbsp;Ja, overal</button>
+          <button class="qs-btn" onclick="qsAnswer(1,'deels')">⚡ &nbsp;Deels</button>
+          <button class="qs-btn" onclick="qsAnswer(1,'nee')">✗ &nbsp;Nee / weet ik niet</button>
+        </div>
+      </div>
+
+      <div class="qs-panel" id="qs-q2">
+        <div class="qs-question">Wordt er automatisch een back-up gemaakt van alle bedrijfsdata?</div>
+        <div class="qs-hint">Een goede back-up staat los van het systeem waarop de data staat en wordt regelmatig getest op herstelbaarheid.</div>
+        <div class="qs-answers">
+          <button class="qs-btn" onclick="qsAnswer(2,'ja')">✓ &nbsp;Ja, automatisch</button>
+          <button class="qs-btn" onclick="qsAnswer(2,'deels')">⚡ &nbsp;Soms / handmatig</button>
+          <button class="qs-btn" onclick="qsAnswer(2,'nee')">✗ &nbsp;Nee / weet ik niet</button>
+        </div>
+      </div>
+
+      <div class="qs-panel" id="qs-q3">
+        <div class="qs-question">Worden software-updates op alle apparaten automatisch geïnstalleerd?</div>
+        <div class="qs-hint">Niet-bijgewerkte software is verantwoordelijk voor meer dan 60% van succesvolle cyberaanvallen op het MKB.</div>
+        <div class="qs-answers">
+          <button class="qs-btn" onclick="qsAnswer(3,'ja')">✓ &nbsp;Ja, automatisch</button>
+          <button class="qs-btn" onclick="qsAnswer(3,'deels')">⚡ &nbsp;Deels</button>
+          <button class="qs-btn" onclick="qsAnswer(3,'nee')">✗ &nbsp;Nee / weet ik niet</button>
+        </div>
+      </div>
+
+      <div class="qs-panel" id="qs-q4">
+        <div class="qs-question">Hebben ex-medewerkers en oud-leveranciers nog toegang tot jullie systemen?</div>
+        <div class="qs-hint">Actieve accounts van mensen die niet meer bij je werken zijn een van de meest onderschatte beveiligingsrisico's.</div>
+        <div class="qs-answers">
+          <button class="qs-btn" onclick="qsAnswer(4,'nee')">✓ &nbsp;Nee, altijd geblokkeerd</button>
+          <button class="qs-btn" onclick="qsAnswer(4,'deels')">⚡ &nbsp;Waarschijnlijk niet</button>
+          <button class="qs-btn" onclick="qsAnswer(4,'ja')">✗ &nbsp;Ja / weet ik niet</button>
+        </div>
+      </div>
+
+      <div class="qs-panel" id="qs-q5">
+        <div class="qs-question">Weten jouw medewerkers hoe ze een phishing-mail herkennen?</div>
+        <div class="qs-hint">91% van alle succesvolle aanvallen begint met een phishing-e-mail. Menselijke bewustwording is je eerste verdedigingslinie.</div>
+        <div class="qs-answers">
+          <button class="qs-btn" onclick="qsAnswer(5,'ja')">✓ &nbsp;Ja, getraind</button>
+          <button class="qs-btn" onclick="qsAnswer(5,'deels')">⚡ &nbsp;Twijfelachtig</button>
+          <button class="qs-btn" onclick="qsAnswer(5,'nee')">✗ &nbsp;Nee / nooit besproken</button>
+        </div>
+      </div>
+
+      <div class="qs-result" id="qs-result">
+        <div class="qs-result-intro">Jouw gratis beveiligingsadvies</div>
+        <div class="qs-result-title">Je hebt <span id="qs-score-text">3</span> verbeterpunten gevonden</div>
+        <div class="qs-score-row">
+          <div class="qs-score-label">Beveiligingsscore</div>
+          <div class="qs-score-bar"><div class="qs-score-fill" id="qs-score-fill" style="width:0%"></div></div>
+          <div class="qs-score-pct" id="qs-score-pct">0%</div>
+        </div>
+        <div class="qs-wins" id="qs-wins-list"></div>
+        <div class="qs-result-cta">
+          <a href="#contact" class="qs-cta-btn">Volledige scan aanvragen →</a>
+          <button class="qs-cta-ghost" onclick="qsReset()">Opnieuw beginnen</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+const qsAnswers = {};
+const qsWinPool = {
+  mfa_nee:       { title: 'Zet tweestapsverificatie aan', desc: 'MFA blokkeert meer dan 99% van geautomatiseerde aanvallen. Schakel het in op e-mail, Microsoft 365/Google Workspace en je boekhoudsoftware. Dit kost 15 minuten en is gratis.', tag: '<span class="qs-win-tag tag-direct">Direct te doen</span>' },
+  mfa_deels:     { title: 'Verplicht MFA voor alle accounts', desc: 'Je hebt MFA deels actief — goed begin. Maak het verplicht voor iedereen en elk systeem, inclusief leveranciers met toegang tot jouw omgeving.', tag: '<span class="qs-win-tag tag-direct">Makkelijk te voltooien</span>' },
+  backup_nee:    { title: 'Stel automatische back-ups in', desc: 'Bij ransomware of dataverlies ben je zonder back-up alles kwijt. Gebruik een cloudoplossing (bijv. Microsoft 365 Backup) én een offline kopie. Test de herstel maandelijks.', tag: '<span class="qs-win-tag tag-risico">Hoog risico nu</span>' },
+  backup_deels:  { title: 'Automatiseer en test je back-up', desc: 'Handmatige back-ups worden vergeten. Stel een schema in dat dagelijks draait en test elk kwartaal of je data ook echt terugzetbaar is.', tag: '<span class="qs-win-tag tag-direct">Eenvoudig te automatiseren</span>' },
+  updates_nee:   { title: 'Schakel automatische updates in', desc: 'Verouderde software is de meest gebruikte aanvalsmethode. Zet automatische updates aan op Windows, macOS, browsers en alle zakelijke apps.', tag: '<span class="qs-win-tag tag-risico">Hoog risico nu</span>' },
+  updates_deels: { title: 'Controleer alle apparaten op updates', desc: 'Niet elk apparaat heeft automatische updates actief. Loop je bedrijfsapparaten door en zorg dat niets meer dan 30 dagen achterloopt.', tag: '<span class="qs-win-tag tag-direct">Controleer deze week</span>' },
+  toegang_ja:    { title: 'Blokkeer oude accounts vandaag nog', desc: 'Loop je gebruikerslijsten door in Microsoft 365, Google Workspace en je VPN. Verwijder of deactiveer ieder account van mensen die niet meer actief zijn. Kost een uur en is gratis.', tag: '<span class="qs-win-tag tag-risico">Direct risico</span>' },
+  toegang_deels: { title: 'Doe een toegangsaudit', desc: 'Je weet het niet zeker — dat is het probleem. Plan één uur in om alle actieve accounts te controleren en een offboarding-procedure op te stellen voor als iemand vertrekt.', tag: '<span class="qs-win-tag tag-direct">Plan dit in</span>' },
+  phishing_nee:  { title: 'Train medewerkers in phishing herkennen', desc: '91% van aanvallen begint met een phishing-mail. Eén training van 45 minuten leert medewerkers de meest gebruikte trucs herkennen en wat ze moeten doen.', tag: '<span class="qs-win-tag tag-gratis">Gratis module beschikbaar</span>' },
+  phishing_deels:{ title: 'Ververs en verdiep de phishingtraining', desc: 'Aanvalstechnieken veranderen snel. Eenmalig trainen is niet genoeg — plan jaarlijks een herhaling en doe een phishing-simulatie om te meten hoe alert medewerkers zijn.', tag: '<span class="qs-win-tag tag-direct">Jaarlijks herhalen</span>' },
+  alles_goed:    { title: 'Goed bezig — maar er is altijd meer', desc: 'Je hebt de basis op orde. De volgende stap is een volledige NIS2-scan om ook de minder voor de hand liggende gaten te checken: leveranciersbeveiliging, incidentrespons en encryptie.', tag: '<span class="qs-win-tag tag-gratis">Laat het verifiëren</span>' }
+};
+
+function qsAnswer(q, antwoord) {
+  qsAnswers[q] = antwoord;
+  const panel = document.getElementById('qs-q' + q);
+  panel.querySelectorAll('.qs-btn').forEach(b => b.classList.remove('selected-yes','selected-no'));
+  event.target.classList.add(antwoord === 'nee' ? 'selected-no' : 'selected-yes');
+  setTimeout(() => { q < 5 ? qsGoTo(q + 1) : qsShowResult(); }, 320);
+}
+
+function qsGoTo(num) {
+  document.querySelectorAll('.qs-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('qs-q' + num).classList.add('active');
+  document.getElementById('qs-step-label').textContent = 'Vraag ' + num + ' van 5';
+  document.querySelectorAll('.qs-dot').forEach((d, i) => {
+    d.classList.remove('active','done');
+    if (i < num - 1) d.classList.add('done');
+    if (i === num - 1) d.classList.add('active');
+  });
+}
+
+function qsShowResult() {
+  document.querySelectorAll('.qs-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.qs-dot').forEach(d => { d.classList.remove('active'); d.classList.add('done'); });
+  document.getElementById('qs-step-label').textContent = 'Jouw resultaat';
+
+  const wins = [];
+  if (qsAnswers[1] === 'nee') wins.push(qsWinPool.mfa_nee);
+  else if (qsAnswers[1] === 'deels') wins.push(qsWinPool.mfa_deels);
+  if (qsAnswers[2] === 'nee') wins.push(qsWinPool.backup_nee);
+  else if (qsAnswers[2] === 'deels') wins.push(qsWinPool.backup_deels);
+  if (qsAnswers[3] === 'nee') wins.push(qsWinPool.updates_nee);
+  else if (qsAnswers[3] === 'deels') wins.push(qsWinPool.updates_deels);
+  if (qsAnswers[4] === 'ja') wins.push(qsWinPool.toegang_ja);
+  else if (qsAnswers[4] === 'deels') wins.push(qsWinPool.toegang_deels);
+  if (qsAnswers[5] === 'nee') wins.push(qsWinPool.phishing_nee);
+  else if (qsAnswers[5] === 'deels') wins.push(qsWinPool.phishing_deels);
+
+  const topWins = wins.slice(0, 3);
+  if (topWins.length === 0) topWins.push(qsWinPool.alles_goed);
+
+  let score = 0;
+  if (qsAnswers[1] === 'ja') score += 20;
+  if (qsAnswers[2] === 'ja') score += 20;
+  if (qsAnswers[3] === 'ja') score += 20;
+  if (qsAnswers[4] === 'nee') score += 20;
+  if (qsAnswers[5] === 'ja') score += 20;
+
+  document.getElementById('qs-wins-list').innerHTML = topWins.map((w, i) => `
+    <div class="qs-win">
+      <div class="qs-win-num">${i + 1}</div>
+      <div class="qs-win-body">
+        <div class="qs-win-title">${w.title}</div>
+        <div class="qs-win-desc">${w.desc}</div>
+        ${w.tag}
+      </div>
+    </div>`).join('');
+
+  document.getElementById('qs-score-text').textContent = topWins.length;
+  document.getElementById('qs-result').classList.add('active');
+  setTimeout(() => {
+    document.getElementById('qs-score-fill').style.width = score + '%';
+    document.getElementById('qs-score-pct').textContent = score + '%';
+  }, 200);
+}
+
+function qsReset() {
+  Object.keys(qsAnswers).forEach(k => delete qsAnswers[k]);
+  document.getElementById('qs-result').classList.remove('active');
+  document.querySelectorAll('.qs-btn').forEach(b => b.classList.remove('selected-yes','selected-no'));
+  document.getElementById('qs-score-fill').style.width = '0%';
+  document.getElementById('qs-score-pct').textContent = '0%';
+  qsGoTo(1);
+}
+</script>
 
 <!-- SIMULATOR -->
 <section class="simulator" id="simulator">
