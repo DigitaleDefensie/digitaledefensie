@@ -65,7 +65,7 @@
 
   /* PAKKETTEN */
   .packages { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
-  .tiers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
+  .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: start; }
 
   .tier-card { background: var(--white); border: 1.5px solid var(--warm-border); border-radius: var(--radius); padding: 32px 26px; position: relative; overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
   .tier-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.10); }
@@ -299,7 +299,7 @@
     <li><a href="#pakketten">Pakketten</a></li>
     <li><a href="#diensten">Diensten</a></li>
     <li><a href="#quickscan">Gratis check</a></li>
-    <li><a href="#simulator">Simulatie</a></li>
+    <li><a href="#werkwijze">Werkwijze</a></li>
     <li><a href="#over">Over mij</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -396,28 +396,10 @@
       </ul>
       <a href="#contact" class="tier-cta-btn">Vraag aan →</a>
     </div>
-    <div class="tier-card">
-      <span class="tier-badge badge-nis2">NIS2-focus</span>
-      <div class="tier-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <div class="tier-name">Pro Check</div><div class="tier-sub">50-200 medewerkers</div>
-      <div class="tier-industries"><span class="industry-tag">Semi-overheid</span><span class="industry-tag">Zorg</span><span class="industry-tag">Utiliteit</span></div>
-      <div class="tier-divider"></div>
-      <div class="tier-price">€1.100</div><div class="tier-price-label">vaste prijs · eenmalig</div>
-      <div class="tier-tagline">"NIS2 geldt voor ons, waar staan we?"</div>
-      <ul class="tier-checks">
-        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Alles uit Business Check</span></li>
-        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Volledige Azure security assessment</span></li>
-        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">RBAC, Entra ID & Defender audit</span></li>
-        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">NIS2 gap-analyse met prioriteiten</span></li>
-        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">On-premise netwerkscan</span></li>
-        <li class="tier-check"><div class="tier-check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div><span class="tier-check-label">Rapport + roadmap naar compliance</span></li>
-      </ul>
-      <a href="#contact" class="tier-cta-btn">Vraag aan →</a>
-    </div>
   </div>
   <div class="scope-note reveal">
     <div class="scope-note-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-    <p class="scope-note-text"><strong>Transparantie over scope:</strong> Digitale Defensie is gespecialiseerd in security assessments en compliancescans voor het MKB. Ik doe geen penetratietesten of managed security services. Twijfel je of ik de juiste partij ben? Vraag een gratis gesprek aan. Eerlijk advies, ook als dat betekent dat ik je doorverwijs.</p>
+    <p class="scope-note-text"><strong>Transparantie over scope:</strong> Digitale Defensie is gespecialiseerd in security assessments en compliancescans voor het MKB tot circa 50 medewerkers. Ik doe geen penetratietesten of managed security services. Twijfel je of ik de juiste partij ben? Vraag een gratis gesprek aan — eerlijk advies, ook als dat betekent dat ik je doorverwijs naar een betere match.</p>
   </div>
 </section>
 
@@ -887,6 +869,264 @@ function qsReset() {
   </div>
 </section>
 
+<!-- ZO WERK IK -->
+<section id="werkwijze" style="padding:120px 48px;background:var(--warm-bg);border-top:1px solid var(--warm-border);">
+<style>
+  .werkwijze-inner { max-width:1200px; margin:0 auto; }
+  .werkwijze-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:48px; }
+  .wtab { padding:9px 20px; border-radius:100px; border:1.5px solid var(--warm-border); background:var(--white); font-size:13px; font-weight:500; color:var(--grey-500); cursor:pointer; transition:all 0.2s; font-family:'DM Sans',sans-serif; }
+  .wtab:hover { border-color:var(--black); color:var(--black); }
+  .wtab.active { background:var(--black); color:var(--white); border-color:var(--black); }
+  .wscenario { display:none; animation:fadeUp 0.35s ease both; }
+  .wscenario.active { display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start; }
+  @media(max-width:900px){ .wscenario.active { grid-template-columns:1fr; } .werkwijze-tabs { gap:6px; } nav { padding:0 24px; } .werkwijze-inner section[id="werkwijze"] { padding-left:24px; padding-right:24px; } }
+
+  .wcase-card { background:var(--white); border:1.5px solid var(--warm-border); border-radius:var(--radius); padding:28px 28px 24px; box-shadow:0 2px 8px rgba(0,0,0,0.04); position:sticky; top:88px; }
+  .wcase-who { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+  .wcase-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+  .wcase-name { font-family:'Outfit',sans-serif; font-weight:700; font-size:16px; color:var(--black); line-height:1.2; }
+  .wcase-role { font-size:12px; color:var(--grey-500); margin-top:2px; }
+  .wcase-quote { font-size:15px; font-style:italic; color:var(--grey-700); line-height:1.65; border-left:3px solid var(--warm-border); padding-left:16px; margin-bottom:20px; }
+  .wcase-meta { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+  .wcase-pill { font-size:11px; padding:4px 12px; border-radius:100px; border:1px solid var(--warm-border); color:var(--grey-500); background:var(--warm-surface); }
+  .wcase-timing { display:flex; flex-direction:column; gap:6px; padding-top:16px; border-top:1px solid var(--warm-border); }
+  .wcase-timing-row { display:flex; justify-content:space-between; font-size:12px; }
+  .wcase-timing-label { color:var(--grey-500); }
+  .wcase-timing-val { font-weight:500; color:var(--black); }
+  .wcase-price { font-family:'Outfit',sans-serif; font-size:28px; font-weight:800; color:var(--black); margin-top:16px; letter-spacing:-0.5px; }
+  .wcase-price-label { font-size:12px; color:var(--grey-500); margin-top:2px; }
+  .wcase-cta { display:block; text-align:center; margin-top:20px; background:var(--black); color:var(--white); padding:13px 20px; border-radius:100px; font-size:14px; font-weight:500; text-decoration:none; transition:background 0.2s; }
+  .wcase-cta:hover { background:var(--accent-blue); }
+
+  .wsteps-col { display:flex; flex-direction:column; gap:0; }
+  .wstep { display:grid; grid-template-columns:40px 1fr; gap:0; }
+  .wstep-left { display:flex; flex-direction:column; align-items:center; }
+  .wstep-num { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-weight:700; font-size:13px; flex-shrink:0; border:1.5px solid var(--warm-border); color:var(--grey-500); background:var(--white); transition:all 0.3s; }
+  .wstep-line { width:1.5px; flex:1; min-height:12px; background:var(--warm-border); margin:4px 0; }
+  .wstep:last-child .wstep-line { display:none; }
+  .wstep-body { padding:0 0 24px 16px; padding-top:4px; }
+  .wstep-title { font-weight:600; font-size:15px; color:var(--black); margin-bottom:5px; line-height:1.35; }
+  .wstep-desc { font-size:13.5px; color:var(--grey-500); line-height:1.65; }
+  .wstep-tools { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .wstep-tool { font-size:11px; padding:3px 10px; border-radius:var(--radius-xs); background:var(--warm-surface); border:1px solid var(--warm-border); color:var(--grey-500); }
+  .wstep-deliver { font-size:11px; padding:3px 10px; border-radius:var(--radius-xs); background:rgba(37,99,255,0.06); border:1px solid rgba(37,99,255,0.15); color:var(--accent-blue); }
+
+  .wdeliverables { background:var(--warm-surface); border:1px solid var(--warm-border); border-radius:var(--radius-sm); padding:20px 24px; margin-top:4px; }
+  .wdeliverables-title { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--grey-300); margin-bottom:12px; }
+  .wdeliver-list { display:flex; flex-direction:column; gap:8px; }
+  .wdeliver-item { display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:var(--grey-700); }
+  .wdeliver-arrow { color:var(--accent-blue); font-weight:600; flex-shrink:0; margin-top:1px; }
+</style>
+<div class="werkwijze-inner">
+  <p class="section-label reveal">Werkwijze</p>
+  <h2 class="section-title reveal">Zo werkt een check.<br>Stap voor stap.</h2>
+  <p class="section-sub reveal">Geen vage "intakegesprekken" en "trajecten". Dit is exact wat er gebeurt nadat je contact opneemt.</p>
+
+  <div class="werkwijze-tabs reveal">
+    <button class="wtab active" onclick="setWTab('solo',this)">✂️ Solo Check · €125</button>
+    <button class="wtab" onclick="setWTab('starter',this)">🍴 Starter Check · €250</button>
+    <button class="wtab" onclick="setWTab('business',this)">⚖️ Business Check · €600</button>
+  </div>
+
+  <!-- SOLO -->
+  <div class="wscenario active" id="wscen-solo">
+    <div class="wcase-card reveal">
+      <div class="wcase-who">
+        <div class="wcase-avatar" style="background:rgba(37,99,255,0.08);">📷</div>
+        <div>
+          <div class="wcase-name">Layla — Zelfstandig fotograaf</div>
+          <div class="wcase-role">Amsterdam · ZZP</div>
+        </div>
+      </div>
+      <p class="wcase-quote">"Ik hoor veel over hackers maar ik ben toch maar een kleine fotograaf. Moet ik me echt zorgen maken?"</p>
+      <div class="wcase-meta">
+        <span class="wcase-pill">Google Drive</span>
+        <span class="wcase-pill">Moneybird</span>
+        <span class="wcase-pill">WordPress site</span>
+        <span class="wcase-pill">Zelfde wachtwoord overal</span>
+      </div>
+      <div class="wcase-timing">
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Voorbereiding</span><span class="wcase-timing-val">15 min (jij)</span></div>
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Uitvoering check</span><span class="wcase-timing-val">2–3 uur (ik)</span></div>
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Rapport klaar</span><span class="wcase-timing-val">binnen 48 uur</span></div>
+      </div>
+      <div class="wcase-price">€125</div>
+      <div class="wcase-price-label">vaste prijs · eenmalig</div>
+      <a href="#contact" class="wcase-cta">Plan een gesprek →</a>
+    </div>
+    <div class="wsteps-col reveal">
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">1</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Kort intakeformulier — 5 minuten</div><div class="wstep-desc">Jij beantwoordt een paar vragen: welke tools gebruik je dagelijks? E-mailprovider, boekhouding, cloudopslag, website. Geen technische kennis nodig.</div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">2</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Wachtwoord & accountcheck</div><div class="wstep-desc">Ik begeleid je door Have I Been Pwned — is jouw e-mailadres al eens gelekt? We kijken ook naar hergebruik van wachtwoorden en of je een wachtwoordmanager nodig hebt. Ik zie nooit je wachtwoorden zelf.</div><div class="wstep-tools"><span class="wstep-tool">haveibeenpwned.com</span></div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">3</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Website & domein — SSL en DNS</div><div class="wstep-desc">Ik scan je domeinnaam op SSL-certificaat, DNS-configuratie en zichtbare zwakke plekken via gespecialiseerde tools.</div><div class="wstep-tools"><span class="wstep-tool">SSL Labs</span><span class="wstep-tool">SecurityTrails</span></div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">4</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">E-mailbeveiliging — SPF, DKIM, DMARC</div><div class="wstep-desc">Ontbrekende e-mailbeveiligingsrecords maken het makkelijk om namens jou nep-mails te sturen. Ik check of alles klopt en noteer wat er mist als concreet actiepunt.</div><div class="wstep-tools"><span class="wstep-tool">MXToolbox</span></div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">5</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Phishingbewustzijn & backup check</div><div class="wstep-desc">Vijf gerichte vragen over phishing-herkenning. Daarna kijken we naar je backupsituatie — "Google Drive als enige backup" is al een risico dat ik benoem.</div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">6</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Rapport — 5 concrete actiepunten</div><div class="wstep-desc">Geen IT-jargon. Per actiepunt staat: wat is het probleem, wat is het risico, en wat doe je eraan. Gerangschikt op prioriteit. Binnen 48 uur in je inbox.</div><div class="wstep-tools"><span class="wdeliver-item" style="display:inline-flex;gap:6px;font-size:11px;padding:3px 10px;border-radius:var(--radius-xs);background:rgba(37,99,255,0.06);border:1px solid rgba(37,99,255,0.15);color:var(--accent-blue);">📄 PDF rapport</span></div></div>
+      </div>
+      <div class="wdeliverables">
+        <div class="wdeliverables-title">Wat je ontvangt</div>
+        <div class="wdeliver-list">
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>PDF-rapport met bevindingen per checkpunt</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>5 genummerde actiepunten op prioriteit</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>Per punt: risico, actie en geschatte tijdsinvestering</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>Eerlijk advies — ook als dat "dit valt mee" is</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STARTER -->
+  <div class="wscenario" id="wscen-starter">
+    <div class="wcase-card reveal">
+      <div class="wcase-who">
+        <div class="wcase-avatar" style="background:rgba(11,168,145,0.08);">🍴</div>
+        <div>
+          <div class="wcase-name">Marco — Restauranteigenaar</div>
+          <div class="wcase-role">Utrecht · 6 medewerkers</div>
+        </div>
+      </div>
+      <p class="wcase-quote">"We bewaren klantgegevens voor ons loyaltyprogramma. Is dat eigenlijk wel veilig? En hoe zit dat met die privacywetgeving?"</p>
+      <div class="wcase-meta">
+        <span class="wcase-pill">Loyaltyprogramma klantdata</span>
+        <span class="wcase-pill">Één WiFi voor iedereen</span>
+        <span class="wcase-pill">Vertrokken medewerkers</span>
+        <span class="wcase-pill">AVG onbekend</span>
+      </div>
+      <div class="wcase-timing">
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Voorbereiding</span><span class="wcase-timing-val">20 min (jij)</span></div>
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Uitvoering check</span><span class="wcase-timing-val">3–4 uur (ik)</span></div>
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Gesprek</span><span class="wcase-timing-val">30 min</span></div>
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Rapport klaar</span><span class="wcase-timing-val">binnen 48 uur</span></div>
+      </div>
+      <div class="wcase-price">€250</div>
+      <div class="wcase-price-label">vaste prijs · eenmalig</div>
+      <a href="#contact" class="wcase-cta">Plan een gesprek →</a>
+    </div>
+    <div class="wsteps-col reveal">
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">1</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Alle checks uit de Solo Check</div><div class="wstep-desc">We starten met de volledige Solo Check als basis: SSL, DNS, e-mailbeveiliging, wachtwoorden, phishing, backup. Dit is de fundering.</div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">2</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">WiFi & netwerk veiligheidscheck</div><div class="wstep-desc">Zijn gasten en medewerkers op hetzelfde netwerk? Is het WiFi-wachtwoord ooit gewijzigd? Werkt de router op WPA2 of WPA3? Dit zijn vragen die ik stel — en de antwoorden leveren direct actiepunten op.</div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">3</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Accounts & toegangsrechten</div><div class="wstep-desc">Ik vraag jou een lijst van alle actieve accounts te maken. Zijn er accounts van vertrokken medewerkers? Wie heeft admin-rechten? Gedeelde wachtwoorden? Dit is vaak de makkelijkste quick win.</div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">4</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">AVG & datalekrisico check</div><div class="wstep-desc">Welke persoonsgegevens bewaar je? Is er een verwerkersovereenkomst met je reserveringssoftware? Wat doe je bij een datalek? Ik gebruik de AP-checklist als referentie en geef je concrete antwoorden.</div><div class="wstep-tools"><span class="wstep-tool">autoriteitpersoonsgegevens.nl</span></div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">5</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Prioriteitenrapport + 30 min. gesprek</div><div class="wstep-desc">Drie niveaus: Urgent (fix deze week), Belangrijk (fix deze maand), Aanbevolen (fix dit kwartaal). In het gesprek loop ik de top-3 risico's door en geef je concrete eerste stap-instructies.</div></div>
+      </div>
+      <div class="wdeliverables">
+        <div class="wdeliverables-title">Wat je ontvangt</div>
+        <div class="wdeliver-list">
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>Prioriteitenrapport (urgent / belangrijk / aanbevolen)</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>AVG-risicobeoordeling met concrete aanbevelingen</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>Account inventarisatie met actiepunten</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>WiFi & netwerk bevindingen</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>30 min. gesprek om het rapport door te nemen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUSINESS -->
+  <div class="wscenario" id="wscen-business">
+    <div class="wcase-card reveal">
+      <div class="wcase-who">
+        <div class="wcase-avatar" style="background:rgba(232,156,26,0.1);">⚖️</div>
+        <div>
+          <div class="wcase-name">Sofie — Directeur advocatenkantoor</div>
+          <div class="wcase-role">Rotterdam · 18 medewerkers</div>
+        </div>
+      </div>
+      <p class="wcase-quote">"We zijn gegroeid van 5 naar 18 man. De IT is meegekomen maar nooit echt geauditeerd. Klopt alles nog? En wat is die NIS2 voor ons?"</p>
+      <div class="wcase-meta">
+        <span class="wcase-pill">Microsoft 365 volledig</span>
+        <span class="wcase-pill">MFA bij 60% actief</span>
+        <span class="wcase-pill">Te brede admin-rechten</span>
+        <span class="wcase-pill">AVG niet geformaliseerd</span>
+      </div>
+      <div class="wcase-timing">
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Voorbereiding</span><span class="wcase-timing-val">30 min (jij)</span></div>
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Uitvoering check</span><span class="wcase-timing-val">5–7 uur (ik)</span></div>
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Gesprek</span><span class="wcase-timing-val">60 min</span></div>
+        <div class="wcase-timing-row"><span class="wcase-timing-label">Rapport klaar</span><span class="wcase-timing-val">binnen 48 uur</span></div>
+      </div>
+      <div class="wcase-price">€600</div>
+      <div class="wcase-price-label">vaste prijs · eenmalig</div>
+      <a href="#contact" class="wcase-cta">Plan een gesprek →</a>
+    </div>
+    <div class="wsteps-col reveal">
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">1</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Alle checks uit Solo + Starter Check</div><div class="wstep-desc">WiFi, netwerk, accounts, AVG, phishing, backup, domein, e-mailbeveiliging. Dit vormt de fundering van het rapport.</div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">2</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Microsoft 365 audit</div><div class="wstep-desc">Ik vraag tijdelijke leestoegang tot de M365 admin portal. Ik kijk naar de Microsoft Secure Score, extern delen-instellingen in SharePoint, ongebruikte licenties en of e-mailretentiebeleid is geconfigureerd.</div><div class="wstep-tools"><span class="wstep-tool">Microsoft Secure Score</span><span class="wstep-tool">M365 Admin Portal</span></div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">3</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">MFA & identiteitsbeheer review</div><div class="wstep-desc">Hoeveel procent heeft MFA ingeschakeld? Zijn er admin-accounts zonder MFA? Zijn er "stale accounts" van mensen die lang niet hebben ingelogd? Zijn er Conditional Access policies? Elk gat is een risico in het rapport.</div><div class="wstep-tools"><span class="wstep-tool">Entra ID Admin Portal</span></div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">4</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Azure-omgeving check (indien aanwezig)</div><div class="wstep-desc">Heeft het kantoor een Azure-abonnement? Ik controleer de Secure Score, open storage containers, firewallregels en Defender for Cloud instellingen.</div><div class="wstep-tools"><span class="wstep-tool">Defender for Cloud</span><span class="wstep-tool">Azure Secure Score</span></div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">5</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">NIS2 scope bepaling</div><div class="wstep-desc">Val je onder de Cyberbeveiligingswet? Ik bepaal dit op basis van sector, omvang en activiteiten — en leg de conclusie helder vast met onderbouwing. Geen gokwerk, gewoon een duidelijk antwoord.</div><div class="wstep-tools"><span class="wstep-tool">NCSC NIS2 richtlijnen</span></div></div>
+      </div>
+      <div class="wstep">
+        <div class="wstep-left"><div class="wstep-num">6</div><div class="wstep-line"></div></div>
+        <div class="wstep-body"><div class="wstep-title">Uitgebreid rapport + 60 min. gesprek</div><div class="wstep-desc">Rapport met executive summary (begrijpbaar voor jou als directeur), technische bevindingen, NIS2 conclusie en een prioriteitenmatrix. Het rapport stuur ik minimaal 48 uur voor het gesprek toe.</div></div>
+      </div>
+      <div class="wdeliverables">
+        <div class="wdeliverables-title">Wat je ontvangt</div>
+        <div class="wdeliver-list">
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>Uitgebreid rapport met executive summary</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>Microsoft 365 audit incl. Secure Score</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>MFA & identiteitsbeheer statusoverzicht</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>NIS2 scope conclusie met onderbouwing</div>
+          <div class="wdeliver-item"><span class="wdeliver-arrow">→</span>60 min. bevindingengesprek (video of live)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function setWTab(id, btn) {
+  document.querySelectorAll('.wscenario').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.wtab').forEach(b => b.classList.remove('active'));
+  document.getElementById('wscen-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</section>
+
 <!-- ABOUT -->
 <section class="about" id="over">
   <div class="about-inner">
@@ -930,10 +1170,10 @@ function qsReset() {
     </div>
   </div>
   <div class="about-stats reveal">
-    <div class="stat-box"><div class="stat-num" style="color:var(--accent-blue)">20–35%</div><div class="stat-label">gemiddelde kostenbesparing na mijn kostenanalyse</div></div>
-    <div class="stat-box"><div class="stat-num" style="color:var(--accent-teal)">48u</div><div class="stat-label">eerste rapport klaar binnen twee werkdagen</div></div>
-    <div class="stat-box"><div class="stat-num" style="color:var(--accent-coral)">8.000+</div><div class="stat-label">NL bedrijven in scope van de Cyberbeveiligingswet</div></div>
-    <div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">vaste projectprijzen, geen verrassingen achteraf</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--accent-blue)">48u</div><div class="stat-label">Rapport klaar binnen twee werkdagen na de check</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--accent-teal)">€125</div><div class="stat-label">Instap zonder drempel — vaste prijs, geen verrassingen</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--accent-coral)">100%</div><div class="stat-label">Vaste projectprijzen — wat je ziet is wat je betaalt</div></div>
+    <div class="stat-box"><div class="stat-num">MKB</div><div class="stat-label">Alleen voor ZZP en bedrijven tot 50 medewerkers — geen grote bureaus</div></div>
   </div>
 </section>
 
@@ -943,6 +1183,20 @@ function qsReset() {
     <p class="section-label reveal" style="text-align:center">Contact</p>
     <h2 class="section-title reveal" style="text-align:center">Plan een gesprek.</h2>
     <p class="section-sub reveal" style="text-align:center;max-width:100%;margin-bottom:0">Vertel me over je situatie. Ik reageer binnen één werkdag.</p>
+    <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px;margin-bottom:8px;">
+      <a href="tel:0637282540" style="display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--warm-border);padding:12px 22px;border-radius:100px;font-size:14px;font-weight:500;color:var(--black);text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:border-color 0.2s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.64 3.42 2 2 0 0 1 3.62 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+        06 37 28 25 40
+      </a>
+      <a href="https://wa.me/31637282540" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--warm-border);padding:12px 22px;border-radius:100px;font-size:14px;font-weight:500;color:var(--black);text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:border-color 0.2s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:bjeltink@gmail.com" style="display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--warm-border);padding:12px 22px;border-radius:100px;font-size:14px;font-weight:500;color:var(--black);text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:border-color 0.2s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        bjeltink@gmail.com
+      </a>
+    </div>
     <form class="contact-form reveal" onsubmit="handleSubmit(event)">
       <div class="form-row">
         <div class="form-group"><label class="form-label">Voornaam</label><input class="form-input" type="text" placeholder="Jan" required></div>
@@ -956,7 +1210,7 @@ function qsReset() {
         </div>
       </div>
       <div class="form-group"><label class="form-label">Welk pakket of dienst interesseert je?</label>
-        <select class="form-select form-input"><option value="">Kies een pakket of dienst...</option><optgroup label="Pakketten"><option>Solo Check — €125</option><option>Starter Check — €250</option><option>Business Check — €600</option><option>Pro Check — €1.100</option></optgroup><optgroup label="Losse diensten"><option>Azure Beveiligingscheck</option><option>Azure Kostenanalyse</option><option>On-Premise Netwerkscan</option><option>NIS2 Quickscan</option><option>Phishingsimulatie & Securitytraining</option></optgroup><option>Ik weet het nog niet — help me kiezen</option></select>
+        <select class="form-select form-input"><option value="">Kies een pakket of dienst...</option><optgroup label="Pakketten"><option>Solo Check — €125</option><option>Starter Check — €250</option><option>Business Check — €600</option></optgroup><optgroup label="Losse diensten"><option>Azure Beveiligingscheck</option><option>Azure Kostenanalyse</option><option>On-Premise Netwerkscan</option><option>NIS2 Quickscan</option><option>Phishingsimulatie & Securitytraining</option></optgroup><option>Ik weet het nog niet — help me kiezen</option></select>
       </div>
       <div class="form-group"><label class="form-label">Vertel iets over je situatie</label><textarea class="form-textarea" placeholder="Bijv: We zijn een advocatenkantoor met 15 medewerkers en hebben nooit een security review gedaan..."></textarea></div>
       <button type="submit" class="form-submit">Verstuur bericht →</button>
@@ -972,7 +1226,11 @@ function qsReset() {
 
 <footer>
   <div class="footer-logo">Digitale<span>.</span>Defensie</div>
-  <div class="footer-copy">© 2026 Digitale Defensie · Amsterdam · KvK: 00000000</div>
+  <div class="footer-copy" style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center;">
+    <span>© 2026 Digitale Defensie · Amsterdam</span>
+    <a href="tel:0637282540" style="color:var(--grey-300);text-decoration:none;font-size:13px;">06 37 28 25 40</a>
+    <a href="mailto:bjeltink@gmail.com" style="color:var(--grey-300);text-decoration:none;font-size:13px;">bjeltink@gmail.com</a>
+  </div>
 </footer>
 
 <script>
@@ -995,9 +1253,9 @@ function qsReset() {
     if (!answers[4]) return;
     const size = answers[1], sector = answers[2], concern = answers[3], nis2 = answers[4];
     let badge, badgeClass, title, desc, items, price, priceLabel;
-    if (size === 'toolarge') { badge = 'Even eerlijk zijn'; badgeClass = 'badge-cost'; title = 'Buiten onze huidige scope'; desc = 'Ik ben gespecialiseerd in het MKB tot circa 50 medewerkers. Voor grotere organisaties ben ik niet de juiste partij, maar ik help je graag doorverwijzen.'; items = ['Eerlijk advies over de juiste partij', 'Gratis gesprek om je verder te helpen', 'Verwijzing naar geschikte specialist']; price = 'Gratis'; priceLabel = 'oriëntatiegesprek · geen verplichtingen';
+    if (size === 'toolarge') { badge = 'Buiten mijn scope'; badgeClass = 'badge-cost'; title = 'Ik verwijs je door — gratis'; desc = 'Ik ben gespecialiseerd in het MKB tot circa 50 medewerkers. Voor grotere organisaties ben ik eerlijk: ik ben niet de juiste partij. Maar ik help je graag de juiste specialist vinden.'; items = ['Eerlijk advies over de juiste partij', 'Gratis oriëntatiegesprek', 'Warme verwijzing naar geschikte specialist']; price = 'Gratis'; priceLabel = 'oriëntatiegesprek · geen verplichtingen';
     } else if (concern === 'people') { badge = 'Aanbevolen: Phishingtraining'; badgeClass = 'badge-starter'; title = 'Phishingsimulatie & Securitytraining — €650'; desc = 'Jouw mensen zijn de zwakste schakel — en de beste verdediging.'; items = ['Gesimuleerde phishing campagne', 'Meting van klikgedrag & kwetsbaarheid', 'Interactieve groepstraining', 'Herkennen van social engineering', 'Rapport met aanbevelingen per team']; price = '€650'; priceLabel = 'vanaf, vaste projectprijs';
-    } else if (nis2 === 'yes' || nis2 === 'soon') { badge = 'Aanbevolen: Pro Check'; badgeClass = 'badge-security'; title = 'Pro Check — €1.100'; desc = 'Gezien de NIS2-verplichting is de Pro Check de juiste stap.'; items = ['Volledige Azure security assessment', 'RBAC, Entra ID & Defender audit', 'NIS2 gap-analyse met prioriteiten', 'On-premise netwerkscan', 'Rapport + roadmap naar compliance']; price = '€1.100'; priceLabel = 'vaste projectprijs · binnen 48u eerste rapport';
+    } else if (nis2 === 'yes' || nis2 === 'soon') { badge = 'Aanbevolen: NIS2 Quickscan'; badgeClass = 'badge-security'; title = 'NIS2 Quickscan + Business Check — €600+'; desc = 'Gezien de NIS2-verplichting is de Business Check de juiste stap, aangevuld met een NIS2 Quickscan. Samen krijg je een helder beeld van waar je staat én wat je moet doen.'; items = ['Microsoft 365 / Azure audit', 'MFA & identiteitsbeheer review', 'NIS2 gap-analyse (quickscan)', 'Prioriteitenrapport + compliance roadmap', 'Bevindingengesprek inbegrepen']; price = '€600+'; priceLabel = 'vaste projectprijs · binnen 48u eerste rapport';
     } else if (size === 'mid') { badge = 'Aanbevolen: Business Check'; badgeClass = 'badge-both'; title = 'Business Check — €600'; desc = 'De Business Check geeft jouw groeiende bedrijf een stevige digitale basis.'; items = ['Microsoft 365 / Google Workspace audit', 'MFA & identiteitsbeheer review', 'Datalekrisico & AVG quickscan', 'Azure omgeving check (indien aanwezig)', 'Uitgebreid rapport + bevindingengesprek']; price = '€600'; priceLabel = 'vaste projectprijs · binnen 48u eerste rapport';
     } else if (concern === 'cost' && size !== 'solo') { badge = 'Aanbevolen: Kostenanalyse'; badgeClass = 'badge-cost'; title = 'Azure Kostenanalyse — €1.000'; desc = 'Op basis van jouw antwoorden is een kostenanalyse de beste eerste stap.'; items = ['Volledige kostenanalyse per Azure-service', 'Ongebruikte resources opsporen', 'Rightsizing & reserved instances advies', 'Rapport met exact besparingspotentieel']; price = '€1.000'; priceLabel = 'vaste projectprijs · eenmalig';
     } else if (size === 'small') { badge = 'Aanbevolen: Starter Check'; badgeClass = 'badge-starter'; title = 'Starter Check — €250'; desc = 'Een praktische check die past bij jouw budget en omvang.'; items = ['WiFi & netwerk veiligheidscheck', 'E-mail beveiliging (SPF/DKIM/DMARC)', 'Medewerkers accounts & toegangsrechten', 'Datalekrisico check (AVG)', 'Prioriteitenrapport + 30 min. gesprek']; price = '€250'; priceLabel = 'vaste prijs · eenmalig';
