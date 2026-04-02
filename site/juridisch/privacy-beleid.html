@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Beleid — Digitale Defensie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #1a1916; --white: #ffffff; --warm-bg: #faf9f7;
+  --warm-surface: #f3f1ee; --warm-border: #e8e5e0;
+  --grey-300: #c5c2bb; --grey-500: #8c8a82; --grey-700: #4a4844;
+  --accent-blue: #2563ff; --accent-teal: #0ba891;
+  --radius: 16px; --radius-sm: 10px;
+}
+html { background: var(--warm-surface); }
+body { font-family: 'DM Sans', sans-serif; background: var(--warm-surface); color: var(--black); -webkit-font-smoothing: antialiased; padding: 40px 24px; }
+.toolbar { max-width: 794px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: space-between; }
+.toolbar-label { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600; color: var(--grey-500); letter-spacing: 1px; text-transform: uppercase; }
+.btn-print { display: flex; align-items: center; gap: 8px; background: var(--black); color: var(--white); padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; border: none; cursor: pointer; transition: background 0.2s; }
+.btn-print:hover { background: var(--accent-blue); }
+.document { width: 794px; margin: 0 auto; background: var(--white); border-radius: var(--radius); padding: 64px 72px 80px; box-shadow: 0 4px 40px rgba(0,0,0,0.08); }
+.doc-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1.5px solid var(--warm-border); }
+.logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: var(--black); margin-bottom: 4px; }
+.logo span { color: var(--accent-blue); }
+.tagline { font-size: 12px; color: var(--grey-500); font-weight: 300; }
+.doc-meta { text-align: right; }
+.doc-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; color: var(--black); margin-bottom: 6px; }
+.doc-version { font-size: 12px; color: var(--grey-500); font-weight: 300; line-height: 1.6; }
+.intro-block { background: var(--warm-surface); border: 1.5px solid var(--warm-border); border-radius: var(--radius-sm); padding: 20px 24px; margin-bottom: 36px; }
+.intro-block p { font-size: 13px; font-weight: 300; color: var(--grey-700); line-height: 1.7; }
+.toc { margin-bottom: 40px; padding: 20px 24px; background: rgba(37,99,255,0.04); border: 1px solid rgba(37,99,255,0.12); border-radius: var(--radius-sm); }
+.toc-title { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 12px; }
+.toc-list { list-style: none; column-count: 2; column-gap: 24px; }
+.toc-list li { font-size: 12px; font-weight: 300; color: var(--grey-700); padding: 3px 0; line-height: 1.4; }
+.toc-list li strong { font-weight: 500; color: var(--accent-blue); }
+.article { margin-bottom: 36px; }
+.article-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; color: var(--black); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--warm-border); display: flex; align-items: center; gap: 10px; }
+.article-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--black); color: var(--white); border-radius: 50%; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.article ol { padding-left: 20px; }
+.article ol li { font-size: 13.5px; font-weight: 300; color: var(--grey-700); line-height: 1.75; margin-bottom: 8px; padding-left: 4px; }
+.article ol li strong { font-weight: 500; color: var(--black); }
+.article p { font-size: 13.5px; font-weight: 300; color: var(--grey-700); line-height: 1.75; margin-bottom: 8px; }
+.article ul { padding-left: 20px; }
+.article ul li { font-size: 13.5px; font-weight: 300; color: var(--grey-700); line-height: 1.75; margin-bottom: 6px; }
+
+/* DATA TABLE */
+.data-table { width: 100%; border-collapse: collapse; margin: 12px 0 16px; font-size: 12.5px; }
+.data-table thead tr { background: var(--warm-surface); }
+.data-table thead th { padding: 10px 12px; text-align: left; font-size: 11px; font-weight: 600; color: var(--grey-500); letter-spacing: 1px; text-transform: uppercase; border-bottom: 1.5px solid var(--warm-border); }
+.data-table tbody td { padding: 10px 12px; vertical-align: top; border-bottom: 1px solid var(--warm-border); font-weight: 300; color: var(--grey-700); line-height: 1.5; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody td:first-child { font-weight: 500; color: var(--black); }
+
+/* RIGHTS GRID */
+.rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.right-card { background: var(--warm-surface); border: 1px solid var(--warm-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+.right-name { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+.right-desc { font-size: 12px; font-weight: 300; color: var(--grey-700); line-height: 1.5; }
+
+.highlight-box { background: rgba(11,168,145,0.06); border: 1px solid rgba(11,168,145,0.2); border-radius: var(--radius-sm); padding: 14px 18px; margin: 12px 0; }
+.highlight-box p { font-size: 13px; font-weight: 400; color: var(--black); line-height: 1.6; margin: 0; }
+
+.doc-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--warm-border); display: flex; justify-content: space-between; }
+.footer-left, .footer-right { font-size: 11px; color: var(--grey-300); font-weight: 300; line-height: 1.8; }
+.footer-right { text-align: right; }
+@media print { html, body { background: white; padding: 0; } .toolbar { display: none; } .document { box-shadow: none; border-radius: 0; padding: 40px 52px 60px; width: 100%; } }
+@page { size: A4; margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span class="toolbar-label">Juridisch document</span>
+  <button class="btn-print" onclick="window.print()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Afdrukken / PDF
+  </button>
+</div>
+
+<div class="document">
+
+  <div class="doc-header">
+    <div>
+      <div class="logo">Digitale Defensie<span>.</span></div>
+      <div class="tagline">Slim. Veilig. Simpel.</div>
+    </div>
+    <div class="doc-meta">
+      <div class="doc-title">Privacy Beleid</div>
+      <div class="doc-version">
+        Versie 1.0 — vastgesteld 1 april 2026<br>
+        Conform AVG (GDPR) en UAVG
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-block">
+    <p>Digitale Defensie hecht grote waarde aan de bescherming van uw persoonsgegevens. Dit Privacy Beleid informeert u over hoe wij persoonsgegevens verwerken, welke rechten u heeft en hoe u contact met ons kunt opnemen. Dit beleid is van toepassing op alle verwerkingsactiviteiten van Digitale Defensie (eenmanszaak B. Eltink, KvK [KvK-nummer]) als verwerkingsverantwoordelijke in de zin van artikel 4 lid 7 AVG.</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Inhoudsopgave</div>
+    <ul class="toc-list">
+      <li><strong>§ 1</strong> Wie zijn wij</li>
+      <li><strong>§ 2</strong> Welke gegevens verwerken wij</li>
+      <li><strong>§ 3</strong> Doelen en grondslagen</li>
+      <li><strong>§ 4</strong> Bewaartermijnen</li>
+      <li><strong>§ 5</strong> Delen met derden</li>
+      <li><strong>§ 6</strong> Buiten de EER</li>
+      <li><strong>§ 7</strong> Beveiliging</li>
+      <li><strong>§ 8</strong> Uw rechten</li>
+      <li><strong>§ 9</strong> Cookies en website</li>
+      <li><strong>§ 10</strong> Wijzigingen</li>
+      <li><strong>§ 11</strong> Contact en klachten</li>
+    </ul>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">1</span> Wie zijn wij — verwerkingsverantwoordelijke</div>
+    <p>De verwerkingsverantwoordelijke voor de in dit beleid beschreven verwerkingen is:</p>
+    <div class="highlight-box">
+      <p><strong>Digitale Defensie</strong> — eenmanszaak van B. Eltink<br>
+      Adres: [Straat + huisnummer, Postcode + stad]<br>
+      KvK: [KvK-nummer] · BTW: NL[000000000]B01<br>
+      E-mail: bjeltink@gmail.com<br>
+      Website: https://digitaledefensie.github.io/digitaledefensie/</p>
+    </div>
+    <p>Digitale Defensie is een eenmanszaak en is niet verplicht een Functionaris voor Gegevensbescherming (FG) aan te stellen. Voor vragen over privacy kunt u direct contact opnemen via bovenstaand e-mailadres.</p>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">2</span> Welke persoonsgegevens verwerken wij</div>
+    <p>Digitale Defensie verwerkt persoonsgegevens in de volgende contexten:</p>
+    <table class="data-table">
+      <thead><tr><th>Categorie</th><th>Gegevens</th><th>Bron</th></tr></thead>
+      <tbody>
+        <tr><td>Contactgegevens (zakelijk)</td><td>Naam, e-mailadres, telefoonnummer, functietitel, bedrijfsnaam</td><td>Contactformulier, e-mail, LinkedIn, offerteaanvraag</td></tr>
+        <tr><td>Facturering</td><td>Naam, bedrijfsnaam, adres, KvK-nummer, BTW-nummer, IBAN (bij terugbetaling), e-mailadres</td><td>Overeenkomst, factuurcommunicatie</td></tr>
+        <tr><td>Opdrachtuitvoering</td><td>IT-omgevingsgegevens (configuraties, toegangsrechten), scanresultaten, kwetsbaarheidsinformatie — bevat doorgaans geen persoonsgegevens van medewerkers, maar kan indirect persoonsgegevens bevatten</td><td>Verstrekt door opdrachtgever</td></tr>
+        <tr><td>Communicatie</td><td>E-mailinhoud, contactmomenten, afspraken</td><td>Directe communicatie</td></tr>
+        <tr><td>Websitebezoek</td><td>IP-adres (tijdelijk, via GitHub Pages en Formspree), ingevulde contactformulieren</td><td>Website</td></tr>
+      </tbody>
+    </table>
+    <p>Digitale Defensie verwerkt geen bijzondere categorieën van persoonsgegevens (zoals gezondheids- of strafrechtelijke gegevens) en vraagt hier ook nooit naar.</p>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">3</span> Doelen en rechtsgrondslagen</div>
+    <table class="data-table">
+      <thead><tr><th>Doel</th><th>Rechtsgrondslag (AVG art. 6)</th></tr></thead>
+      <tbody>
+        <tr><td>Uitvoeren van de dienstverlening (scans, rapporten, adviezen)</td><td>Uitvoering overeenkomst (art. 6 lid 1 sub b)</td></tr>
+        <tr><td>Facturering en boekhouding</td><td>Wettelijke verplichting — fiscale bewaarplicht 7 jaar (art. 6 lid 1 sub c)</td></tr>
+        <tr><td>Beantwoorden van vragen en offertes</td><td>Gerechtvaardigd belang / precontractuele maatregelen (art. 6 lid 1 sub b/f)</td></tr>
+        <tr><td>Marketing en zakelijke communicatie (B2B)</td><td>Gerechtvaardigd belang (art. 6 lid 1 sub f) — u kunt zich altijd afmelden</td></tr>
+        <tr><td>Verbetering van diensten en tools</td><td>Gerechtvaardigd belang op basis van geanonimiseerde/geaggregeerde data (art. 6 lid 1 sub f)</td></tr>
+        <tr><td>Naleving wettelijke verplichtingen</td><td>Wettelijke verplichting (art. 6 lid 1 sub c)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">4</span> Bewaartermijnen</div>
+    <table class="data-table">
+      <thead><tr><th>Categorie</th><th>Bewaartermijn</th><th>Reden</th></tr></thead>
+      <tbody>
+        <tr><td>Financiële administratie (facturen, offertes)</td><td>7 jaar na afsluiting boekjaar</td><td>Fiscale bewaarplicht (AWR art. 52)</td></tr>
+        <tr><td>Contracten en overeenkomsten</td><td>7 jaar na afloop overeenkomst</td><td>Verjaringstermijn rechtsvorderingen (BW art. 3:306)</td></tr>
+        <tr><td>Opdrachtdocumentatie (rapporten, bevindingen)</td><td>5 jaar na oplevering</td><td>Aansprakelijkheid, nazorg, audit</td></tr>
+        <tr><td>Contactgegevens (niet-klanten)</td><td>Max. 2 jaar na laatste contact</td><td>Gerechtvaardigd belang zakelijke relatie</td></tr>
+        <tr><td>E-mailcorrespondentie</td><td>3 jaar na afsluiting opdracht</td><td>Bewijsdoeleinden, nazorg</td></tr>
+        <tr><td>Websitecontactformulieren</td><td>6 maanden na afhandeling</td><td>Opvolging aanvraag</td></tr>
+      </tbody>
+    </table>
+    <p>Na afloop van de bewaartermijn worden persoonsgegevens veilig vernietigd of anoniem gemaakt.</p>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">5</span> Delen met derden</div>
+    <ol>
+      <li>Digitale Defensie verkoopt uw persoonsgegevens nooit aan derden.</li>
+      <li>In het kader van de dienstverlening maakt Digitale Defensie gebruik van de volgende categorieën ontvangers:
+        <ul style="margin-top:8px;">
+          <li><strong>Formspree.io</strong> — verwerking van contactformulieren (website). Privacy policy: formspree.io/legal/privacy-policy. Gegevens worden verwerkt in de VS (Standard Contractual Clauses).</li>
+          <li><strong>GitHub Pages (Microsoft)</strong> — websitehosting. Microsoft Privacy Statement van toepassing.</li>
+          <li><strong>Google (Gmail, Google Workspace)</strong> — e-mailcommunicatie. Google Privacy Policy van toepassing.</li>
+          <li><strong>Boekhoudprogramma / facturatiesoftware</strong> — [naam invullen, bijv. Moneybird, Exact Online]. Verwerkersovereenkomst aanwezig.</li>
+        </ul>
+      </li>
+      <li>Indien wettelijk verplicht, kan Digitale Defensie persoonsgegevens verstrekken aan bevoegde overheidsinstanties (bijv. Belastingdienst, Autoriteit Persoonsgegevens) op grond van een wettelijke verplichting.</li>
+      <li>Met alle partijen die persoonsgegevens namens Digitale Defensie verwerken, is of wordt een verwerkersovereenkomst gesloten conform artikel 28 AVG.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">6</span> Doorgifte buiten de Europese Economische Ruimte (EER)</div>
+    <ol>
+      <li>Sommige van de genoemde dienstverleners (Formspree, GitHub/Microsoft) verwerken persoonsgegevens (deels) buiten de EER, met name in de Verenigde Staten.</li>
+      <li>Digitale Defensie zorgt ervoor dat dergelijke doorgiften plaatsvinden op basis van passende waarborgen, zoals Standard Contractual Clauses (SCC's) conform artikel 46 lid 2 AVG, of op basis van een adequaatheidsbesluit van de Europese Commissie.</li>
+      <li>Voor meer informatie over de specifieke waarborgen kunt u contact opnemen via bjeltink@gmail.com.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">7</span> Beveiliging van persoonsgegevens</div>
+    <ol>
+      <li>Digitale Defensie neemt passende technische en organisatorische maatregelen om persoonsgegevens te beveiligen tegen verlies, misbruik, onbevoegde toegang, openbaarmaking, wijziging of vernietiging, conform artikel 32 AVG.</li>
+      <li>De gehanteerde maatregelen omvatten onder meer: versleutelde communicatie (TLS/HTTPS), sterk wachtwoordbeheer met multifactorauthenticatie, beperkte toegangsrechten op een need-to-know-basis, en regelmatige back-ups.</li>
+      <li>Bij een datalek dat waarschijnlijk een risico inhoudt voor de rechten en vrijheden van betrokkenen, meldt Digitale Defensie dit binnen <strong>72 uur</strong> na ontdekking bij de Autoriteit Persoonsgegevens (AP). Betrokkenen worden geïnformeerd indien het lek een hoog risico voor hen meebrengt.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">8</span> Uw rechten als betrokkene</div>
+    <p>Op grond van de AVG heeft u de volgende rechten met betrekking tot uw persoonsgegevens:</p>
+    <div class="rights-grid">
+      <div class="right-card">
+        <div class="right-name">Recht op inzage (art. 15 AVG)</div>
+        <div class="right-desc">U kunt opvragen welke persoonsgegevens wij van u verwerken en een kopie hiervan ontvangen.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Recht op rectificatie (art. 16 AVG)</div>
+        <div class="right-desc">U kunt onjuiste of onvolledige persoonsgegevens laten corrigeren of aanvullen.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Recht op wissing (art. 17 AVG)</div>
+        <div class="right-desc">U kunt verzoeken uw persoonsgegevens te verwijderen, tenzij wij een wettelijke bewaarplicht hebben.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Recht op beperking (art. 18 AVG)</div>
+        <div class="right-desc">U kunt de verwerking tijdelijk laten beperken, bijv. tijdens een bezwaarprocedure.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Recht op dataportabiliteit (art. 20 AVG)</div>
+        <div class="right-desc">U kunt uw gegevens in een gestructureerd, machineleesbaar formaat ontvangen (van toepassing bij verwerking o.b.v. toestemming of overeenkomst).</div>
+      </div>
+      <div class="right-card">
+        <div class="right-name">Recht van bezwaar (art. 21 AVG)</div>
+        <div class="right-desc">U kunt bezwaar maken tegen verwerking op basis van gerechtvaardigd belang, waaronder direct marketing.</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;">U kunt uw verzoek indienen via bjeltink@gmail.com, onder vermelding van uw naam en, indien van toepassing, uw bedrijfsnaam. Wij reageren binnen <strong>1 maand</strong> op uw verzoek. In complexe gevallen kan deze termijn met twee maanden worden verlengd, waarover wij u dan informeren.</p>
+    <p>Wij vragen u mogelijk uw identiteit te verifiëren alvorens wij uw verzoek in behandeling nemen, ter bescherming van uw privacy.</p>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">9</span> Cookies en websiteanalytics</div>
+    <ol>
+      <li>De website van Digitale Defensie (gehost via GitHub Pages) maakt gebruik van functioneel noodzakelijke cookies van GitHub Pages. Digitale Defensie plaatst zelf geen tracking- of analytische cookies.</li>
+      <li>Digitale Defensie maakt momenteel geen gebruik van Google Analytics of vergelijkbare analytische diensten. Indien dit in de toekomst verandert, wordt dit beleid bijgewerkt en worden gebruikers om toestemming gevraagd conform de Telecommunicatiewet (Tw) en het Besluit elektronische communicatie.</li>
+      <li>Via het contactformulier (Formspree) verwerkt Formspree uw IP-adres en ingevulde gegevens. Zie de Formspree privacy policy voor meer informatie.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">10</span> Wijzigingen in dit Privacy Beleid</div>
+    <ol>
+      <li>Digitale Defensie behoudt zich het recht voor dit Privacy Beleid te wijzigen om het in overeenstemming te houden met de geldende wet- en regelgeving of wijzigingen in de dienstverlening.</li>
+      <li>Materiële wijzigingen worden gecommuniceerd via de website of per e-mail aan actieve klanten. De datum van de laatste aanpassing staat bovenaan dit document vermeld.</li>
+      <li>De actuele versie van dit Privacy Beleid is gepubliceerd op de website van Digitale Defensie en is te raadplegen via bjeltink@gmail.com.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">11</span> Contact en klachten</div>
+    <ol>
+      <li>Voor vragen, verzoeken of klachten over de verwerking van uw persoonsgegevens kunt u contact opnemen via: <strong>bjeltink@gmail.com</strong>.</li>
+      <li>Heeft u een klacht over de wijze waarop Digitale Defensie uw persoonsgegevens verwerkt, dan verzoeken wij u deze eerst bij ons in te dienen. Indien wij er samen niet uitkomen, heeft u het recht een klacht in te dienen bij de <strong>Autoriteit Persoonsgegevens (AP)</strong>:</li>
+    </ol>
+    <div class="highlight-box" style="margin-top:12px;">
+      <p><strong>Autoriteit Persoonsgegevens</strong><br>
+      Postbus 93374, 2509 AJ Den Haag<br>
+      Telefoon: 088 – 180 52 50<br>
+      Website: autoriteitpersoonsgegevens.nl</p>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <div class="footer-left">
+      Digitale Defensie · B. Eltink<br>
+      KvK [00000000] · bjeltink@gmail.com
+    </div>
+    <div class="footer-right">
+      Privacy Beleid versie 1.0<br>
+      Vastgesteld 1 april 2026
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

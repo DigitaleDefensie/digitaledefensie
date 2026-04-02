@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algemene Voorwaarden — Digitale Defensie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #1a1916; --white: #ffffff; --warm-bg: #faf9f7;
+  --warm-surface: #f3f1ee; --warm-border: #e8e5e0;
+  --grey-300: #c5c2bb; --grey-500: #8c8a82; --grey-700: #4a4844;
+  --accent-blue: #2563ff; --accent-teal: #0ba891;
+  --radius: 16px; --radius-sm: 10px;
+}
+html { background: var(--warm-surface); }
+body { font-family: 'DM Sans', sans-serif; background: var(--warm-surface); color: var(--black); -webkit-font-smoothing: antialiased; padding: 40px 24px; }
+.toolbar { max-width: 794px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: space-between; }
+.toolbar-label { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600; color: var(--grey-500); letter-spacing: 1px; text-transform: uppercase; }
+.btn-print { display: flex; align-items: center; gap: 8px; background: var(--black); color: var(--white); padding: 10px 22px; border-radius: 100px; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; border: none; cursor: pointer; transition: background 0.2s; }
+.btn-print:hover { background: var(--accent-blue); }
+.document { width: 794px; margin: 0 auto; background: var(--white); border-radius: var(--radius); padding: 64px 72px 80px; box-shadow: 0 4px 40px rgba(0,0,0,0.08); }
+.doc-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1.5px solid var(--warm-border); }
+.logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: var(--black); margin-bottom: 4px; }
+.logo span { color: var(--accent-blue); }
+.tagline { font-size: 12px; color: var(--grey-500); font-weight: 300; }
+.doc-meta { text-align: right; }
+.doc-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; color: var(--black); margin-bottom: 6px; }
+.doc-version { font-size: 12px; color: var(--grey-500); font-weight: 300; line-height: 1.6; }
+.intro-block { background: var(--warm-surface); border: 1.5px solid var(--warm-border); border-radius: var(--radius-sm); padding: 20px 24px; margin-bottom: 36px; }
+.intro-block p { font-size: 13px; font-weight: 300; color: var(--grey-700); line-height: 1.7; }
+.toc { margin-bottom: 40px; padding: 20px 24px; background: rgba(37,99,255,0.04); border: 1px solid rgba(37,99,255,0.12); border-radius: var(--radius-sm); }
+.toc-title { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 12px; }
+.toc-list { list-style: none; column-count: 2; column-gap: 24px; }
+.toc-list li { font-size: 12px; font-weight: 300; color: var(--grey-700); padding: 3px 0; line-height: 1.4; }
+.toc-list li strong { font-weight: 500; color: var(--accent-blue); }
+.article { margin-bottom: 36px; }
+.article-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; color: var(--black); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--warm-border); display: flex; align-items: center; gap: 10px; }
+.article-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--black); color: var(--white); border-radius: 50%; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.article ol { padding-left: 20px; }
+.article ol li { font-size: 13.5px; font-weight: 300; color: var(--grey-700); line-height: 1.75; margin-bottom: 8px; padding-left: 4px; }
+.article ol li strong { font-weight: 500; color: var(--black); }
+.article p { font-size: 13.5px; font-weight: 300; color: var(--grey-700); line-height: 1.75; margin-bottom: 8px; }
+.article ul { padding-left: 20px; }
+.article ul li { font-size: 13.5px; font-weight: 300; color: var(--grey-700); line-height: 1.75; margin-bottom: 6px; }
+.highlight-box { background: rgba(11,168,145,0.06); border: 1px solid rgba(11,168,145,0.2); border-radius: var(--radius-sm); padding: 14px 18px; margin: 12px 0; }
+.highlight-box p { font-size: 13px; font-weight: 400; color: var(--black); line-height: 1.6; margin: 0; }
+.doc-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--warm-border); display: flex; justify-content: space-between; }
+.footer-left, .footer-right { font-size: 11px; color: var(--grey-300); font-weight: 300; line-height: 1.8; }
+.footer-right { text-align: right; }
+@media print { html, body { background: white; padding: 0; } .toolbar { display: none; } .document { box-shadow: none; border-radius: 0; padding: 40px 52px 60px; width: 100%; } }
+@page { size: A4; margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span class="toolbar-label">Juridisch document</span>
+  <button class="btn-print" onclick="window.print()">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Afdrukken / PDF
+  </button>
+</div>
+
+<div class="document">
+
+  <div class="doc-header">
+    <div>
+      <div class="logo">Digitale Defensie<span>.</span></div>
+      <div class="tagline">Slim. Veilig. Simpel.</div>
+    </div>
+    <div class="doc-meta">
+      <div class="doc-title">Algemene Voorwaarden</div>
+      <div class="doc-version">
+        Versie 1.0 — vastgesteld 1 april 2026<br>
+        Van toepassing op alle overeenkomsten
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-block">
+    <p>Deze Algemene Voorwaarden zijn van toepassing op alle aanbiedingen, offertes en overeenkomsten van <strong>Digitale Defensie</strong>, een eenmanszaak gedreven door B. Eltink, gevestigd te Amsterdam, ingeschreven bij de Kamer van Koophandel onder nummer <strong>[KvK-nummer]</strong>, BTW-nummer <strong>[BTW-nummer]</strong>. Door het accepteren van een offerte of het aangaan van een overeenkomst verklaart de opdrachtgever kennis te hebben genomen van en akkoord te gaan met deze voorwaarden.</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Inhoudsopgave</div>
+    <ul class="toc-list">
+      <li><strong>1.</strong> Definities</li>
+      <li><strong>2.</strong> Toepasselijkheid</li>
+      <li><strong>3.</strong> Offertes en totstandkoming</li>
+      <li><strong>4.</strong> Uitvoering van de opdracht</li>
+      <li><strong>5.</strong> Verplichtingen opdrachtgever</li>
+      <li><strong>6.</strong> Tarieven en facturering</li>
+      <li><strong>7.</strong> Betaling</li>
+      <li><strong>8.</strong> Oplevering en acceptatie</li>
+      <li><strong>9.</strong> Aansprakelijkheid</li>
+      <li><strong>10.</strong> Geheimhouding</li>
+      <li><strong>11.</strong> Intellectueel eigendom</li>
+      <li><strong>12.</strong> Opzegging en ontbinding</li>
+      <li><strong>13.</strong> Overmacht</li>
+      <li><strong>14.</strong> Klachten</li>
+      <li><strong>15.</strong> Toepasselijk recht en geschillen</li>
+    </ul>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">1</span> Definities</div>
+    <ol>
+      <li><strong>Digitale Defensie:</strong> de eenmanszaak van B. Eltink, handelend onder de naam Digitale Defensie, hierna ook aangeduid als "opdrachtnemer".</li>
+      <li><strong>Opdrachtgever:</strong> de natuurlijke persoon of rechtspersoon die een overeenkomst aangaat met Digitale Defensie.</li>
+      <li><strong>Overeenkomst:</strong> iedere afspraak tussen opdrachtgever en Digitale Defensie tot het verlenen van diensten, inclusief een door beide partijen ondertekende offerte of opdrachtbevestiging.</li>
+      <li><strong>Diensten:</strong> alle werkzaamheden en producten die Digitale Defensie levert, waaronder maar niet beperkt tot beveiligingsscans, audits, rapporten, trainingen, adviezen en tools.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">2</span> Toepasselijkheid</div>
+    <ol>
+      <li>Deze voorwaarden zijn van toepassing op alle aanbiedingen, offertes en overeenkomsten waarbij Digitale Defensie diensten levert aan de opdrachtgever.</li>
+      <li>Afwijkingen van deze voorwaarden zijn slechts geldig indien uitdrukkelijk en schriftelijk overeengekomen.</li>
+      <li>Algemene (inkoop)voorwaarden van de opdrachtgever zijn niet van toepassing, tenzij Digitale Defensie deze uitdrukkelijk schriftelijk aanvaardt.</li>
+      <li>Deze voorwaarden zijn ook van toepassing op aanvullende opdrachten en vervolgopdrachten van de opdrachtgever.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">3</span> Offertes en totstandkoming</div>
+    <ol>
+      <li>Alle offertes van Digitale Defensie zijn vrijblijvend, tenzij uitdrukkelijk anders vermeld.</li>
+      <li>Een offerte is 30 dagen geldig na dagtekening, tenzij anders aangegeven.</li>
+      <li>De overeenkomst komt tot stand op het moment dat de opdrachtgever de offerte schriftelijk (of per e-mail) accepteert, of door aanvang van de werkzaamheden door Digitale Defensie na instemming van de opdrachtgever.</li>
+      <li>Eventuele aanvullende wensen of wijzigingen na totstandkoming van de overeenkomst worden uitsluitend uitgevoerd na schriftelijke bevestiging en kunnen leiden tot meerkosten.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">4</span> Uitvoering van de opdracht</div>
+    <ol>
+      <li>Digitale Defensie voert de opdracht uit naar beste inzicht en vermogen, overeenkomstig de eisen van goed vakmanschap. Het betreft een inspanningsverbintenis, geen resultaatsverplichting, tenzij uitdrukkelijk anders overeengekomen.</li>
+      <li>Digitale Defensie bepaalt de wijze waarop en door welke middelen de opdracht wordt uitgevoerd.</li>
+      <li>Indien en voor zover een goede uitvoering van de overeenkomst dit vereist, heeft Digitale Defensie het recht bepaalde werkzaamheden te laten uitvoeren door derden, na overleg met de opdrachtgever.</li>
+      <li>De opdrachtgever aanvaardt dat de tijdsplanning van de opdracht kan worden beïnvloed indien partijen tussentijds besluiten de aanpak, werkwijze of omvang te wijzigen.</li>
+      <li>Digitale Defensie is niet aansprakelijk voor schade die ontstaat doordat zij is uitgegaan van door de opdrachtgever verstrekte onjuiste of onvolledige gegevens.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">5</span> Verplichtingen opdrachtgever</div>
+    <ol>
+      <li>De opdrachtgever zorgt dat alle gegevens, toegangen en documenten die Digitale Defensie nodig heeft voor de uitvoering van de opdracht tijdig worden verstrekt.</li>
+      <li>De opdrachtgever staat in voor de juistheid, volledigheid en betrouwbaarheid van de verstrekte gegevens en toegangen, ook indien deze afkomstig zijn van derden.</li>
+      <li>De opdrachtgever verleent Digitale Defensie toestemming om de noodzakelijke handelingen te verrichten voor de uitvoering van de beveiligingsscan of audit (bijv. toegang tot systemen, netwerken of accounts). Deze toestemming is schriftelijk vastgelegd in de overeenkomst of opdrachtbevestiging.</li>
+      <li>De opdrachtgever vrijwaart Digitale Defensie voor aanspraken van derden die schade lijden doordat de opdrachtgever onjuiste of onvolledige informatie heeft verstrekt.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">6</span> Tarieven en facturering</div>
+    <ol>
+      <li>Alle tarieven zijn exclusief BTW (21%), tenzij uitdrukkelijk anders vermeld. Aan zakelijke opdrachtgevers wordt BTW in rekening gebracht conform de geldende regelgeving.</li>
+      <li>Vaste projectprijzen zijn vastgesteld op basis van de in de offerte beschreven scope. Werkzaamheden buiten de overeengekomen scope worden afzonderlijk gefactureerd op basis van het dan geldende uurtarief.</li>
+      <li>Het uurtarief van Digitale Defensie bedraagt <strong>€[uurtarief]</strong> exclusief BTW, tenzij anders overeengekomen.</li>
+      <li>Reiskosten worden vergoed op basis van €0,23 per kilometer (vanaf Amsterdam), tenzij anders overeengekomen.</li>
+      <li>Digitale Defensie behoudt zich het recht voor tarieven jaarlijks te indexeren, met inachtneming van een aankondigingstermijn van 30 dagen.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">7</span> Betaling</div>
+    <ol>
+      <li>Betaling dient te geschieden binnen <strong>14 dagen</strong> na factuurdatum, tenzij anders overeengekomen, op de door Digitale Defensie aangegeven bankrekening.</li>
+      <li>Bij projecten boven €500 geldt een betalingsschema van <strong>50% vooraf</strong> en 50% na oplevering, tenzij anders overeengekomen in de offerte.</li>
+      <li>Bij niet-tijdige betaling is de opdrachtgever van rechtswege in verzuim. Digitale Defensie behoudt zich het recht voor de werkzaamheden op te schorten totdat volledige betaling is ontvangen.</li>
+      <li>Bij te late betaling is de opdrachtgever de wettelijke handelsrente (artikel 6:119a BW) verschuldigd over het openstaande bedrag, te rekenen vanaf de vervaldatum.</li>
+      <li>Alle redelijke kosten ter inning van achterstallige betalingen, zowel gerechtelijke als buitengerechtelijke, komen voor rekening van de opdrachtgever.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">8</span> Oplevering en acceptatie</div>
+    <ol>
+      <li>Na afronding van de opdracht ontvangt de opdrachtgever een rapport of eindproduct. De opdrachtgever heeft <strong>5 werkdagen</strong> de tijd om schriftelijk gemotiveerde opmerkingen te maken.</li>
+      <li>Indien de opdrachtgever binnen deze termijn niet reageert, wordt het opgeleverde geacht te zijn geaccepteerd.</li>
+      <li>Kleine aanpassingen op basis van de opdrachtgever feedback zijn inbegrepen. Structurele wijzigingen in de scope worden als meerwerk beschouwd en apart geoffreerd.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">9</span> Aansprakelijkheid</div>
+    <ol>
+      <li>Digitale Defensie is slechts aansprakelijk voor directe schade die het rechtstreekse gevolg is van een aan haar toerekenbare tekortkoming, en uitsluitend tot ten hoogste het bedrag dat voor de betreffende opdracht in rekening is gebracht (exclusief BTW), met een maximum van <strong>€5.000</strong> per opdracht.</li>
+      <li>Aansprakelijkheid voor indirecte schade — waaronder gederfde winst, gevolgschade, reputatieschade of schade door gegevensverlies — is uitdrukkelijk uitgesloten.</li>
+      <li>Digitale Defensie is niet aansprakelijk voor schade die het gevolg is van: (a) onjuiste of onvolledige informatie verstrekt door de opdrachtgever; (b) handelingen van derden; (c) beveiligingsincidenten die zich voordoen nadat de adviezen niet zijn opgevolgd.</li>
+      <li>De beveiligingsscans en adviezen van Digitale Defensie zijn een momentopname en bieden geen garantie dat de omgeving na de opdracht volledig beveiligd is of blijft.</li>
+      <li>Een vordering tot schadevergoeding vervalt indien deze niet binnen <strong>12 maanden</strong> na ontdekking van de schade schriftelijk bij Digitale Defensie is ingediend.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">10</span> Geheimhouding</div>
+    <ol>
+      <li>Beide partijen verplichten zich tot strikte geheimhouding van alle vertrouwelijke informatie die zij in het kader van de opdracht van elkaar verkrijgen.</li>
+      <li>Digitale Defensie gebruikt verkregen informatie uitsluitend voor de uitvoering van de opdracht en zal deze niet aan derden verstrekken, tenzij de opdrachtgever daarvoor uitdrukkelijk schriftelijk toestemming heeft gegeven of tenzij Digitale Defensie daartoe wettelijk verplicht is.</li>
+      <li>Digitale Defensie past passende technische en organisatorische maatregelen toe ter beveiliging van vertrouwelijke gegevens.</li>
+      <li>Voor de verwerking van persoonsgegevens is het afzonderlijke Privacy Beleid van Digitale Defensie van toepassing. Indien nodig wordt een verwerkersovereenkomst gesloten conform artikel 28 AVG.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">11</span> Intellectueel eigendom</div>
+    <ol>
+      <li>Alle door Digitale Defensie ontwikkelde rapporten, documenten, tools, methodologieën en andere werken berusten bij Digitale Defensie, tenzij uitdrukkelijk schriftelijk anders overeengekomen.</li>
+      <li>De opdrachtgever verkrijgt een niet-exclusieve, niet-overdraagbare gebruikslicentie voor de ten behoeve van de opdracht opgeleverde resultaten, uitsluitend voor intern gebruik binnen de eigen organisatie.</li>
+      <li>Het is de opdrachtgever niet toegestaan opgeleverde rapporten of tools te reproduceren, te verkopen of aan derden beschikbaar te stellen zonder voorafgaande schriftelijke toestemming van Digitale Defensie.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">12</span> Opzegging en ontbinding</div>
+    <ol>
+      <li>De opdrachtgever kan een lopende opdracht schriftelijk opzeggen met inachtneming van een opzegtermijn van <strong>14 dagen</strong>. Reeds verrichte werkzaamheden worden naar rato gefactureerd.</li>
+      <li>Digitale Defensie kan de overeenkomst met onmiddellijke ingang ontbinden indien de opdrachtgever in verzuim is, surseance van betaling aanvraagt of faillissement wordt uitgesproken.</li>
+      <li>Bij annulering na acceptatie van de offerte maar voor aanvang van de werkzaamheden is de opdrachtgever <strong>25% van de totale opdrachtwaarde</strong> verschuldigd als annuleringsvergoeding.</li>
+      <li>Bij annulering nadat de werkzaamheden zijn aangevangen, worden alle reeds gemaakte kosten en gewerkte uren in rekening gebracht.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">13</span> Overmacht</div>
+    <ol>
+      <li>Digitale Defensie is niet gehouden tot nakoming van enige verplichting indien dit het gevolg is van overmacht. Onder overmacht wordt mede verstaan: ziekte, storingen in elektriciteit of internet, overheidsmaatregelen en andere omstandigheden buiten de macht van Digitale Defensie.</li>
+      <li>Indien een overmachtssituatie langer dan 30 dagen duurt, hebben beide partijen het recht de overeenkomst schriftelijk te ontbinden zonder verplichting tot schadevergoeding.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">14</span> Klachten</div>
+    <ol>
+      <li>Klachten over de uitvoering van de opdracht dienen <strong>binnen 14 dagen</strong> na ontdekking schriftelijk en gemotiveerd bij Digitale Defensie te worden ingediend via <a href="mailto:bjeltink@gmail.com" style="color:var(--accent-blue);">bjeltink@gmail.com</a>.</li>
+      <li>Digitale Defensie reageert binnen 5 werkdagen op de klacht met een voorstel tot oplossing.</li>
+      <li>Het indienen van een klacht schort de betalingsverplichting niet op.</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title"><span class="article-num">15</span> Toepasselijk recht en geschillen</div>
+    <ol>
+      <li>Op alle overeenkomsten tussen Digitale Defensie en de opdrachtgever is uitsluitend <strong>Nederlands recht</strong> van toepassing.</li>
+      <li>Partijen zullen geschillen in eerste instantie trachten op te lossen door middel van overleg.</li>
+      <li>Indien partijen er niet in slagen het geschil in onderling overleg op te lossen, wordt het geschil voorgelegd aan de bevoegde rechter in het arrondissement Amsterdam.</li>
+    </ol>
+
+    <div class="highlight-box" style="margin-top:20px;">
+      <p>Deze Algemene Voorwaarden zijn gedeponeerd bij de Kamer van Koophandel te Amsterdam. Een exemplaar wordt op verzoek kosteloos toegezonden. Tevens raadpleegbaar via <strong>digitalensiesie.nl/algemene-voorwaarden</strong>.</p>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <div class="footer-left">
+      Digitale Defensie · B. Eltink<br>
+      Amsterdam · KvK [KvK-nummer]<br>
+      bjeltink@gmail.com · 06 37 28 25 40
+    </div>
+    <div class="footer-right">
+      Algemene Voorwaarden v1.0<br>
+      Vastgesteld: 1 april 2026<br>
+      Pagina 1 van 1
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
