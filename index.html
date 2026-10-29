@@ -2,9 +2,9 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ik wil beter beveiligd worden - Digitale Defensie</title>
-<meta name="description" content="Ontdek je digitale veiligheid: diensten met vaste prijs, gratis quick wins en een eerlijk rapport binnen 48 uur.">
+<meta name="description" content="Ontdek je digitale veiligheid: diensten met vaste prijs en een eerlijk rapport binnen 48 uur.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -399,9 +399,79 @@ button{font:inherit}
   .sCore svg{width:40px;height:40px}
   .sCore b{font-size:18px}
 }
+/* ---------- Telefoon: extra ---------- */
+/* Horizontaal vegen is voor de stops, niet voor 'terug' in de browser. */
+html,body{overscroll-behavior-x:none}
+.hop{touch-action:pan-y;overscroll-behavior-x:none}
+.ctList a{min-height:44px}
+.stopEl.hasMoons .pname{top:calc(122% + 16px)}
+.stopEl.hasMoons .enterHint{top:calc(122% + 44px)}
+@media (max-width:860px){
+  .topbar,.hopTop,.svcInner{padding-top:calc(18px + env(safe-area-inset-top))}
+  .hopNav{padding-bottom:calc(14px + env(safe-area-inset-bottom))}
+  .card{margin-bottom:calc(120px + env(safe-area-inset-bottom))}
+  .svcInner{padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+}
+@media (max-width:560px){
+  /* Dienstenbaan: kleinere planeten en kern, labels mogen afbreken, ruimte boven en onder voor de labels. */
+  .oWrap{width:min(80vw,340px);margin:30px auto 48px}
+  .sPlanet,.sPlanet .pring{width:58px;height:58px}
+  .sPlanet svg{width:24px;height:24px}
+  .sPlanet.on{transform:scale(1.15)}
+  .sPlabel{top:66px;width:104px;white-space:normal;line-height:1.25;font-size:11.5px}
+  .sCore,.sShock{width:112px;height:112px}
+  .sCore svg{width:28px;height:28px}
+  .sCore b{font-size:13.5px;white-space:nowrap}
+  .sCore span{font-size:8px;max-width:90px;text-align:center}
+  .oWrap .sOrbit{inset:8% !important}
+  /* Navigatie: alleen de actieve stop met naam, zodat alle vijf passen. */
+  .dots{max-width:calc(100% - 124px)}
+  .dotbtn{padding:6px 9px;gap:6px}
+  .dotbtn:not(.on){font-size:0;gap:0;min-width:40px}
+  .navbtn{width:50px;height:50px}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .space{height:170px;top:52px}
+  .trackScale{transform:scale(.42)}
+  .card{margin-top:60px}
+  .hopNav{bottom:0}
+  .navbtn{width:46px;height:46px;font-size:18px}
+  .dotbtn{min-height:46px}
+  .lockSvg{width:140px;height:168px}
+  .unlock{gap:14px}
+}
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
 }
+
+/* ===== Canvas-achtergronden (radar op slot, planeten op het hop-scherm) ===== */
+.radarCv{position:absolute;left:50%;top:44%;width:min(820px,150vw);aspect-ratio:1/1;transform:translate(-50%,-50%);pointer-events:none}
+.hopCv{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+/* ===== Merk-embleem i.p.v. planeet (Start) ===== */
+.planet.brand{background:radial-gradient(circle at 50% 40%,#122E6E 0%,#0A1636 58%,#070B1F 100%) !important;box-shadow:0 0 0 1px rgba(92,225,255,.3),0 0 70px rgba(92,225,255,.4),inset 0 0 46px rgba(92,225,255,.14)}
+.planet.brand .bring{position:absolute;inset:15%;border-radius:50%;border:1px solid rgba(92,225,255,.28);pointer-events:none}
+.planet.brand .bemblem{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.planet.brand .bemblem svg{width:52%;height:52%;stroke:#5CE1FF;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px rgba(92,225,255,.7))}
+.doList{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.doList li{display:flex;gap:12px;align-items:flex-start}
+.doList .dIc{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--d) 16%,transparent);border:1px solid color-mix(in srgb,var(--d) 45%,transparent)}
+.doList .dIc svg{width:18px;height:18px;stroke:var(--d);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.doList b{display:block;color:#E8ECFF;font-size:15px}
+.doList .dtx{display:block;margin-top:2px;font-size:13.5px;line-height:1.5;color:#C6CEF0}
+.navGuide{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+.navGuide li{display:flex;align-items:center;gap:11px;font-size:14.5px;color:#C6CEF0}
+.navGuide li b{color:#E8ECFF;font-weight:700}
+.navGuide li i{width:9px;height:9px;border-radius:50%;flex:none;background:var(--d,#5CE1FF);box-shadow:0 0 10px var(--d,#5CE1FF)}
+.navCue{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:9px 15px;border-radius:999px;background:rgba(92,225,255,.1);border:1px solid rgba(92,225,255,.32);color:#B5F1FF;font-weight:700;font-size:13.5px}
+.navCue svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;animation:navBob 1.6s ease-in-out infinite}
+@keyframes navBob{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+.mcStart svg{width:18px;height:18px;flex:none}
+/* ===== Mini-cursus overlay (iframe) ===== */
+.mcLayer{position:fixed;inset:0;z-index:120;background:#070B1F;display:flex;flex-direction:column}
+.mcFrame{flex:1 1 auto;width:100%;height:100%;border:0;display:block}
+.mcClose{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(7,13,33,.82);border:1px solid #2A3570;color:#E8ECFF;border-radius:999px;padding:9px 15px;font:700 13.5px 'Manrope',system-ui,sans-serif;cursor:pointer;backdrop-filter:blur(6px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.mcClose:hover{border-color:#5CE1FF;color:#B5F1FF}
+.mcClose svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 </style>
 </head>
 <body>
@@ -417,14 +487,7 @@ button{font:inherit}
       </a>
     </header>
     <div class="stage">
-      <div class="radar" aria-hidden="true">
-        <div class="r" style="inset:0;border:1px solid #1C2860"></div>
-        <div class="r" style="inset:14%;border:1px solid #1C2860"></div>
-        <div class="r ringA" style="inset:26%;border:2px dashed #2A3A80"></div>
-        <div class="r ringB" style="inset:33%;border:1px dotted #5CE1FF;opacity:.4"></div>
-        <div class="sweep"></div>
-        <div class="blips" id="blips"></div>
-      </div>
+      <canvas class="radarCv" id="radarCv" aria-hidden="true"></canvas>
       <button type="button" class="unlock" id="unlockBtn" aria-label="Ik wil beter beveiligd worden - start">
         <div class="lockwrap">
           <div class="tapring"></div>
@@ -519,6 +582,494 @@ button{font:inherit}
   </section>
 </main>
  
+<template id="mcSrc">
+<title>Klik op het Slot</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Slot-intro + mini-cursus in de stijl van digitaledefensie.nl: donker navy, cyaan, Unbounded.
+   Je klikt op het slot om te beginnen; elk afgerond gewoonte sluit het slot verder. Dark-only, bewust. */
+:root{
+  --bg:#070B1F;--bg2:#0B1238;--panel:#0C1434;--panel2:#0E1948;--line:#22306A;--line2:#2A3570;
+  --cyan:#5CE1FF;--cyan-soft:#B5F1FF;--purple:#9C8CFF;--alarm:#FF4D5E;--ok:#39E6A0;--amber:#FFC24D;
+  --ink:#E8ECFF;--ink2:#AEB7E0;--ink3:#8E98C8;--ink4:#5a65a0;
+  --disp:'Unbounded',system-ui,sans-serif;--sans:'Manrope',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--disp);margin:0;line-height:1.08;letter-spacing:-.02em}
+p{margin:0}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+a{color:var(--cyan);text-decoration:none}
+:focus-visible{outline:2.5px solid var(--cyan);outline-offset:3px;border-radius:10px}
+.tnum{font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinRev{to{transform:rotate(-360deg)}}
+@keyframes starsmv{from{background-position:0 0}to{background-position:0 -600px}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}20%{transform:rotate(-4deg)}40%{transform:rotate(4deg)}60%{transform:rotate(-2deg)}80%{transform:rotate(2deg)}}
+@keyframes flow{to{stroke-dashoffset:-40}}
+@keyframes breathe{0%,100%{opacity:.35}50%{opacity:.9}}
+@keyframes hintBlink{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes glitchA{0%,88%,100%{transform:translate(0,0);clip-path:inset(0 0 100% 0)}89%{transform:translate(-3px,1px);clip-path:inset(12% 0 55% 0)}92%{transform:translate(2px,-1px);clip-path:inset(60% 0 10% 0)}95%{transform:translate(-1px,0);clip-path:inset(35% 0 40% 0)}}
+@keyframes glitchB{0%,85%,100%{transform:translate(0,0);clip-path:inset(0 0 100% 0)}86%{transform:translate(3px,-1px);clip-path:inset(68% 0 6% 0)}90%{transform:translate(-2px,1px);clip-path:inset(22% 0 58% 0)}93%{transform:translate(1px,1px);clip-path:inset(46% 0 30% 0)}}
+@keyframes jitter{0%,88%,100%{transform:none}89%{transform:skewX(-6deg)}91%{transform:skewX(4deg)}93%{transform:none}}
+@keyframes shackleOpen{0%{transform:translateY(0) rotate(0)}30%{transform:translateY(4px)}55%{transform:translateY(-34px)}75%{transform:translateY(-34px) rotate(-34deg)}100%{transform:translateY(-34px) rotate(-30deg)}}
+@keyframes bodyFlash{0%,40%{fill:#0C1230}55%{fill:#1C3A7A}100%{fill:#0C1230}}
+@keyframes zoomThrough{0%,55%{transform:scale(1);opacity:1;filter:blur(0)}100%{transform:scale(9);opacity:0;filter:blur(6px)}}
+@keyframes textAway{to{opacity:0;transform:translateY(30px);letter-spacing:.2em}}
+@keyframes tapPulse{0%{transform:translate(-50%,-50%) scale(.72);opacity:.95}70%{opacity:0}100%{transform:translate(-50%,-50%) scale(1.4);opacity:0}}
+@keyframes reveal{from{clip-path:circle(0% at 50% 42%)}to{clip-path:circle(150% at 50% 42%)}}
+@keyframes rise{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes shackleClose{from{transform:translateY(-34px) rotate(-30deg)}to{transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+
+.app{position:relative;min-height:100vh;min-height:100dvh;overflow:hidden;
+  background:radial-gradient(1100px 700px at 50% 38%,#13205A 0%,#070B1F 62%)}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 20px 30px,rgba(255,255,255,.5),transparent),radial-gradient(1px 1px at 140px 220px,rgba(255,255,255,.35),transparent),radial-gradient(1.5px 1.5px at 300px 80px,rgba(255,255,255,.4),transparent),radial-gradient(1px 1px at 420px 400px,rgba(255,255,255,.3),transparent);background-size:480px 600px;animation:starsmv 70s linear infinite}
+
+/* ============ SLOT-INTRO ============ */
+.lockLayer{position:absolute;inset:0;display:flex;flex-direction:column;z-index:3}
+.ltop{max-width:1240px;width:100%;margin:0 auto;padding:22px max(20px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:10px;z-index:2}
+.logo{display:flex;align-items:center;gap:10px;color:var(--ink);font-family:var(--disp);font-weight:700;font-size:16px}
+.logo svg{width:26px;height:26px;stroke:var(--cyan);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px 60px;position:relative}
+.radar{position:absolute;left:50%;top:42%;width:min(760px,145vw);aspect-ratio:1/1;transform:translate(-50%,-50%);pointer-events:none}
+.radar .r{position:absolute;border-radius:50%}
+.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(92,225,255,0) 0deg,rgba(92,225,255,0) 300deg,rgba(92,225,255,.28) 360deg);animation:spin 6s linear infinite}
+.ringA{animation:spin 26s linear infinite}.ringB{animation:spinRev 40s linear infinite}
+.unlock{background:transparent;border:0;padding:0;color:inherit;display:flex;flex-direction:column;align-items:center;gap:28px;position:relative}
+.lockwrap{position:relative;animation:float 5s ease-in-out infinite}
+.lockSvg{width:210px;height:252px;overflow:visible;filter:drop-shadow(0 0 40px rgba(92,225,255,.35));position:relative;z-index:2}
+.unlock:hover .lockSvg{animation:wiggle .6s ease-in-out}
+.unlock:hover .lockLabel{text-shadow:0 0 30px rgba(92,225,255,.55)}
+.shackle{transform-box:view-box;transform-origin:150px 112px}
+.flowline{stroke-dasharray:6 14;animation:flow 1.6s linear infinite}
+.glow{animation:breathe 3s ease-in-out infinite}
+.tapring{position:absolute;left:50%;top:47%;width:175px;height:175px;border-radius:50%;border:2px solid var(--cyan);transform:translate(-50%,-50%);opacity:0;pointer-events:none;animation:tapPulse 2.2s ease-out infinite;z-index:1}
+.tapring2{animation-delay:1.1s}
+.unlock:hover .tapring{opacity:0;animation-play-state:paused}
+.ctaText{display:flex;flex-direction:column;align-items:center;gap:16px}
+.lockLabel{font-family:var(--disp);font-weight:800;font-size:clamp(30px,8vw,50px);line-height:1.08;text-align:center}
+.glitch{position:relative;display:inline-block;color:var(--cyan);animation:jitter 3.4s infinite}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none}
+.glitch::before{color:var(--purple);animation:glitchA 3.4s infinite}
+.glitch::after{color:#fff;animation:glitchB 4.1s infinite;opacity:.8}
+.hint{display:inline-flex;align-items:center;gap:9px;margin:0;font-size:13.5px;font-weight:700;letter-spacing:.1em;color:var(--cyan);animation:hintBlink 2.4s ease-in-out infinite;text-align:center}
+.hint svg{width:17px;height:17px;stroke:var(--cyan);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.opening .shackle{animation:shackleOpen 1s cubic-bezier(.5,0,.2,1.3) .25s both}
+.opening .lockBody{animation:bodyFlash 1s ease-out .3s both}
+.opening .lockwrap{animation:zoomThrough 1.9s cubic-bezier(.7,0,.3,1) both}
+.opening .lockLabel{animation:textAway .5s ease-in .35s both}
+.opening .hint{opacity:0}.opening .tapring{opacity:0;animation:none}.opening .unlock{cursor:default}
+
+/* ============ CURSUS ============ */
+.course{position:absolute;inset:0;overflow-y:auto;z-index:2;animation:reveal 1s cubic-bezier(.7,0,.2,1) both}
+.cwrap{max-width:460px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;
+  padding:0 max(16px,env(safe-area-inset-left,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px))}
+.chdr{position:sticky;top:0;z-index:10;padding-top:14px;background:linear-gradient(var(--bg) 76%,transparent)}
+.chrow{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.prog{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:11px 13px}
+.proglock{width:30px;height:34px;flex:0 0 auto}
+.proglock .shk{transform-box:view-box;transform-origin:16px 11px;transition:transform .5s cubic-bezier(.5,0,.3,1.4)}
+.prog .pt{flex:1 1 auto;min-width:0}
+.prog .pl{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.pbar{height:7px;border-radius:20px;background:#1a2550;overflow:hidden;margin-top:6px}
+.pbar i{display:block;height:100%;width:0;border-radius:20px;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .6s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 12px rgba(92,225,255,.5)}
+.prog .pv{font-family:var(--disp);font-weight:800;font-size:15px;color:var(--cyan)}
+
+.cstage{flex:1 1 auto;padding:14px 0 4px}
+.screen{display:none;animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+.screen.on{display:block}
+.card{background:linear-gradient(170deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.kick{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);background:rgba(92,225,255,.1);border:1px solid rgba(92,225,255,.22);padding:5px 11px;border-radius:30px}
+h2.big{font-size:24px;font-weight:800;margin-top:14px}
+.lead{color:var(--ink2);margin-top:10px;font-size:14.5px}
+.lead b{color:var(--ink)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;border:1px solid var(--line2);background:#121c48;color:var(--ink);border-radius:14px;padding:15px;font-family:var(--disp);font-weight:700;font-size:15px;transition:transform .12s,box-shadow .15s,border-color .15s;margin-top:18px}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.btn:active{transform:scale(.98)}
+.btn.cyan{background:var(--cyan);border-color:var(--cyan);color:#041225;box-shadow:0 8px 24px rgba(92,225,255,.3)}
+.btn.cyan:hover{background:var(--cyan-soft);border-color:var(--cyan-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.sm{width:auto;padding:10px 15px;font-size:13px;margin-top:0}
+
+.widget{margin-top:18px;border:1px solid var(--line);border-radius:14px;background:rgba(10,16,44,.6);padding:16px;display:flex;flex-direction:column;gap:14px}
+.wtip{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink3);font-weight:600;margin-top:14px}
+.wtip svg{width:16px;height:16px;stroke:var(--cyan);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+
+/* VPN */
+.vrow{display:flex;align-items:center;gap:12px}
+.toggle{width:62px;height:34px;border-radius:30px;background:#1a2550;position:relative;border:0;padding:0;flex:0 0 auto;transition:background .25s}
+.toggle i{position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;background:#fff;transition:left .25s}
+.toggle.on{background:var(--cyan)}.toggle.on i{left:31px}
+.vtxt{font-weight:700;font-family:var(--disp)}
+.vview{border-radius:12px;padding:14px;font-family:var(--mono);font-size:12.5px;line-height:1.7;border:1px dashed}
+.vview.bad{background:rgba(255,77,94,.08);border-color:var(--alarm)}
+.vview.good{background:rgba(57,230,160,.08);border-color:var(--ok)}
+.vview .k{color:var(--ink3)}.vview .e{color:var(--alarm);font-weight:700}.vview .g{color:var(--ok);font-weight:700}
+
+/* cookies */
+.ckbanner{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:14px}
+.ckbanner p{font-size:12.5px;color:var(--ink2);margin-bottom:12px}
+.ckb{display:flex;gap:8px}.ckb .btn{margin-top:0;flex:1 1 0;padding:11px;font-size:13px}
+.trk{display:flex;flex-wrap:wrap;gap:7px;min-height:24px;align-items:center}
+.trk i{width:19px;height:19px;border-radius:6px;background:#1a2550;transform:scale(.6);opacity:.4;transition:all .3s}
+.trk i.live{background:var(--alarm);transform:scale(1);opacity:1;box-shadow:0 0 10px rgba(255,77,94,.5)}
+.trk i.block{background:var(--ok);transform:scale(1);opacity:1}
+.ckv{font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:7px;min-height:20px}
+.ckv svg{width:16px;height:16px;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.ckv.bad{color:var(--alarm)}.ckv.good{color:var(--ok)}
+
+/* wachtwoord */
+.pwout{display:flex;align-items:center;gap:9px;background:#040a22;border:1px solid var(--line);border-radius:12px;padding:14px}
+.pwout .pw{font-family:var(--mono);font-size:17px;font-weight:700;color:#fff;flex:1 1 auto;word-break:break-all;line-height:1.3}
+.pwre{border:0;background:#1a2550;color:var(--cyan);width:40px;height:40px;border-radius:10px;display:grid;place-items:center;flex:0 0 auto}
+.pwre svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.result{text-align:center;border-radius:14px;padding:16px;border:1px solid var(--line)}
+.result .rl{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.result .rt{font-family:var(--disp);font-weight:800;font-size:30px;margin-top:5px}
+.sbars{display:flex;gap:6px;margin-top:13px}.sbars i{flex:1 1 0;height:7px;border-radius:20px;background:#1a2550;transition:background .3s}
+.rowlab{display:flex;align-items:center;font-size:13px;font-weight:700;color:var(--ink2)}.rowlab .v{margin-left:auto;font-family:var(--mono);color:var(--cyan)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:7px;border-radius:20px;background:#1a2550;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--cyan);cursor:pointer;border:3px solid var(--panel2);box-shadow:0 0 12px rgba(92,225,255,.5)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--cyan);border:3px solid var(--panel2)}
+.opts{display:flex;gap:8px}
+.opt{flex:1 1 0;text-align:center;border:1px solid var(--line2);background:#121c48;border-radius:30px;padding:9px;font-size:13px;font-weight:700;color:var(--ink3);font-family:var(--mono);transition:all .15s}
+.opt.on{background:rgba(92,225,255,.14);border-color:var(--cyan);color:var(--cyan)}
+
+/* phishing animatie */
+.phone{position:relative;width:100%;max-width:290px;height:330px;margin:0 auto;background:#040a22;border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.fr{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;text-align:center}
+.fr.on{display:flex;animation:popIn .5s ease}
+.fr .big{font-family:var(--disp);font-weight:800;font-size:24px;color:#fff;line-height:1.12}
+.fr .ic{width:82px;height:82px;border-radius:22px;display:grid;place-items:center}
+.fr .ic svg{width:40px;height:40px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic.b{background:rgba(92,225,255,.14)}.ic.b svg{stroke:var(--cyan)}
+.ic.a{background:rgba(255,77,94,.14)}.ic.a svg{stroke:var(--alarm)}
+.pulse{animation:pls 1.3s ease infinite}@keyframes pls{0%,100%{box-shadow:0 0 0 0 rgba(255,77,94,.3)}50%{box-shadow:0 0 0 15px transparent}}
+.dotrow{position:absolute;bottom:13px;left:0;right:0;display:flex;justify-content:center;gap:6px}
+.dotrow i{width:7px;height:7px;border-radius:20px;background:#ffffff26;transition:all .3s}.dotrow i.on{width:18px;background:var(--cyan)}
+
+/* tools */
+.tools{display:flex;flex-direction:column;gap:9px}
+.tool{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);border-radius:13px;padding:13px;background:var(--panel);text-align:left;width:100%;transition:all .15s}
+.tool .ck{width:24px;height:24px;border-radius:8px;border:2px solid var(--ink4);display:grid;place-items:center;flex:0 0 auto;margin-top:1px}
+.tool .ck svg{width:14px;height:14px;stroke:#041225;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.tool.done{border-color:var(--ok);background:rgba(57,230,160,.08)}.tool.done .ck{background:var(--ok);border-color:var(--ok)}.tool.done .ck svg{opacity:1}
+.tool b{font-size:14.5px;display:block}.tool .u{font-family:var(--mono);font-size:11.5px;color:var(--cyan);margin-top:1px}.tool p{font-size:12.5px;color:var(--ink3);margin-top:4px}
+
+/* finish */
+.fin{text-align:center;display:flex;flex-direction:column;align-items:center}
+.finlock{width:120px;height:140px;margin:4px 0 6px}
+.finlock .shk{transform-box:view-box;transform-origin:100px 112px;animation:shackleClose .5s cubic-bezier(.5,0,.3,1.4) .2s both}
+.fin h2{font-size:28px;margin-top:4px}
+.fin .sub{color:var(--ink2);margin-top:10px;font-size:14.5px}
+.recap{display:flex;flex-direction:column;gap:8px;width:100%;margin-top:16px;text-align:left}
+.rc{display:flex;align-items:center;gap:11px;font-size:13.5px;font-weight:600;color:var(--ink2);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+.rc svg{width:17px;height:17px;stroke:var(--ok);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.sccta{display:block;width:100%;text-align:left;text-decoration:none;margin-top:18px;border-radius:20px;padding:22px 20px;background:linear-gradient(150deg,#153a86,#0a1f58);border:1px solid var(--cyan);box-shadow:0 0 40px rgba(92,225,255,.18);position:relative;overflow:hidden}
+.sccta::after{content:"";position:absolute;right:-30px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(92,225,255,.1)}
+.sc-badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);background:rgba(92,225,255,.12);border:1px solid rgba(92,225,255,.3);padding:5px 11px;border-radius:30px}
+.sc-badge svg{width:13px;height:13px;stroke:var(--cyan);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sc-h{font-family:var(--disp);font-weight:800;font-size:22px;color:#fff;margin-top:12px;line-height:1.12}
+.sc-p{font-size:13.5px;color:var(--ink2);margin-top:10px}
+.sc-go{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:16px;background:var(--cyan);color:#041225;font-family:var(--disp);font-weight:800;font-size:16px;padding:15px;border-radius:14px}
+.sc-go svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.fsec{display:flex;gap:10px;margin-top:12px}.fsec .btn{flex:1 1 0;margin-top:0;font-size:13px;padding:12px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(16px);background:var(--cyan);color:#041225;font-size:14px;font-weight:700;padding:11px 18px;border-radius:12px;opacity:0;transition:all .25s;z-index:50;pointer-events:none;font-family:var(--disp)}
+.toast.on{opacity:1;transform:translateX(-50%)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+</style>
+
+<div class="app">
+  <div class="stars" aria-hidden="true"></div>
+
+  <!-- ============ SLOT-INTRO ============ -->
+  <section class="lockLayer" id="lockLayer">
+    <div class="ltop"><span class="logo"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>Digitale Defensie</span></div>
+    <div class="stage">
+      <div class="radar" aria-hidden="true">
+        <div class="r" style="inset:0;border:1px solid #1C2860"></div>
+        <div class="r" style="inset:14%;border:1px solid #1C2860"></div>
+        <div class="r ringA" style="inset:26%;border:2px dashed #2A3A80"></div>
+        <div class="r ringB" style="inset:33%;border:1px dotted #5CE1FF;opacity:.4"></div>
+        <div class="sweep"></div>
+      </div>
+      <button type="button" class="unlock" id="unlockBtn" onclick="openLock()" aria-label="Klik op het slot om jezelf te beveiligen">
+        <div class="lockwrap">
+          <div class="tapring"></div><div class="tapring tapring2"></div>
+          <svg class="lockSvg" viewBox="0 0 200 240" aria-hidden="true">
+            <g class="shackle">
+              <path d="M50 112 V72 a50 50 0 0 1 100 0 V112" fill="none" stroke="#5CE1FF" stroke-width="18" stroke-linecap="round"/>
+              <path d="M50 112 V72 a50 50 0 0 1 100 0 V112" fill="none" stroke="#B5F1FF" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+            </g>
+            <rect class="lockBody" x="16" y="100" width="168" height="134" rx="26" fill="#0C1230" stroke="#5CE1FF" stroke-width="4"/>
+            <rect class="glow" x="16" y="100" width="168" height="134" rx="26" fill="none" stroke="#5CE1FF" stroke-width="10" opacity=".35"/>
+            <path class="flowline" d="M30 130 H62 V150 H80" fill="none" stroke="#5CE1FF" stroke-width="2" opacity=".7"/>
+            <path class="flowline" d="M170 210 H134 V190 H120" fill="none" stroke="#9C8CFF" stroke-width="2" opacity=".7"/>
+            <circle cx="80" cy="150" r="3" fill="#5CE1FF"/><circle cx="120" cy="190" r="3" fill="#9C8CFF"/>
+            <g class="keyhole"><circle cx="100" cy="160" r="15" fill="#5CE1FF"/><path d="M93 166 L107 166 L104 192 L96 192 Z" fill="#5CE1FF"/></g>
+          </svg>
+        </div>
+        <div class="ctaText">
+          <span class="lockLabel">In 5 minuten <span class="glitch" data-text="veilig">veilig</span></span>
+          <p class="hint"><svg viewBox="0 0 24 24"><path d="M9 11.5V5a2 2 0 0 1 4 0v4.5"/><path d="M13 9.5V4a2 2 0 0 1 4 0v8"/><path d="M17 9.5a2 2 0 0 1 4 0V15c0 4-3 7-7 7h-1c-3.5 0-5-1.5-7-5l-2-3.5c-.6-1 .3-2.2 1.4-1.8a3 3 0 0 1 1.6 1.3"/></svg>KLIK OP HET SLOT OM JEZELF TE BEVEILIGEN</p>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ CURSUS ============ -->
+  <section class="course" id="course" hidden>
+    <div class="cwrap">
+      <header class="chdr">
+        <div class="chrow"><span class="logo" style="font-size:14px"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>Digitale Defensie</span></div>
+        <div class="prog">
+          <svg class="proglock" viewBox="0 0 32 40" aria-hidden="true">
+            <path class="shk" id="progShk" d="M9 20 V13 a7 7 0 0 1 14 0 V20" fill="none" stroke="#5CE1FF" stroke-width="3.4" stroke-linecap="round" style="transform:translateY(-5px)"/>
+            <rect x="5" y="18" width="22" height="18" rx="5" fill="#0C1230" stroke="#5CE1FF" stroke-width="2.4"/>
+            <circle cx="16" cy="26" r="2.6" fill="#5CE1FF"/><rect x="14.7" y="27" width="2.6" height="5" rx="1.3" fill="#5CE1FF"/>
+          </svg>
+          <div class="pt"><div class="pl">Beveiligd</div><div class="pbar"><i id="pBar"></i></div></div>
+          <div class="pv"><span id="pNum">0</span>/5</div>
+        </div>
+      </header>
+
+      <main class="cstage">
+
+        <!-- 1 VPN -->
+        <section class="screen on" data-s="1">
+          <div class="card">
+            <span class="kick">01 · Wifi &amp; VPN</span>
+            <h2 class="big">Wie kijkt er mee op wifi?</h2>
+            <p class="lead">Op gratis wifi in een café of station kan een vreemde meekijken. Een <b>VPN</b> is een privétunnel. Zet 'm aan en kijk:</p>
+            <div class="widget">
+              <div class="vrow"><button class="toggle" id="vpnTog" onclick="vpn()" aria-label="VPN"><i></i></button><span class="vtxt" id="vpnTxt">VPN uit</span></div>
+              <div class="vview bad" id="vpnView">
+                <div><span class="k">jouw IP</span> <span class="e">94.213.48.117</span></div>
+                <div><span class="k">locatie</span> <span class="e">Amsterdam</span></div>
+                <div><span class="k">zichtbaar</span> <span class="e">elke site die je bezoekt</span></div>
+              </div>
+            </div>
+            <div class="wtip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>Vooral op openbare wifi.</div>
+            <button class="btn cyan" id="b1" onclick="done(1)" disabled>Zet de VPN aan</button>
+          </div>
+        </section>
+
+        <!-- 2 Cookies -->
+        <section class="screen" data-s="2">
+          <div class="card">
+            <span class="kick">02 · Cookies</span>
+            <h2 class="big">De cookiemelding op elke site</h2>
+            <p class="lead">Je kent 'm: <b>"Wij gebruiken cookies"</b>. Met "Alles accepteren" laat je je overal volgen. Probeer het:</p>
+            <div class="widget">
+              <div class="ckbanner">
+                <p>Deze melding wil je gedrag volgen met 843 partners.</p>
+                <div class="ckb"><button class="btn" style="margin-top:0" onclick="ckPick('a')">Alles accepteren</button><button class="btn cyan" onclick="ckPick('w')">Weigeren</button></div>
+              </div>
+              <div class="trk" id="trk"></div>
+              <div class="ckv" id="ckv" style="color:var(--ink3)">Kies hierboven.</div>
+            </div>
+            <div class="wtip"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Weigeren kan altijd. De site werkt gewoon.</div>
+            <button class="btn cyan" id="b2" onclick="done(2)" disabled>Maak een keuze</button>
+          </div>
+        </section>
+
+        <!-- 3 Wachtwoord -->
+        <section class="screen" data-s="3">
+          <div class="card">
+            <span class="kick">03 · Wachtwoord</span>
+            <h2 class="big">Hoe sterk is je wachtwoord?</h2>
+            <p class="lead">Hoe langer je wachtwoord, hoe langer een crimineel nodig heeft om het te raden. Sleep en kijk:</p>
+            <div class="widget">
+              <div class="pwout"><span class="pw" id="pw">········</span><button class="pwre" onclick="genpw()" aria-label="Nieuw"><svg viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></svg></button></div>
+              <div class="result" id="pres"><div class="rl">gekraakt in</div><div class="rt" id="pt">—</div><div class="sbars" id="pbars"><i></i><i></i><i></i><i></i></div></div>
+              <div><div class="rowlab">lengte<span class="v" id="plv">16</span></div><input type="range" id="pl" min="4" max="28" value="16" oninput="genpw()" style="margin-top:8px"></div>
+              <div class="opts"><button class="opt on" id="oU" onclick="opt('oU')">A-Z</button><button class="opt on" id="oN" onclick="opt('oN')">0-9</button><button class="opt on" id="oS" onclick="opt('oS')">!@#</button></div>
+            </div>
+            <div class="wtip"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Laat een wachtwoordmanager ze onthouden.</div>
+            <button class="btn cyan" onclick="done(3)">Verder</button>
+          </div>
+        </section>
+
+        <!-- 4 Phishing -->
+        <section class="screen" data-s="4">
+          <div class="card">
+            <span class="kick">04 · Nepberichten</span>
+            <h2 class="big">De nep-mail van je "bank"</h2>
+            <p class="lead">Een e-mail of sms die doet alsof hij van je bank of Microsoft komt (phishing). Zo verloopt zo'n aanval:</p>
+            <div class="widget" style="background:transparent;border:0;padding:0">
+              <div class="phone" id="phone">
+                <div class="fr on" data-f="0"><div class="ic b"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 6 10-6"/></svg></div><div class="big">Bericht komt binnen</div></div>
+                <div class="fr" data-f="1"><div class="ic a"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg></div><div class="big">"Nu, anders geblokkeerd"</div></div>
+                <div class="fr" data-f="2"><div class="ic b"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div class="big">Jij typt je wachtwoord</div></div>
+                <div class="fr" data-f="3"><div class="ic a pulse"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 7.9-1"/></svg></div><div class="big">Zij zijn binnen</div></div>
+                <div class="fr" data-f="4"><div class="big" style="font-size:28px;color:var(--cyan)">9 van de 10<br><span style="color:#fff">hacks zo</span></div></div>
+                <div class="dotrow" id="pdots"></div>
+              </div>
+              <button class="btn sm" style="align-self:center;margin-top:6px" onclick="playph()"><svg viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></svg>Opnieuw</button>
+            </div>
+            <div class="wtip"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="M9 12l2 2 4-4"/></svg>Twijfel? Klik niet. Ga zelf naar de site.</div>
+            <button class="btn cyan" id="b4" onclick="done(4)" disabled>Bekijk eerst</button>
+          </div>
+        </section>
+
+        <!-- 5 Data -->
+        <section class="screen" data-s="5">
+          <div class="card">
+            <span class="kick">05 · Je gegevens</span>
+            <h2 class="big">Je gegevens staan online</h2>
+            <p class="lead">Je naam, adres en oude accounts zijn voor iedereen te vinden. Ruim op met deze gratis tools:</p>
+            <div class="widget" style="background:transparent;border:0;padding:0"><div class="tools" id="tools"></div></div>
+            <div class="wtip"><svg viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg>Begin bij Have I Been Pwned.</div>
+            <button class="btn cyan" id="b5" onclick="done(5)" disabled>Vink er één aan</button>
+          </div>
+        </section>
+
+        <!-- FINISH -->
+        <section class="screen" data-s="6">
+          <div class="card fin">
+            <svg class="finlock" viewBox="0 0 200 240" aria-hidden="true">
+              <path class="shk" d="M50 112 V72 a50 50 0 0 1 100 0 V112" fill="none" stroke="#39E6A0" stroke-width="18" stroke-linecap="round"/>
+              <rect x="16" y="100" width="168" height="134" rx="26" fill="#0C1230" stroke="#39E6A0" stroke-width="4"/>
+              <rect x="16" y="100" width="168" height="134" rx="26" fill="none" stroke="#39E6A0" stroke-width="10" opacity=".3"/>
+              <circle cx="100" cy="150" r="15" fill="#39E6A0"/><path d="M93 156 L107 156 L104 182 L96 182 Z" fill="#39E6A0"/>
+            </svg>
+            <span class="kick" style="color:var(--ok);background:rgba(57,230,160,.1);border-color:rgba(57,230,160,.25)">Slot dicht</span>
+            <h2>Je bent beveiligd.</h2>
+            <p class="sub">Vijf gewoontes rijker. Pak er vandaag één op.</p>
+            <div class="recap">
+              <div class="rc"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>VPN op openbare wifi</div>
+              <div class="rc"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Cookies weigeren</div>
+              <div class="rc"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Lang wachtwoord + manager</div>
+              <div class="rc"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Phishing: klik niet, check zelf</div>
+              <div class="rc"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Check Have I Been Pwned</div>
+            </div>
+            <a class="sccta" id="secheckLink" href="https://digitaledefensie.nl" target="_blank" rel="noopener">
+              <span class="sc-badge"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z"/></svg>Voor jou of je bedrijf</span>
+              <h3 class="sc-h">Wil je weten waar jij nu kwetsbaar bent?</h3>
+              <p class="sc-p">Doe de Security Check. We laten in gewone taal zien wat kwetsbaar is en hoe je het oplost.</p>
+              <span class="sc-go">Bekijk de Security Check<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+            <div class="fsec"><button class="btn" onclick="share()">Stuur door</button><button class="btn" onclick="restart()">Opnieuw</button></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- intro ---------- */
+function openLock(){
+  const L=document.getElementById('lockLayer');if(L.classList.contains('opening'))return;
+  L.classList.add('opening');
+  setTimeout(()=>{L.hidden=true;document.getElementById('course').hidden=false;},1700);
+}
+
+/* ---------- voortgang / slot sluit ---------- */
+const DONE=new Set();
+function setProg(){
+  const n=DONE.size;
+  document.getElementById('pNum').textContent=n;
+  document.getElementById('pBar').style.width=(n/5*100)+'%';
+  // mini-slot sluit: beugel zakt van -5px (open) naar 0 (dicht)
+  document.getElementById('progShk').style.transform='translateY('+(-5+n)+'px)';
+}
+let cur=1;
+function goStep(n){
+  cur=n;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',+s.dataset.s===n));
+  document.querySelector('.course').scrollTo({top:0,behavior:'smooth'});
+  if(n===4)playph();
+}
+function done(n){if(!DONE.has(n)){DONE.add(n);setProg();}goStep(n+1);}
+
+/* ---------- 1 VPN ---------- */
+function vpn(){
+  const t=document.getElementById('vpnTog'),on=t.classList.toggle('on');
+  document.getElementById('vpnTxt').textContent=on?'VPN aan':'VPN uit';
+  const v=document.getElementById('vpnView');
+  if(on){v.className='vview good';v.innerHTML='<div><span class="k">jouw IP</span> <span class="g">verborgen</span></div><div><span class="k">locatie</span> <span class="g">Zürich (VPN)</span></div><div><span class="k">zichtbaar</span> <span class="g">alleen versleuteld</span></div>';
+    const b=document.getElementById('b1');b.disabled=false;b.textContent='Verder';}
+  else{v.className='vview bad';v.innerHTML='<div><span class="k">jouw IP</span> <span class="e">94.213.48.117</span></div><div><span class="k">locatie</span> <span class="e">Amsterdam</span></div><div><span class="k">zichtbaar</span> <span class="e">elke site die je bezoekt</span></div>';}
+}
+
+/* ---------- 2 Cookies ---------- */
+function ckPick(c){
+  const w=document.getElementById('trk');w.innerHTML='';for(let i=0;i<24;i++)w.appendChild(document.createElement('i'));
+  const dots=w.querySelectorAll('i'),v=document.getElementById('ckv');v.style.color='';
+  if(c==='a'){dots.forEach((d,i)=>setTimeout(()=>d.classList.add('live'),i*25));v.className='ckv bad';v.innerHTML='<svg viewBox="0 0 24 24" stroke="currentColor"><path d="M18 6 6 18M6 6l12 12"/></svg>37 trackers volgen je';}
+  else{dots.forEach((d,i)=>setTimeout(()=>d.classList.add('block'),i*18));v.className='ckv good';v.innerHTML='<svg viewBox="0 0 24 24" stroke="currentColor"><path d="M20 6 9 17l-5-5"/></svg>0 trackers';}
+  const b=document.getElementById('b2');b.disabled=false;b.textContent='Verder';
+}
+
+/* ---------- 3 Wachtwoord ---------- */
+const LOW='abcdefghijkmnpqrstuvwxyz',UP='ABCDEFGHJKLMNPQRSTUVWXYZ',NUM='23456789',SYM='!@#$%^&*-_=?';
+const O={oU:true,oN:true,oS:true};
+function rint(m){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%m;}
+function opt(k){O[k]=!O[k];if(!O.oU&&!O.oN&&!O.oS){O[k]=true;return;}document.getElementById(k).classList.toggle('on',O[k]);genpw();}
+function genpw(){
+  const len=+document.getElementById('pl').value;document.getElementById('plv').textContent=len;
+  let pool=LOW;if(O.oU)pool+=UP;if(O.oN)pool+=NUM;if(O.oS)pool+=SYM;
+  let p='';for(let i=0;i<len;i++)p+=pool[rint(pool.length)];document.getElementById('pw').textContent=p;
+  const bits=len*Math.log2(pool.length),sec=Math.pow(2,bits)/1e11/2;let idx,col;
+  if(bits<40){idx=1;col='var(--alarm)';}else if(bits<60){idx=2;col='var(--amber)';}else if(bits<80){idx=3;col='var(--cyan)';}else{idx=4;col='var(--ok)';}
+  const t=document.getElementById('pt');t.textContent=htime(sec);t.style.color=col;
+  document.querySelectorAll('#pbars i').forEach((b,i)=>b.style.background=i<idx?col:'#1a2550');
+  document.getElementById('pres').style.borderColor=col;
+}
+function htime(s){if(s<1)return 'direct';const u=[['seconde','seconden',60],['minuut','minuten',60],['uur','uren',24],['dag','dagen',365],['jaar','jaren',1000]];let v=s,i=0;while(i<u.length-1&&v>=u[i][2]){v/=u[i][2];i++;}if(i>=3&&v>1e4)return 'miljoenen jaren';v=Math.round(v);return v.toLocaleString('nl-NL')+' '+(v===1?u[i][0]:u[i][1]);}
+
+/* ---------- 4 Phishing ---------- */
+let pht=null,pf=0;const PN=5;
+function pdots(){const w=document.getElementById('pdots');w.innerHTML='';for(let i=0;i<PN;i++){const d=document.createElement('i');if(i===pf)d.className='on';w.appendChild(d);}}
+function showph(i){pf=i;document.querySelectorAll('#phone .fr').forEach(el=>el.classList.toggle('on',+el.dataset.f===i));pdots();}
+function playph(){clearTimeout(pht);let i=0;showph(0);const d=[1500,1600,1700,1600];(function nx(){if(i>=PN-1){const b=document.getElementById('b4');b.disabled=false;b.textContent='Verder';return;}pht=setTimeout(()=>{i++;showph(i);nx();},d[i]);})();}
+
+/* ---------- 5 Tools ---------- */
+const TOOLS=[
+  {b:'Have I Been Pwned',u:'haveibeenpwned.com',p:'Zie in welke lekken je e-mail zit.'},
+  {b:'Just Delete Me',u:'justdeleteme.xyz',p:'Zeg oude accounts op.'},
+  {b:'Google: resultaten over jou',u:'myactivity.google.com',p:'Laat je gegevens uit de zoekresultaten halen.'},
+  {b:'DuckDuckGo',u:'duckduckgo.com',p:'Zoeken zonder gevolgd te worden.'}
+];
+const TD=new Set();
+function tools(){document.getElementById('tools').innerHTML=TOOLS.map((t,i)=>`<button class="tool" data-i="${i}" onclick="tick(${i})"><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>${t.b}</b><span class="u">${t.u}</span><p>${t.p}</p></span></button>`).join('');}
+function tick(i){const el=document.querySelector('.tool[data-i="'+i+'"]');if(TD.has(i)){TD.delete(i);el.classList.remove('done');}else{TD.add(i);el.classList.add('done');}const b=document.getElementById('b5');if(TD.size){b.disabled=false;b.textContent='Slot sluiten';}else{b.disabled=true;b.textContent='Vink er één aan';}}
+
+/* ---------- finish ---------- */
+function share(){const u=location.href,t='In 5 minuten veilig. Gratis van Digitale Defensie';if(navigator.share){navigator.share({title:t,text:t,url:u}).catch(()=>{});}else{const ok=()=>toast('Link gekopieerd');navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(u).then(ok).catch(()=>fb(u,ok)):fb(u,ok);}}
+function fb(t,ok){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity=0;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok();}catch(e){}document.body.removeChild(a);}
+function restart(){
+  DONE.clear();setProg();
+  document.getElementById('vpnTog').classList.remove('on');document.getElementById('vpnTxt').textContent='VPN uit';
+  const vv=document.getElementById('vpnView');vv.className='vview bad';vv.innerHTML='<div><span class="k">jouw IP</span> <span class="e">94.213.48.117</span></div><div><span class="k">locatie</span> <span class="e">Amsterdam</span></div><div><span class="k">zichtbaar</span> <span class="e">elke site die je bezoekt</span></div>';
+  document.getElementById('b1').disabled=true;document.getElementById('b1').textContent='Zet de VPN aan';
+  document.getElementById('trk').innerHTML='';const cv=document.getElementById('ckv');cv.className='ckv';cv.style.color='var(--ink3)';cv.textContent='Kies hierboven.';
+  document.getElementById('b2').disabled=true;document.getElementById('b2').textContent='Maak een keuze';
+  clearTimeout(pht);showph(0);document.getElementById('b4').disabled=true;document.getElementById('b4').textContent='Bekijk eerst';
+  TD.clear();tools();document.getElementById('b5').disabled=true;document.getElementById('b5').textContent='Vink er één aan';
+  goStep(1);
+}
+let tT;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),1800);}
+
+/* ---------- init ---------- */
+genpw();tools();pdots();setProg();
+</script>
+</template>
+<div class="mcLayer" id="mcLayer" hidden aria-hidden="true">
+  <button type="button" class="mcClose" id="mcClose" aria-label="Sluit de cursus en ga terug naar de site"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Terug naar de site</button>
+  <iframe class="mcFrame" id="mcFrame" title="Mini-cursus: in 5 minuten veilig" allow="clipboard-write"></iframe>
+</div>
 <script>
 (function () {
   // ================= INSTELLINGEN =================
@@ -543,26 +1094,25 @@ button{font:inherit}
   };
  
   var SERVICES = {
-    sec: { color: '#5CE1FF', name: 'Security Check', anim: 'security', tag: 'Een echte audit, geen vragenlijst', price: '€350–450', priceNote: 'vast · naar bedrijfsgrootte', stat: '48u', statLabel: 'tot rapport + eerste fix',
-      desc: 'Dit is geen zelftest die je ook met gratis tools had kunnen doen. Ik ga met tijdelijke inzage-toegang jouw werkomgeving in — welke systemen je ook gebruikt — en zoek naar wat jij zelf niet kunt zien: overbodige adminrechten, oud-personeel dat nog kan inloggen, ontbrekende MFA. Daarna test ik je team met een echte phishingmail — meetbaar, niet hypothetisch. Eenmanszaak of tot 5 medewerkers: €350. 6 t/m 50 medewerkers: €450 — zelfde diepgang, alleen de prijs schaalt licht mee.',
-      bullets: ['Admin-inzage in je omgeving — ik zoek zelf naar risico\'s, jij hoeft niets te testen', 'Audit van wie adminrechten heeft en welke oud-accounts nog actief zijn', 'Een echte phishingmail naar je team, met meting wie erin trapt', 'Eerste fix voer ik direct met je door — geen rapport dat in een la verdwijnt'], icon: I.shield },
-    az: { color: '#FFC24D', name: 'Azure Kostenanalyse', anim: 'azure', tag: 'Betaal je te veel voor Azure?', price: '€500', priceNote: 'vaste prijs', stat: '20–35%', statLabel: 'gemiddelde besparing',
-      desc: 'Ik log zelf in op je Azure-abonnement en loop elke resource na op daadwerkelijk gebruik — niet alleen wat Azure Advisor al meldt, maar ook wat daar niet in staat. Je krijgt een besparingsplan met een bedrag erbij, geen vage adviezen.',
-      bullets: ['Leestoegang tot je Azure-abonnement — ik analyseer, jij hoeft niets uit te zoeken', 'Elke resource nagelopen op écht gebruik, niet alleen Advisor-meldingen', 'Besparingsplan met concreet bedrag per maatregel', 'Quick wins direct met je doorgevoerd tijdens het gesprek'], icon: I.azure },
-    tr: { color: '#FF5C8A', name: 'Training & Phishing-test', anim: 'training', tag: 'Klikken jouw mensen op verkeerde links?', price: '€325', priceNote: 'per sessie', stat: '30%→5%', statLabel: 'typische klikratio-daling',
-      desc: 'Ik stuur een echte, onschadelijke phishingmail naar je team en meet exact wie erin trapt — vóór én na de training. Geen PowerPoint over wat phishing "is", maar bewijs van wat er bij jullie specifiek misgaat.',
-      bullets: ['Echte phishingsimulatie op je eigen team, geen hypothetisch verhaal', 'Nulmeting + nameting van de klikratio — zwart op wit resultaat', 'Praktische sessie toegespitst op de mails die bij jullie binnenkwamen', 'Rapportage die je kunt bewaren als bewijs van bewustwording'], icon: I.mail }
+    sec: { color: '#5CE1FF', name: 'Security Check', anim: 'security', tag: 'Wat er echt staat, geen vragenlijst', price: '€350–450', priceNote: 'vast · naar bedrijfsgrootte', stat: '48u', statLabel: 'tot het rapport',
+      desc: 'Met tijdelijke toegang kijk ik in je eigen omgeving: wie heeft beheerrechten, staat extra inlogcontrole aan, kunnen oud-medewerkers nog inloggen, werkt je back-up echt. Met jouw toestemming meet ik met een onschadelijke testmail hoe je team reageert. Tot 5 medewerkers €350, tot 50 medewerkers €450.',
+      bullets: ['Jij hoeft niets in te vullen of uit te zoeken', 'Beheerrechten, inlogcontrole en oude accounts nagelopen', 'Testmail naar je team: hoeveel mensen klikken en melden, zonder namen', 'De eerste verbetering voeren we samen door'], icon: I.shield },
+    az: { color: '#FFC24D', name: 'Azure Kostenanalyse', anim: 'azure', tag: 'Betaal je te veel voor Azure?', price: '€500', priceNote: 'vaste prijs', stat: 'Alleen-lezen', statLabel: 'ik kan niets wijzigen',
+      desc: 'Met alleen-lezen toegang loop ik je Azure-kosten na: wat aanstaat maar niets doet, servers die groter zijn dan nodig, reserveringen en licenties, opslag en logs. Je krijgt per maatregel een geschatte besparing in euro’s.',
+      bullets: ['Jij hoeft niets uit te zoeken', 'Verder dan de meldingen van Azure Advisor', 'Per maatregel een geschatte besparing in euro’s', 'De eerste besparing voeren we samen door'], icon: I.azure },
+    tr: { color: '#FF5C8A', name: 'Training & Phishing-test', anim: 'training', tag: 'Klikken jouw mensen op verkeerde links?', price: '€325', priceNote: 'per sessie', stat: 'Voor + na', statLabel: 'twee metingen',
+      desc: 'Eerst stuur ik met toestemming van de directie een onschadelijke testmail naar je team. Daarna een praktische sessie: hoe zag die mail eruit, waar herken je hem aan, hoe meld je hem. Een paar weken later meet ik opnieuw. Niemand wordt aangesproken, je krijgt alleen totalen.',
+      bullets: ['Testmail op je eigen team, met toestemming vooraf', 'Meting voor en na de training', 'Sessie over de mails die jullie echt krijgen', 'Rapport met totalen, geen namen'], icon: I.mail }
   };
  
   // Reisroute (x/y = positie op de baan in px)
   var STOPS = [
     { id: 'home', short: 'Start', x: 0, y: 0, size: 200, color: '#5CE1FF', icon: I.shield },
     { id: 'dv', short: 'Diensten', x: 480, y: 0, size: 170, color: '#7FD4FF', icon: '<circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4.5"/>' },
-    { id: 'qw', short: 'Quick wins', x: 1000, y: 0, size: 160, color: '#3ECF8E', ringed: true, icon: I.bolt },
-    { id: 'om', short: 'Over mij', x: 1480, y: 0, size: 150, color: '#DDE3FF', ringed: true, icon: I.badge },
-    { id: 'ct', short: 'Contact', x: 1960, y: 0, size: 150, color: '#FF5C8A', ringed: true, icon: I.send }
+    { id: 'om', short: 'Over mij', x: 960, y: 0, size: 150, color: '#DDE3FF', ringed: true, icon: I.badge },
+    { id: 'ct', short: 'Contact', x: 1440, y: 0, size: 150, color: '#FF5C8A', ringed: true, icon: I.send }
   ];
-  var NAMES = { home: 'De APK voor je digitale veiligheid', dv: 'Diensten', qw: 'Quick wins', om: 'Over mij', ct: 'Contact' };
+  var NAMES = { home: 'Digitale Defensie', dv: 'Diensten', om: 'Over mij', ct: 'Contact' };
   var SVC_ORDER = ['sec', 'az', 'tr'];
  
   // ================= HULPFUNCTIES =================
@@ -595,37 +1145,9 @@ button{font:inherit}
   function svg(paths, size) { return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" aria-hidden="true">' + paths + '</svg>'; }
   var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>';
  
-  // ================= RADAR-STIPPEN (slot) =================
-  var BLIP_SETS = [
-    [{ a: 20, r: 38 }, { a: 95, r: 29 }, { a: 210, r: 44 }, { a: 300, r: 33 }],
-    [{ a: 50, r: 45 }, { a: 140, r: 28 }, { a: 260, r: 40 }],
-    [{ a: 10, r: 30 }, { a: 80, r: 42 }, { a: 170, r: 35 }, { a: 250, r: 46 }, { a: 320, r: 29 }],
-    [{ a: 60, r: 33 }, { a: 150, r: 44 }, { a: 230, r: 28 }],
-    [{ a: 30, r: 40 }, { a: 120, r: 30 }, { a: 200, r: 45 }, { a: 280, r: 36 }],
-    [{ a: 5, r: 34 }, { a: 100, r: 46 }, { a: 190, r: 29 }, { a: 265, r: 41 }, { a: 340, r: 35 }]
-  ];
-  var SWEEP_MS = 6000, BLIP_LIT_MS = 900, blipTimers = [], blipTimer = null, blipIndex = 0;
-  function blipLater(fn, ms) { blipTimers.push(setTimeout(fn, ms)); }
-  function clearBlipTimers() { blipTimers.forEach(clearTimeout); blipTimers = []; }
-  function sweepHitDelay(a) { var n = ((a + 90) % 360 + 360) % 360; return SWEEP_MS * n / 360; }
-  function restartSweepAnim() { var s = document.querySelector('.radar .sweep'); if (!s) return; s.style.animation = 'none'; void s.offsetWidth; s.style.animation = ''; }
-  function wipeBlip(dot) { dot.classList.add('out'); blipLater(function () { if (dot.parentNode) dot.parentNode.removeChild(dot); }, 380); }
-  function renderBlips(idx) {
-    clearBlipTimers();
-    Array.prototype.slice.call(blipsEl.children).forEach(wipeBlip);
-    BLIP_SETS[idx].forEach(function (pt) {
-      blipLater(function () {
-        var rad = pt.a * Math.PI / 180, dot = el('div', 'blip');
-        dot.style.left = (50 + Math.cos(rad) * pt.r) + '%';
-        dot.style.top = (50 + Math.sin(rad) * pt.r) + '%';
-        blipsEl.appendChild(dot);
-        blipLater(function () { wipeBlip(dot); }, BLIP_LIT_MS);
-      }, sweepHitDelay(pt.a));
-    });
-  }
-  function startBlips() { blipIndex = 0; restartSweepAnim(); renderBlips(0); blipTimer = setInterval(function () { blipIndex = (blipIndex + 1) % BLIP_SETS.length; renderBlips(blipIndex); }, SWEEP_MS); }
-  function stopBlips() { clearBlipTimers(); blipsEl.innerHTML = ''; if (blipTimer) { clearInterval(blipTimer); blipTimer = null; } }
-  startBlips();
+  // ===== Radar vervangen door canvas-animatie (zie onderaan de pagina) =====
+  function startBlips(){}
+  function stopBlips(){}
  
   // ================= SLOT OPENEN =================
   function unlock() {
@@ -666,7 +1188,7 @@ button{font:inherit}
     trackInner.innerHTML = '';
     dots.innerHTML = '';
     STOPS.forEach(function (s, k) {
-      var wrap = el('div', 'stopEl off');
+      var wrap = el('div', 'stopEl off' + (s.id === 'dv' ? ' hasMoons' : ''));
       wrap.style.left = s.x + 'px';
       wrap.style.top = s.y + 'px';
       var btn = el('button', 'planet', (s.ringed ? '<span class="ringE" aria-hidden="true"></span>' : '') + svg(s.icon, Math.round(s.size * 0.36)));
@@ -675,8 +1197,10 @@ button{font:inherit}
       btn.style.height = s.size + 'px';
       btn.style.setProperty('--bc', s.color);
       btn.setAttribute('aria-label', NAMES[s.id]);
-      if (s.id === 'home') btn.style.background = 'radial-gradient(circle at 40% 35%, #B5F1FF 0%, #5CE1FF 40%, #1C3A7A 100%)';
-      if (s.id === 'home') btn.querySelector('svg').style.stroke = '#070B1F';
+      if (s.id === 'home') {
+        btn.classList.add('brand');
+        btn.innerHTML = '<span class="bring" aria-hidden="true"></span><span class="bemblem" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>';
+      }
       if (s.id === 'dv') {
         var mo = el('span', 'miniOrbit', SVC_ORDER.map(function (sid, j) {
           var a = j * Math.PI / 2 - Math.PI / 2, c = SERVICES[sid].color;
@@ -684,7 +1208,7 @@ button{font:inherit}
         }).join(''));
         mo.setAttribute('aria-hidden', 'true');
         btn.appendChild(mo);
-        btn.setAttribute('aria-label', 'Diensten — klik om het stelsel te betreden');
+        btn.setAttribute('aria-label', 'Diensten, klik om de diensten te bekijken');
       }
       btn.addEventListener('click', function () {
         if (s.id !== 'dv') return go(k);
@@ -733,9 +1257,9 @@ button{font:inherit}
     renderCard(s.id, first ? 0.6 : 0.55);
   }
   var warpT = null;
-  function isMobile() { return window.matchMedia('(max-width:860px)').matches; }
   function applyTrack() {
-    var s = STOPS[state.idx], f = isMobile() ? 0.6 : 1;
+    var m = getComputedStyle(trackInner).transform;
+    var s = STOPS[state.idx], f = m && m !== 'none' ? new DOMMatrix(m).a : 1;
     track.style.transform = 'translate(' + (-s.x * f) + 'px,' + (-s.y * f) + 'px)';
   }
   window.addEventListener('resize', function () { if (!hop.hidden) applyTrack(); });
@@ -747,7 +1271,7 @@ button{font:inherit}
     var c = STOPS.filter(function (s) { return s.id === id; })[0].color;
     card.style.setProperty('--sc', c);
     card.style.borderColor = id === 'ct' ? '' : 'color-mix(in srgb,' + c + ' 35%, #1F2A60)';
-    var fn = { home: cardHome, dv: cardDiensten, qw: cardShield, om: cardBadge, ct: cardContact }[id];
+    var fn = { home: cardHome, dv: cardDiensten, om: cardBadge, ct: cardContact }[id];
     fn(id, d || 0.5);
   }
   function delay(d, i, extra) { return 'style="animation-delay:' + (d + i * 0.07).toFixed(2) + 's;' + (extra || '') + '"'; }
@@ -761,22 +1285,24 @@ button{font:inherit}
     };
     card.innerHTML =
       '<div class="stack">' +
-        '<p class="kicker rise" ' + delay(d, 0) + '>MICROSOFT GECERTIFICEERD · AMSTERDAM</p>' +
-        '<h1 class="cTitle rise" ' + delay(d, 1) + '>Hoe veilig is jouw bedrijf écht?</h1>' +
-        '<p class="cText rise" ' + delay(d, 2, 'font-size:16.5px') + '>De APK-keuring voor de digitale veiligheid van jouw bedrijf. Voor ZZP en MKB tot 50 medewerkers.</p>' +
-        '<ul class="usps rise" ' + delay(d, 3) + '>' +
-          '<li><b>48u</b>eerlijk rapport</li>' +
-          '<li><b>Vast</b>prijs, geen abonnement</li>' +
-          '<li><b>0</b>IT-jargon</li>' +
+        '<p class="kicker rise" ' + delay(d, 0) + '>WELKOM</p>' +
+        '<h1 class="cTitle rise" ' + delay(d, 1) + '>Wat is Digitale Defensie?</h1>' +
+        '<p class="cText rise" ' + delay(d, 2, 'font-size:16.5px') + '>Digitale Defensie maakt cybersecurity begrijpelijk en haalbaar voor zzp\'ers en het mkb: geen vakjargon of dure abonnementen, maar heldere taal, vaste prijzen en concrete stappen.</p>' +
+        '<p class="rise" ' + delay(d, 3, 'margin:8px 0 0;font-size:13px;letter-spacing:.12em;font-weight:700;color:#AEB7E0') + '>DIT DOE IK</p>' +
+        '<ul class="doList rise" ' + delay(d, 4) + '>' +
+          '<li><span class="dIc" style="--d:#5CE1FF">' + svg(I.shield, 18) + '</span><div><b>Security Check</b><span class="dtx">Ik kijk met tijdelijke toegang in je eigen omgeving en lever een helder rapport met wat er echt staat.</span></div></li>' +
+          '<li><span class="dIc" style="--d:#FF5C8A">' + svg(I.mail, 18) + '</span><div><b>Training &amp; phishing-test</b><span class="dtx">Ik leer je team met een echte testmail en een praktische sessie hoe ze phishing herkennen.</span></div></li>' +
         '</ul>' +
-        '<p class="rise" ' + delay(d, 4, 'margin:6px 0 0;font-size:13px;letter-spacing:.12em;font-weight:700;color:#AEB7E0') + '>WAAR WIL JE BEGINNEN?</p>' +
-        '<div class="stack rise" ' + delay(d, 5, 'gap:10px') + '>' +
-          ch('qw', '#3ECF8E', I.bolt, 'Ik wil weten waar ik sta', 'Gratis check · 5 vragen · 60 seconden') +
-          ch('dv', '#7FD4FF', '<circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4.5"/>', 'Ik zoek een dienst', '3 diensten met vaste prijs, vanaf €325') +
-          ch('ct', '#FF5C8A', '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>', 'Ik wil even sparren', 'Gratis gesprek · ik reageer vandaag nog') +
-        '</div>' +
+        '<p class="rise" ' + delay(d, 5, 'margin:8px 0 0;font-size:13px;letter-spacing:.12em;font-weight:700;color:#AEB7E0') + '>ONTDEK VERDER</p>' +
+        '<ul class="navGuide rise" ' + delay(d, 6) + '>' +
+          '<li><i style="--d:#7FD4FF"></i><b>Diensten</b> &middot; alle diensten met vaste prijs</li>' +
+          '<li><i style="--d:#DDE3FF"></i><b>Over mij</b> &middot; wie er achter Digitale Defensie zit</li>' +
+          '<li><i style="--d:#FF5C8A"></i><b>Contact</b> &middot; even vrijblijvend sparren</li>' +
+        '</ul>' +
+        '<div class="row rise" ' + delay(d, 7, 'margin-top:14px') + '><button type="button" class="btn mcStart" id="mcStartBtn" style="--sc:#5CE1FF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>Doe de gratis 5-minuten cursus</button></div>' +
+        '<span class="navCue rise" ' + delay(d, 8) + '><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Of kies hieronder in de balk</span>' +
       '</div>';
-    bindGo();
+    var mb = document.getElementById('mcStartBtn'); if (mb) mb.addEventListener('click', openMc);
   }
   function bindGo() {
     Array.prototype.forEach.call(card.querySelectorAll('[data-go]'), function (b) {
@@ -791,34 +1317,34 @@ button{font:inherit}
   var ANIMS = {
     security: function () {
       function row(n, c, l, t) { return '<div class="ap-row"><span class="ap-avatar"></span><span class="ap-name">' + n + '</span><span class="ap-badge ' + c + '" style="animation-delay:' + t + 's">' + l + '</span></div>'; }
-      return '<div class="anim-box anim-security"><div class="ap-head"><span class="ap-dot"></span><span class="ap-dot"></span><span class="ap-dot"></span><span class="ap-title">Toegangsoverzicht</span></div><div class="ap-rows">' +
+      return '<div class="anim-box anim-security"><div class="ap-head"><span class="ap-dot"></span><span class="ap-dot"></span><span class="ap-dot"></span><span class="ap-title">Toegangsoverzicht · voorbeeld</span></div><div class="ap-rows">' +
         row('Lisa de Boer', 'ok', 'OK', 0.7) + row('Mark Jansen', 'warn', 'GEEN MFA', 1.6) + row('oud-account #4', 'bad', 'NOG ACTIEF', 2.5) + row('Tess Willems', 'ok', 'OK', 3.3) +
         '</div><div class="ap-scan"></div></div>';
     },
     azure: function () {
       return '<div class="anim-box anim-azure"><div class="az-top"><span class="az-before">€3.400</span><svg class="az-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="az-after">€2.100</span></div><div class="az-bars">' +
         '<div class="az-bar" style="--h:88%;animation-delay:0s"></div><div class="az-bar" style="--h:95%;animation-delay:.15s"></div><div class="az-bar az-down" style="--h:55%;animation-delay:.3s"></div><div class="az-bar az-down" style="--h:40%;animation-delay:.45s"></div><div class="az-bar az-down" style="--h:35%;animation-delay:.6s"></div>' +
-        '</div><div class="az-badge">− 38% per maand</div></div>';
+        '</div><div class="az-badge">voorbeeld</div></div>';
     },
     training: function () {
       return '<div class="anim-box anim-training"><div class="tr-inbox">' +
-        '<div class="tr-mail"><span class="tr-dot"></span><span class="tr-subj">Factuur #2291 — akkoord?</span></div>' +
+        '<div class="tr-mail"><span class="tr-dot"></span><span class="tr-subj">Factuur #2291: akkoord?</span></div>' +
         '<div class="tr-mail tr-phish"><span class="tr-dot bad"></span><span class="tr-subj">Actie vereist: wachtwoord verloopt vandaag</span><span class="tr-flag">✕ GEBLOKKEERD</span></div>' +
-        '<div class="tr-mail"><span class="tr-dot"></span><span class="tr-subj">Teamoverleg — vrijdag 10:00</span></div>' +
-        '</div><div class="tr-stats"><div class="tr-stat"><b>30%</b><span>vóór training</span></div><svg class="tr-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><div class="tr-stat good"><b>5%</b><span>ná training</span></div></div></div>';
+        '<div class="tr-mail"><span class="tr-dot"></span><span class="tr-subj">Teamoverleg vrijdag 10:00</span></div>' +
+        '</div><div class="tr-stats"><div class="tr-stat"><b>30%</b><span>voor (voorbeeld)</span></div><svg class="tr-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg><div class="tr-stat good"><b>5%</b><span>na (voorbeeld)</span></div></div></div>';
     }
   };
   function cardDiensten(id, d) {
     card.innerHTML =
       '<div class="stack">' +
-        '<p class="kicker rise" ' + delay(d, 0) + '>3 DIENSTEN · VASTE PRIJZEN</p>' +
-        '<h1 class="cTitle rise" ' + delay(d, 1) + '>Een heel stelsel aan checks.</h1>' +
-        '<p class="cText rise" ' + delay(d, 2) + '>Elke dienst heeft een vaste prijs en een eerlijk rapport. Duik de planeet in en bekijk per dienst wat ik precies doe.</p>' +
+        '<p class="kicker rise" ' + delay(d, 0) + '>DIENSTEN</p>' +
+        '<h1 class="cTitle rise" ' + delay(d, 1) + '>Drie diensten, vaste prijzen.</h1>' +
+        '<p class="cText rise" ' + delay(d, 2) + '>Klik op de planeet en zie per dienst wat ik precies doe.</p>' +
         '<div class="stack rise" ' + delay(d, 3, 'gap:8px') + '>' + SVC_ORDER.map(function (sid) {
           var v = SERVICES[sid];
           return '<button type="button" class="ghost" data-enter="' + sid + '" style="--sc:' + v.color + ';display:flex;justify-content:space-between;align-items:center;gap:12px;border-radius:14px;padding:12px 16px;color:#E8ECFF;text-align:left"><span style="display:flex;align-items:center;gap:10px"><i style="width:10px;height:10px;border-radius:50%;background:' + v.color + ';box-shadow:0 0 10px ' + v.color + '"></i>' + v.name + '</span><b style="font-family:Unbounded,sans-serif;color:' + v.color + '">' + v.price + '</b></button>';
         }).join('') + '</div>' +
-        '<div class="row rise" ' + delay(d, 4) + '><button type="button" class="btn" id="enterBtn" style="--sc:#7FD4FF">Betreed het stelsel →</button></div>' +
+        '<div class="row rise" ' + delay(d, 4) + '><button type="button" class="btn" id="enterBtn" style="--sc:#7FD4FF">Bekijk de diensten →</button></div>' +
       '</div>';
     document.getElementById('enterBtn').addEventListener('click', function () { enterServices(); });
     Array.prototype.forEach.call(card.querySelectorAll('[data-enter]'), function (b) {
@@ -878,7 +1404,7 @@ button{font:inherit}
       var counter = el('div', 'sCounter');
       var pl = el('button', 'sPlanet', '<svg viewBox="0 0 24 24" aria-hidden="true">' + v.icon + '</svg>');
       pl.type = 'button';
-      pl.setAttribute('aria-label', v.name + ' — ' + v.price);
+      pl.setAttribute('aria-label', v.name + ', ' + v.price);
       pl.style.setProperty('--pc', v.color);
       pl.style.animationDelay = (0.7 + i * 0.12) + 's';
       pl.dataset.id = sid;
@@ -935,12 +1461,12 @@ button{font:inherit}
   var PERSONAS = {
     layla: { name: 'Layla', role: 'Fotograaf · ZZP', quote: 'Ik ben toch maar een kleine fotograaf. Moet ik me echt zorgen maken?', actions: '5 actiepunten op prioriteit', steps: [
       ['Intake', '5 min (jij)', 'Welke tools gebruik je dagelijks? Geen technische kennis nodig.', 'intakeformulier', 'Drive, Moneybird, WordPress in kaart', 'g'],
-      ['Wachtwoord & datalekcheck', 'ik', 'Is je e-mailadres ooit gelekt? En gebruik je overal hetzelfde wachtwoord?', 'haveibeenpwned', 'e-mail 2× in een datalek', 'r'],
+      ['Wachtwoord & datalekcheck', 'ik', 'Zat je e-mailadres in een datalek? En gebruik je overal hetzelfde wachtwoord?', 'haveibeenpwned', 'e-mail in 2 datalekken, wachtwoord hergebruikt', 'r'],
       ['Website & domein', 'ik', 'SSL-certificaat, DNS-configuratie en zichtbare zwakke plekken.', 'SSL Labs', 'SSL en DNS in orde', 'g'],
       ['E-mailbeveiliging', 'ik', 'Kan iemand nep-mails namens jou sturen?', 'MXToolbox', 'DMARC ontbreekt', 'a'],
-      ['Praktijktest phishing', 'onaangekondigd', 'Ik stuur een echte, ongevaarlijke testmail. Wat doe je ermee?', 'testmail', 'mail geopend, link niet geklikt', 'a'] ] },
+      ['Back-up', 'samen', 'We zetten samen een bestand terug. Werkt de back-up echt?', 'terugzettest', 'terugzetten lukt, map van 2023 ontbreekt', 'a'] ] },
     marco: { name: 'Marco', role: 'Restaurant · 6 mw', quote: 'We bewaren klantgegevens voor ons loyaltyprogramma. Is dat wel veilig?', actions: 'Urgent / belangrijk / aanbevolen', steps: [
-      ['Basischecks', 'ik', 'E-mail, domein, wachtwoorden, back-up en phishing.', 'basisscan', 'e-mail & domein getest', 'g'],
+      ['Basischecks', 'ik', 'E-mail, domein, wachtwoorden en back-up.', 'basisscan', 'e-mail en domein in orde', 'g'],
       ['Wi-Fi ter plekke', 'op locatie', 'Ik kom langs en test je netwerk zelf, in plaats van het te vragen.', 'netwerktest', 'gasten- en zaaknetwerk niet gescheiden', 'r'],
       ['Accounts & rechten', 'ik', 'Ik loop je gebruikerslijsten zelf na.', 'accountlijst', '2 ex-medewerkers nog actief', 'r'],
       ['AVG-check', 'ik', 'Welke persoonsgegevens bewaar je, en mag dat zo?', 'AP-checklist', 'loyaltydata: afspraken ontbreken', 'a'],
@@ -949,7 +1475,7 @@ button{font:inherit}
       ['Basis + netwerk', 'ik', 'Alle basischecks als fundering van het rapport.', 'basisscan', 'fundering gelegd', 'g'],
       ['Microsoft 365-audit', 'leestoegang', 'Secure Score, extern delen, licenties en retentie.', 'M365 Admin', 'extern delen staat te ruim', 'a'],
       ['MFA & identiteit', 'ik', 'Wie heeft MFA, wie heeft admin-rechten?', 'Entra ID', 'MFA niet bij iedereen actief', 'r'],
-      ['NIS2-scope', 'ik', 'Val je onder de Cyberbeveiligingswet? Onderbouwd vastgelegd.', 'NCSC-richtlijnen', 'conclusie onderbouwd vastgelegd', 'g'],
+      ['NIS2-indicatie', 'ik', 'Val je onder de Cyberbeveiligingswet? Eerste indicatie met de NCSC-zelfevaluatie.', 'NCSC-zelfevaluatie', 'advocatuur: waarschijnlijk niet', 'g'],
       ['Bevindingengesprek', '60 min', 'Rapport 48 uur vooraf, daarna bespreken we het samen.', 'live / video', 'prioriteiten afgesproken', 'g'] ] }
   };
   var RC = { g: '#3ECF8E', a: '#FFC24D', r: '#FF5C8A' };
@@ -1032,9 +1558,9 @@ button{font:inherit}
  
   // --- Schild-meter (3 quick wins) ---
   var QS = [
-    { label: 'MFA', q: 'Gebruik jij (en je medewerkers) overal tweestapsverificatie (MFA)?', a: ['Ja, overal', 'Deels', 'Nee / weet ik niet'], tip: 'Zet MFA aan op je e-mail en boekhouding — dat is vandaag in 10 minuten geregeld.' },
+    { label: 'MFA', q: 'Gebruik jij (en je medewerkers) overal tweestapsverificatie (MFA)?', a: ['Ja, overal', 'Deels', 'Nee / weet ik niet'], tip: 'Zet MFA aan op je e-mail en boekhouding. Dat is in tien minuten geregeld.' },
     { label: 'BACK-UP', q: 'Wordt er automatisch een back-up gemaakt van alle bedrijfsdata?', a: ['Ja, automatisch', 'Soms / handmatig', 'Nee / weet ik niet'], tip: 'Zet een automatische back-up aan die los staat van je systeem, en test één keer of terugzetten werkt.' },
-    { label: 'UPDATES', q: 'Worden software-updates op alle apparaten automatisch geïnstalleerd?', a: ['Ja, automatisch', 'Deels', 'Nee / weet ik niet'], tip: 'Zet automatische updates aan op alle laptops en telefoons — vandaag nog.' },
+    { label: 'UPDATES', q: 'Worden software-updates op alle apparaten automatisch geïnstalleerd?', a: ['Ja, automatisch', 'Deels', 'Nee / weet ik niet'], tip: 'Zet automatische updates aan op alle laptops en telefoons.' },
     { label: 'TOEGANG', q: 'Hebben ex-medewerkers en oud-leveranciers nog toegang tot jullie systemen?', a: ['Nee, altijd geblokkeerd', 'Waarschijnlijk niet', 'Ja / weet ik niet'], tip: 'Loop je gebruikerslijst na en blokkeer accounts van iedereen die weg is.' },
     { label: 'PHISHING', q: 'Weten jouw medewerkers hoe ze een phishing-mail herkennen?', a: ['Ja, getraind', 'Twijfelachtig', 'Nee / nooit besproken'], tip: 'Bespreek in je volgende overleg 3 kenmerken van phishing: afzender, haast en links.' }
   ];
@@ -1085,7 +1611,7 @@ button{font:inherit}
           '<h2 class="rise" style="margin:0;font-family:Unbounded,sans-serif;font-weight:800;font-size:20px;line-height:1.25;animation-delay:.05s">' + q.q + '</h2>' +
           '<div class="row rise" style="animation-delay:.12s">' +
             '<button type="button" class="ans" style="--ac:#3ECF8E" data-a="ja">✓ ' + q.a[0] + '<small>+2 schildkracht</small></button>' +
-            '<button type="button" class="ans" style="--ac:#FFC24D" data-a="deels">– ' + q.a[1] + '<small>+1 schildkracht</small></button>' +
+            '<button type="button" class="ans" style="--ac:#FFC24D" data-a="deels">~ ' + q.a[1] + '<small>+1 schildkracht</small></button>' +
             '<button type="button" class="ans" style="--ac:#FF4D5E" data-a="nee">✕ ' + q.a[2] + '<small>gat in je schild</small></button>' +
           '</div>' +
         '</div>';
@@ -1104,7 +1630,7 @@ button{font:inherit}
             var c = QC[qw.answers[i]];
             return '<div class="fly" style="animation-delay:' + (0.2 + j * 0.15) + 's;border-radius:16px;border:1.5px solid ' + c + ';background:rgba(12,18,48,.9);padding:14px 16px;display:flex;gap:12px;align-items:flex-start"><span style="flex:none;font-family:Unbounded,sans-serif;font-weight:800;font-size:16px;color:' + c + '">+' + (qw.answers[i] === 'nee' ? '20' : '10') + '%</span><div><p style="margin:0;font-weight:800">' + QS[i].label + '</p><p style="margin:4px 0 0;font-size:14px;line-height:1.5;color:#C3CAEB">' + QS[i].tip + '</p></div></div>';
           }).join('') : '<p class="cText">Je basis staat. Wil je zeker weten dat het in de praktijk ook klopt? Dat test ik met de Security Check.</p>') +
-          '<div class="row rise" style="animation-delay:.7s"><button type="button" class="btn" data-go="ct" data-svc="Security Check" style="--sc:#3ECF8E">Volledige scan aanvragen →</button><button type="button" class="ghost" id="qwReset">Opnieuw</button></div>' +
+          '<div class="row rise" style="animation-delay:.7s"><button type="button" class="btn" data-go="ct" data-svc="Security Check" style="--sc:#3ECF8E">Security Check aanvragen →</button><button type="button" class="ghost" id="qwReset">Opnieuw</button></div>' +
         '</div>';
       bindGo();
       document.getElementById('qwReset').addEventListener('click', function () { qw = { step: 0, answers: {} }; renderShield(); });
@@ -1116,7 +1642,7 @@ button{font:inherit}
     card.innerHTML =
       '<div class="stack" style="align-items:stretch">' +
         '<p class="kicker rise" ' + delay(d, 0) + '>OVER MIJ · BENJAMIN ELTINK</p>' +
-        '<h1 class="cTitle rise" ' + delay(d, 1) + '>Goede beveiliging is niet voorbehouden aan grote bedrijven.</h1>' +
+        '<h1 class="cTitle rise" ' + delay(d, 1) + '>Beveiliging voor bedrijven zonder IT-afdeling.</h1>' +
         '<div class="bStage rise" id="bStage" ' + delay(d, 2) + '>' +
           '<div aria-hidden="true" style="width:22px;height:60px;background:linear-gradient(180deg,#9C8CFF,#5A4BC0);border-radius:0 0 6px 6px"></div>' +
           '<div aria-hidden="true" style="width:48px;height:16px;border-radius:6px;background:#B8BFD8;margin:-4px 0 -6px;position:relative;z-index:2"></div>' +
@@ -1125,19 +1651,19 @@ button{font:inherit}
               '<div class="scanline" aria-hidden="true"></div>' +
               '<div style="padding:16px 18px 0;display:flex;justify-content:space-between;align-items:center"><span style="font-family:Unbounded,sans-serif;font-weight:700;font-size:12px">Digitale Defensie</span><span style="font-size:9.5px;letter-spacing:.14em;color:#9C8CFF;font-weight:800">ACCESS · ALL</span></div>' +
               '<div class="photo" role="img" aria-label="Foto van Benjamin Eltink" style="background-image:url(\'' + PHOTO_URL + '\'),linear-gradient(160deg,#2A3570,#121A48)"></div>' +
-              '<div style="padding:12px 18px 0"><p style="margin:0;font-family:Unbounded,sans-serif;font-weight:800;font-size:19px">Benjamin Eltink</p><p style="margin:3px 0 0;font-size:12px;color:#AEB7E0">Oprichter · Amsterdam · MKB-specialist</p></div>' +
+              '<div style="padding:12px 18px 0"><p style="margin:0;font-family:Unbounded,sans-serif;font-weight:800;font-size:19px">Benjamin Eltink</p><p style="margin:3px 0 0;font-size:12px;color:#AEB7E0">Eigenaar · Amsterdam</p></div>' +
               '<div style="padding:12px 18px 0;display:flex;flex-wrap:wrap;gap:6px"><span class="holo">AZ-900</span><span class="holo" style="animation-delay:-1.3s">SC-900</span></div>' +
               '<div aria-hidden="true" style="position:absolute;left:18px;right:18px;bottom:14px;height:28px;background:repeating-linear-gradient(90deg,#E8ECFF 0 2px,transparent 2px 5px,#E8ECFF 5px 6px,transparent 6px 10px);opacity:.45;border-radius:4px"></div>' +
             '</div>' +
             '<div class="face back">' +
               '<p style="margin:0;font-size:10.5px;letter-spacing:.16em;font-weight:800;color:#9C8CFF">WAAROM IK DIT DOE</p>' +
-              '<p style="margin:0;font-size:13.5px;line-height:1.6">Ik zag hoe vaak het MKB buiten de boot valt: te klein voor de grote bureaus, te onervaren om het zelf te doen.</p>' +
-              '<p style="margin:0;font-size:13.5px;line-height:1.6;color:#C3CAEB">Een kapper of advocatenkantoor heeft geen IT-afdeling, maar wel klantdata die beschermd moet worden. Geen vage rapporten die in een la verdwijnen — een eerlijke beoordeling en een concreet plan.</p>' +
+              '<p style="margin:0;font-size:13.5px;line-height:1.6">Kleine bedrijven hebben dezelfde risico’s als grote, maar meestal geen IT-afdeling.</p>' +
+              '<p style="margin:0;font-size:13.5px;line-height:1.6;color:#C3CAEB">Daarom kijk ik zelf mee in je omgeving, leg ik in gewone taal uit wat ik zie, en lossen we het eerste punt samen op. Voor een vaste prijs.</p>' +
               '<p style="margin:auto 0 0;font-family:JetBrains Mono,monospace;font-size:12px;color:#9C8CFF">' + PHONE + '</p>' +
             '</div>' +
           '</div></div>' +
         '</div>' +
-        '<p class="cText rise" ' + delay(d, 3, 'text-align:center') + '>Microsoft AZ-900 en SC-900 behaald · alleen voor ZZP en MKB tot 50 medewerkers.</p>' +
+        '<p class="cText rise" ' + delay(d, 3, 'text-align:center') + '>Microsoft AZ-900 en SC-900 · voor zzp en mkb tot 50 medewerkers.</p>' +
         '<div class="row rise" ' + delay(d, 4, 'justify-content:center') + '><button type="button" class="ghost" id="flipBtn" style="--sc:#9C8CFF">↻ Draai de pas om</button><button type="button" class="btn" data-go="ct" style="--sc:#DDE3FF">Bel me gerust eerst even →</button></div>' +
       '</div>';
     bindGo();
@@ -1153,13 +1679,13 @@ button{font:inherit}
         '<div class="ctInfo">' +
           '<p class="kicker rise" ' + delay(d, 0, '--sc:#FF5C8A') + '>CONTACT</p>' +
           '<h1 class="rise" ' + delay(d, 1) + '>Plan een gesprek.</h1>' +
-          '<p class="cText rise" ' + delay(d, 2, 'font-size:17px') + '>Geen sales funnel, geen wachttijden. Gewoon een eerlijk gesprek — ik reageer vandaag nog.</p>' +
+          '<p class="cText rise" ' + delay(d, 2, 'font-size:17px') + '>Bel, app of mail. Ik reageer binnen een werkdag.</p>' +
           '<div class="ctList rise" ' + delay(d, 3) + '>' +
             '<a href="tel:' + PHONE.replace(/\s/g, '') + '"><span style="color:#FF5C8A">●</span>' + PHONE + '</a>' +
             '<a href="https://wa.me/31637282540"><span style="color:#3ECF8E">●</span>WhatsApp</a>' +
             '<a href="mailto:' + CONTACT_EMAIL + '"><span style="color:#5CE1FF">●</span>' + CONTACT_EMAIL + '</a>' +
           '</div>' +
-          '<p class="rise" ' + delay(d, 4, 'margin:12px 0 0;font-size:13px;color:#8E98C8') + '>Je bericht wordt — passend bij wat ik doe — zichtbaar "versleuteld" verstuurd.</p>' +
+          '<p class="rise" ' + delay(d, 4, 'margin:12px 0 0;font-size:13px;color:#8E98C8') + '>' + (FORM_ENDPOINT ? 'Je bericht gaat via een beveiligde verbinding (https).' : 'Het formulier opent je eigen mail-app met het bericht klaar.') + '</p>' +
           '<p class="rise" ' + delay(d, 5, 'margin:4px 0 0;font-size:12px;color:#5A648E') + '>Digitale Defensie · eenmanszaak B. Eltink · Amsterdam · <a href="juridisch/privacy-beleid.html" style="color:#5A648E;text-decoration:underline">Privacybeleid</a> · <a href="juridisch/algemene-voorwaarden.html" style="color:#5A648E;text-decoration:underline">Algemene voorwaarden</a></p>' +
         '</div>' +
         '<div class="ctPanel rise" id="ctPanel" ' + delay(d, 2) + '></div>' +
@@ -1168,17 +1694,17 @@ button{font:inherit}
   }
   function renderContactForm() {
     var panel = document.getElementById('ctPanel'); if (!panel) return;
-    var opts = [['Security Check', '€450'], ['Azure Kostenanalyse', '€500'], ['Training & Phishing-test', '€325'], ['Weet ik nog niet', 'help me kiezen']];
+    var opts = [['Security Check', '€350–450'], ['Azure Kostenanalyse', '€500'], ['Training & Phishing-test', '€325'], ['Weet ik nog niet', 'help me kiezen']];
     panel.innerHTML =
       '<form id="ctForm" novalidate style="display:flex;flex-direction:column;gap:14px">' +
         '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">' +
           '<label>Naam<input class="inp" name="naam" type="text" autocomplete="name" placeholder="Voornaam Achternaam" required></label>' +
           '<label>E-mailadres<input class="inp" name="email" type="email" autocomplete="email" placeholder="jij@bedrijf.nl" required></label>' +
         '</div>' +
-        '<label>Waar gaat het over?<select class="inp" name="dienst">' + opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === state.lastService ? ' selected' : '') + '>' + esc(o[0]) + ' — ' + o[1] + '</option>'; }).join('') + '</select></label>' +
+        '<label>Waar gaat het over?<select class="inp" name="dienst">' + opts.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === state.lastService ? ' selected' : '') + '>' + esc(o[0]) + ' · ' + o[1] + '</option>'; }).join('') + '</select></label>' +
         '<label>Vertel iets over je situatie<textarea class="inp" name="bericht" rows="5" placeholder="Bijvoorbeeld: we zijn met 8 man en ik weet eigenlijk niet of onze mail goed beveiligd is." style="resize:vertical"></textarea></label>' +
         '<p id="ctErr" role="alert" style="margin:0;color:#FF8A9A;font-size:13.5px"></p>' +
-        '<div><button type="submit" class="sendBtn">' + LOCK_ICON + 'Versleutel &amp; verstuur</button></div>' +
+        '<div><button type="submit" class="sendBtn">' + LOCK_ICON + 'Verstuur</button></div>' +
       '</form>';
     var form = document.getElementById('ctForm');
     form.addEventListener('submit', function (e) {
@@ -1199,7 +1725,7 @@ button{font:inherit}
     panel.innerHTML =
       '<div id="encBox" style="display:flex;flex-direction:column;align-items:center;gap:22px;padding-top:30px">' +
         '<svg width="72" height="72" viewBox="0 0 32 32" fill="none" stroke="#FF5C8A" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><g class="shk"><path d="M10 14v-4a6 6 0 0 1 12 0v4"/></g><rect x="6" y="14" width="20" height="14" rx="3" fill="#1A1033"/><circle cx="16" cy="21" r="2" fill="#FF5C8A"/></svg>' +
-        '<p id="encLbl" aria-live="polite" style="margin:0;font-size:12.5px;letter-spacing:.16em;font-weight:700;color:#FF5C8A">VERSLEUTELEN…</p>' +
+        '<p id="encLbl" aria-live="polite" style="margin:0;font-size:12.5px;letter-spacing:.16em;font-weight:700;color:#FF5C8A">BERICHT KLAARZETTEN…</p>' +
         '<div style="position:relative;width:100%"><div id="cipher" style="width:100%;border-radius:16px;border:1.5px solid #FF5C8A;background:#0A0E28;padding:18px;font-family:JetBrains Mono,monospace;font-size:14px;line-height:1.7;color:#FFB3C8;word-break:break-all;box-shadow:0 0 40px -10px #FF5C8A"></div></div>' +
       '</div>';
     var box = document.getElementById('encBox'), cEl = document.getElementById('cipher'), lbl = document.getElementById('encLbl');
@@ -1214,8 +1740,8 @@ button{font:inherit}
       if (n >= src.length) clearInterval(iv);
     }, 22);
     stopTimers.push(iv);
-    stopLater(function () { box.classList.add('locked'); lbl.textContent = 'VERGRENDELD'; }, 1500);
-    stopLater(function () { cEl.classList.add('packet'); lbl.textContent = 'VERZONDEN →'; }, 2000);
+    stopLater(function () { box.classList.add('locked'); lbl.textContent = 'KLAAR'; }, 1500);
+    stopLater(function () { cEl.classList.add('packet'); lbl.textContent = FORM_ENDPOINT ? 'VERZONDEN' : 'NAAR JE MAIL-APP'; }, 2000);
     stopLater(function () { result.then(function (ok) { showSent(data, ok); }); }, 2900);
   }
   function sendMessage(data) {
@@ -1233,14 +1759,14 @@ button{font:inherit}
       document.getElementById('ctAgain').addEventListener('click', renderContactForm);
       return;
     }
-    var mailto = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Aanvraag: ' + data.dienst + ' — ' + data.naam) + '&body=' + encodeURIComponent('Naam: ' + data.naam + '\nE-mail: ' + data.email + '\nDienst: ' + data.dienst + '\n\n' + data.bericht);
+    var mailto = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Aanvraag: ' + data.dienst + ', ' + data.naam) + '&body=' + encodeURIComponent('Naam: ' + data.naam + '\nE-mail: ' + data.email + '\nDienst: ' + data.dienst + '\n\n' + data.bericht);
     panel.innerHTML =
       '<div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding-top:60px">' +
         '<div style="position:relative;width:120px;height:120px"><div class="okRing" aria-hidden="true"></div>' +
         '<svg class="okChk" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="#3ECF8E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>' +
-        '<h2 class="rise" style="margin:0;font-family:Unbounded,sans-serif;font-weight:800;font-size:28px">' + (ok === 'mailto' ? 'Bijna verstuurd.' : 'Veilig ontvangen.') + '</h2>' +
+        '<h2 class="rise" style="margin:0;font-family:Unbounded,sans-serif;font-weight:800;font-size:28px">' + (ok === 'mailto' ? 'Bijna verstuurd.' : 'Ontvangen.') + '</h2>' +
         '<p class="cText rise" style="font-size:16px;max-width:400px;animation-delay:.1s">' + (ok === 'mailto'
-          ? 'Bedankt, ' + first + '. Je bericht staat klaar in je mail-app — druk daar op verzenden en ik reageer vandaag nog.'
+          ? 'Bedankt, ' + first + '. Je bericht staat klaar in je mail-app. Druk daar op verzenden, dan reageer ik binnen een werkdag.'
           : 'Bedankt, ' + first + '. Ik neem binnen één werkdag contact met je op over je ' + esc(data.dienst) + '.') + '</p>' +
         '<div class="row rise" style="justify-content:center;animation-delay:.2s">' +
           (ok === 'mailto' ? '<a class="sendBtn" style="text-decoration:none" href="' + mailto + '">Open opnieuw in mail →</a>' : '') +
@@ -1256,8 +1782,26 @@ button{font:inherit}
   document.getElementById('relockBtn').addEventListener('click', relock);
   document.getElementById('prevBtn').addEventListener('click', function () { go((state.idx - 1 + STOPS.length) % STOPS.length); });
   document.getElementById('nextBtn').addEventListener('click', function () { go((state.idx + 1) % STOPS.length); });
+  // Vegen op de telefoon: horizontaal vegen over de planeten wisselt van stop (niet in formulieren of de navigatiebalk).
+  var swipe = null;
+  hop.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1 || e.target.closest('input,textarea,select,.dots,.ctPanel')) { swipe = null; return; }
+    swipe = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+  hop.addEventListener('touchend', function (e) {
+    if (!swipe || state.phase !== 'hop') return;
+    var dx = e.changedTouches[0].clientX - swipe.x, dy = e.changedTouches[0].clientY - swipe.y;
+    swipe = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go((state.idx + (dx < 0 ? 1 : -1) + STOPS.length) % STOPS.length);
+  }, { passive: true });
   document.getElementById('svcBackBtn').addEventListener('click', function () { leaveServices(); });
+  // ===== Mini-cursus overlay =====
+  var mcLayer = document.getElementById('mcLayer'), mcFrame = document.getElementById('mcFrame');
+  function openMc() { if (mcFrame && !mcFrame.getAttribute('srcdoc')) { var t = document.getElementById('mcSrc'); if (t) mcFrame.srcdoc = '<!doctype html>' + t.innerHTML; } mcLayer.hidden = false; mcLayer.setAttribute('aria-hidden', 'false'); document.getElementById('mcClose').focus({ preventScroll: true }); }
+  function closeMc() { mcLayer.hidden = true; mcLayer.setAttribute('aria-hidden', 'true'); }
+  document.getElementById('mcClose').addEventListener('click', closeMc);
   document.addEventListener('keydown', function (e) {
+    if (!mcLayer.hidden) { if (e.key === 'Escape') closeMc(); return; }
     if (state.phase === 'services') {
       var tg = e.target.tagName;
       if (tg === 'INPUT' || tg === 'TEXTAREA' || tg === 'SELECT') return;
@@ -1275,6 +1819,74 @@ button{font:inherit}
   });
 })();
 </script>
+<script>
+/* ===== Digitale Defensie · canvas-achtergronden =====
+   Radar op het slot-scherm, planeten-achtergrond op het hop-scherm.
+   Tekent alleen wanneer het betreffende scherm zichtbaar is. */
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var CY='#5CE1FF',CYS='#B5F1FF',PU='#9C8CFF',RED='#FF4D5E',PINK='#FF5C8A',OK='#3ECF8E';
+
+  function shieldPath(ctx,x,y,s,col,glow){ctx.save();ctx.translate(x,y);ctx.scale(s/24,s/24);ctx.translate(-12,-12);ctx.strokeStyle=col;ctx.lineWidth=2;ctx.lineJoin='round';ctx.lineCap='round';if(glow){ctx.shadowColor=col;ctx.shadowBlur=glow;}ctx.beginPath();ctx.moveTo(12,22);ctx.bezierCurveTo(12,22,20,18,20,12);ctx.lineTo(20,5);ctx.lineTo(12,2);ctx.lineTo(4,5);ctx.lineTo(4,12);ctx.bezierCurveTo(4,18,12,22,12,22);ctx.stroke();ctx.beginPath();ctx.moveTo(9,12);ctx.lineTo(11,14);ctx.lineTo(15,10);ctx.stroke();ctx.restore();}
+  function ring(ctx,x,y,r,col,a,lw){ctx.save();ctx.globalAlpha=a;ctx.strokeStyle=col;ctx.lineWidth=lw||2;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.stroke();ctx.restore();}
+
+  function base(cv){
+    var o={cv:cv,ctx:cv.getContext('2d'),W:0,H:0,DPR:1,inited:false,dirty:true};
+    o.size=function(){var w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return false;o.DPR=Math.min(2,window.devicePixelRatio||1);o.W=w;o.H=h;cv.width=Math.round(w*o.DPR);cv.height=Math.round(h*o.DPR);o.ctx.setTransform(o.DPR,0,0,o.DPR,0,0);return true;};
+    o.ensure=function(){if((!o.inited||o.dirty)&&o.size()){o.init();o.inited=true;o.dirty=false;}return o.inited;};
+    return o;
+  }
+
+  /* ---------- RADAR (zonder kern: het slot is het middelpunt) ---------- */
+  function makeRadar(cv){
+    var o=base(cv),comp=[],flash=[],a=0,spawnT=0;
+    o.init=function(){var R=Math.min(o.W,o.H)*0.46;comp=[];for(var i=0;i<10;i++)comp.push({ang:Math.random()*7,r:R*(0.4+Math.random()*0.55),state:'safe',t:0});flash=[];a=0;spawnT=1;};
+    o.step=function(dt){a=(a+dt*0.55)%(Math.PI*2);spawnT-=dt;var cx=o.W/2,cy=o.H/2;
+      if(spawnT<=0){spawnT=0.9+Math.random()*1.1;var s=comp.filter(function(c){return c.state==='safe';});if(s.length){var c=s[(Math.random()*s.length)|0];c.state='attacked';c.t=0;}}
+      comp.forEach(function(c){c.t+=dt;if(c.state==='attacked'){var d=((c.ang-a)%(Math.PI*2)+Math.PI*2)%(Math.PI*2);if(d<0.12){c.state='saved';c.t=0;flash.push({x:cx+Math.cos(c.ang)*c.r,y:cy+Math.sin(c.ang)*c.r,r:6,a:1});}}else if(c.state==='saved'&&c.t>2.2)c.state='safe';});
+      flash=flash.filter(function(f){f.r+=dt*90;f.a-=dt*1.4;return f.a>0;});};
+    o.draw=function(){var ctx=o.ctx,cx=o.W/2,cy=o.H/2,R=Math.min(o.W,o.H)*0.5;ctx.clearRect(0,0,o.W,o.H);
+      for(var i=1;i<=3;i++)ring(ctx,cx,cy,R*i/3*0.95,i===2?'#2A3A80':'#1C2860',.6,i===2?2:1);
+      var g=ctx.createConicGradient?ctx.createConicGradient(a,cx,cy):null;
+      ctx.save();ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R*0.95,a-0.5,a);ctx.closePath();if(g){g.addColorStop(0,'rgba(92,225,255,0)');g.addColorStop(1,'rgba(92,225,255,.26)');ctx.fillStyle=g;}else ctx.fillStyle='rgba(92,225,255,.12)';ctx.fill();ctx.restore();
+      ctx.save();ctx.strokeStyle='rgba(92,225,255,.45)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*R*0.95,cy+Math.sin(a)*R*0.95);ctx.stroke();ctx.restore();
+      comp.forEach(function(c){var x=cx+Math.cos(c.ang)*c.r,y=cy+Math.sin(c.ang)*c.r;
+        if(c.state==='attacked'){var p=0.5+0.5*Math.sin(c.t*9);ring(ctx,x,y,8+p*5,RED,.4+.4*p,1.5);ctx.save();ctx.fillStyle=RED;ctx.shadowColor=RED;ctx.shadowBlur=12;ctx.beginPath();ctx.arc(x,y,4,0,7);ctx.fill();ctx.restore();}
+        else if(c.state==='saved')shieldPath(ctx,x,y,16,OK,10);
+        else{ctx.save();ctx.fillStyle=CY;ctx.shadowColor=CY;ctx.shadowBlur=8;ctx.fillRect(x-3,y-3,6,6);ctx.restore();}});
+      flash.forEach(function(f){ring(ctx,f.x,f.y,f.r,OK,f.a,2);});};
+    return o;
+  }
+
+  /* ---------- PLANETEN-ACHTERGROND ---------- */
+  function makePlanets(cv){
+    var o=base(cv),COLS=[CY,PU,'#FFC24D',PINK,CYS],ps=[],atk=[],spark=[],spawnT=0;
+    o.init=function(){ps=[];var n=Math.max(5,Math.round(o.W*o.H/150000));for(var i=0;i<n;i++)ps.push({x:Math.random()*o.W,y:Math.random()*o.H,r:16+Math.random()*26,vx:(Math.random()-.5)*10,vy:(Math.random()-.5)*8,col:COLS[(Math.random()*COLS.length)|0],rot:Math.random()*7,vr:(Math.random()-.5)*.3,ring:Math.random()<.5,state:'safe',t:0});atk=[];spark=[];spawnT=1.2;};
+    o.step=function(dt){spawnT-=dt;
+      ps.forEach(function(p){p.x+=p.vx*dt;p.y+=p.vy*dt;p.rot+=p.vr*dt;p.t+=dt;if(p.x<-40)p.x=o.W+40;if(p.x>o.W+40)p.x=-40;if(p.y<-40)p.y=o.H+40;if(p.y>o.H+40)p.y=-40;if(p.state==='shield'&&p.t>1.6)p.state='safe';});
+      if(spawnT<=0){spawnT=0.7+Math.random()*0.8;var safe=ps.filter(function(p){return p.state==='safe';});if(safe.length){var tgt=safe[(Math.random()*safe.length)|0],e=(Math.random()*4)|0,sx,sy;if(e===0){sx=Math.random()*o.W;sy=-20;}else if(e===1){sx=o.W+20;sy=Math.random()*o.H;}else if(e===2){sx=Math.random()*o.W;sy=o.H+20;}else{sx=-20;sy=Math.random()*o.H;}atk.push({x:sx,y:sy,tgt:tgt,sp:150+Math.random()*120});tgt.state='targeted';tgt.t=0;}}
+      atk.forEach(function(aa){var dx=aa.tgt.x-aa.x,dy=aa.tgt.y-aa.y,d=Math.hypot(dx,dy)||1;aa.x+=dx/d*aa.sp*dt;aa.y+=dy/d*aa.sp*dt;if(d<aa.tgt.r+10){aa.dead=true;aa.tgt.state='shield';aa.tgt.t=0;for(var k=0;k<7;k++)spark.push({x:aa.x,y:aa.y,vx:(Math.random()-.5)*140,vy:(Math.random()-.5)*140,a:1});}});
+      atk=atk.filter(function(aa){return !aa.dead;});
+      spark=spark.filter(function(sp){sp.x+=sp.vx*dt;sp.y+=sp.vy*dt;sp.a-=dt*1.8;return sp.a>0;});};
+    o.draw=function(){var ctx=o.ctx;ctx.clearRect(0,0,o.W,o.H);
+      ps.forEach(function(p){ctx.save();ctx.translate(p.x,p.y);var grd=ctx.createRadialGradient(-p.r*0.3,-p.r*0.3,p.r*0.1,0,0,p.r);grd.addColorStop(0,p.col);grd.addColorStop(.5,'#1a2550');grd.addColorStop(1,'#0A0F2A');ctx.globalAlpha=.55;ctx.fillStyle=grd;ctx.beginPath();ctx.arc(0,0,p.r,0,7);ctx.fill();ctx.globalAlpha=.9;ctx.strokeStyle=p.col;ctx.lineWidth=1.6;ctx.stroke();if(p.ring){ctx.rotate(-0.3);ctx.globalAlpha=.4;ctx.strokeStyle=p.col;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(0,0,p.r*1.7,p.r*0.5,0,0,7);ctx.stroke();}ctx.restore();
+        if(p.state==='targeted'){var q=0.5+0.5*Math.sin(p.t*8);ring(ctx,p.x,p.y,p.r+8+q*4,RED,.4+.3*q,1.5);}
+        else if(p.state==='shield'){ring(ctx,p.x,p.y,p.r+8,CY,(1-p.t/1.6)*0.9,2);ctx.save();ctx.globalAlpha=(1-p.t/1.6)*0.5;ctx.fillStyle=CY;ctx.beginPath();ctx.arc(p.x,p.y,p.r+6,0,7);ctx.fill();ctx.restore();shieldPath(ctx,p.x,p.y-p.r-16,16,CY,10);}});
+      atk.forEach(function(aa){ctx.save();ctx.strokeStyle=RED;ctx.lineWidth=2.4;ctx.shadowColor=RED;ctx.shadowBlur=10;var dx=aa.tgt.x-aa.x,dy=aa.tgt.y-aa.y,d=Math.hypot(dx,dy)||1;ctx.beginPath();ctx.moveTo(aa.x,aa.y);ctx.lineTo(aa.x-dx/d*14,aa.y-dy/d*14);ctx.stroke();ctx.fillStyle=RED;ctx.beginPath();ctx.arc(aa.x,aa.y,2.8,0,7);ctx.fill();ctx.restore();});
+      spark.forEach(function(sp){ctx.save();ctx.globalAlpha=sp.a;ctx.fillStyle=CYS;ctx.beginPath();ctx.arc(sp.x,sp.y,2,0,7);ctx.fill();ctx.restore();});};
+    return o;
+  }
+
+  var radar=makeRadar(document.getElementById('radarCv'));
+  var lockLayer=document.getElementById('lockLayer');
+  function vis(el){return el && !el.hidden;}
+  window.addEventListener('resize',function(){radar.dirty=true;});
+  var last=0;
+  function loop(t){var dt=Math.min(0.05,(t-last)/1000||0);last=t;
+    if(vis(lockLayer)&&radar.ensure()){if(!reduce)radar.step(dt);radar.draw();}
+    requestAnimationFrame(loop);}
+  requestAnimationFrame(loop);
+})();
+</script>
 </body>
 </html>
- 
